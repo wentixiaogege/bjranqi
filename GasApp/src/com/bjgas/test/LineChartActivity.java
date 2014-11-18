@@ -8,9 +8,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.bjgas.common.GasBase;
+import com.bjgas.common.MyMarkerView;
 import com.bjgas.gasapp.R;
 import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
 import com.github.mikephil.charting.charts.LineChart;
@@ -33,8 +35,8 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//
 		setContentView(R.layout.activity_line_chart);
-
 
 		mChart = (LineChart) findViewById(R.id.chart1);
 		mChart.setOnChartGestureListener(this);
@@ -47,7 +49,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		mChart.setStartAtZero(false);
 
 		// disable the drawing of values into the chart
-		mChart.setDrawYValues(false);
+		mChart.setDrawYValues(true);
 
 		mChart.setDrawBorder(true);
 		mChart.setBorderPositions(new BorderPosition[] { BorderPosition.BOTTOM });
@@ -82,18 +84,17 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		// set an alternative background color
 		// mChart.setBackgroundColor(Color.GRAY);
 
-		// TODO 真不知道是干什么的
+		// TODO 真不知道是干什么的(明白了，就是提示的内容)
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it
-		// MyMarkerView mv = new MyMarkerView(this,
-		// R.layout.custom_marker_view);
+		MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
 
 		// define an offset to change the original position of the marker
 		// (optional)
-		// mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
+		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
 
 		// set the marker to the chart
-		// mChart.setMarkerView(mv);
+		mChart.setMarkerView(mv);
 
 		// enable/disable highlight indicators (the lines that indicate the
 		// highlighted Entry)
@@ -104,11 +105,11 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 
 		mChart.animateX(2500);
 
-		// // restrain the maximum scale-out factor
-		// mChart.setScaleMinima(3f, 3f);
+		// restrain the maximum scale-out factor
+		mChart.setScaleMinima(2f, 2f);
 		//
-		// // center the view to a specific position inside the chart
-		// mChart.centerViewPort(10, 50);
+		// center the view to a specific position inside the chart
+		mChart.centerViewPort(100, 50);
 
 		// get the legend (only possible after setting data)
 		Legend l = mChart.getLegend();
@@ -318,9 +319,23 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		set1.setFillColor(Color.BLACK);
 		// set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
 		// Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
+		
+		// 增加第二条线
+		ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+		for (int i = 0; i < count; i++) {
+			float mult = (range + 1);
+			float val = (float) (Math.random() * mult) + 3;
+
+			yVals2.add(new Entry(val, i));
+		}
+		LineDataSet set2 = new LineDataSet(yVals2, "DataSet 2");
+        set2.setLineWidth(2.5f);
+        set2.setCircleSize(4f);
+		set1.setColor(Color.RED);
 
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 		dataSets.add(set1); // add the datasets
+		dataSets.add(set2);
 
 		// create a data object with the datasets
 		LineData data = new LineData(xVals, dataSets);
