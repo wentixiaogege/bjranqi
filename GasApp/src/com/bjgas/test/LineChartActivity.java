@@ -2,8 +2,11 @@ package com.bjgas.test;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +33,8 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		OnChartValueSelectedListener {
 
 	private LineChart mChart;
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

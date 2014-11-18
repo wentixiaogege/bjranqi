@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- 定义一个GridView -->
+
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:background="#ff888800"
+        android:gravity="center"
+        android:numColumns="3"
+        android:stretchMode="columnWidth" >
+    </GridView>
+
+</RelativeLayout>

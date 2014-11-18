@@ -1,35 +1,79 @@
 package com.bjgas.gasapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
-import com.bjgas.test.LineChartActivity;
+import com.bjgas.bean.ScreenInfo;
+import com.bjgas.common.BaseActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
-	Button btnLineChart;
+	ImageView imgGaikuang;
+	ImageView imgJiegou;
+	ImageView imgXiaolv;
+	ImageListener listener = new ImageListener();
+	public static final String IMAGE_CLICK = "ImageClick";
+
+	// 屏幕信息取得
+	ScreenInfo si = new ScreenInfo();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		btnLineChart = (Button) findViewById(R.id.btnLineChart);
-		addEvent();
+		// 取出三个图片
+		imgGaikuang = (ImageView) findViewById(R.id.imgGaikuang);
+		imgJiegou = (ImageView) findViewById(R.id.imgJiegou);
+		imgXiaolv = (ImageView) findViewById(R.id.imgXiaolv);
+
+		// 设置宽度和高度。
+		setWidthAndHeight();
+
+
+		// 绑定事件
+		imgGaikuang.setOnClickListener(listener);
+		imgJiegou.setOnClickListener(listener);
+		imgXiaolv.setOnClickListener(listener);
 	}
 
-	private void addEvent() {
+	private void setWidthAndHeight() {
+		// TODO Auto-generated method stub
+		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this,si);
+		int imgWidth = si.getWidth()/3;
+		imgGaikuang.getLayoutParams().width = imgWidth;
+		imgJiegou.getLayoutParams().width = imgWidth;
+		imgXiaolv.getLayoutParams().width = imgWidth;
+	}
 
-		btnLineChart.setOnClickListener(new View.OnClickListener() {
+	class ImageListener implements View.OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Intent intent;
+			switch (v.getId()) {
+			case R.id.imgGaikuang:
+				Log.d(IMAGE_CLICK, "imgGaikuang");
+				break;
+			case R.id.imgJiegou:
+				Log.d(IMAGE_CLICK, "imgJiegou");
+				intent = new Intent(MainActivity.this, NengyuanJiegou.class);
+				startActivity(intent);
+				break;
+			case R.id.imgXiaolv:
+				Log.d(IMAGE_CLICK, "imgXiaolv");
 
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(MainActivity.this, LineChartActivity.class);
-				startActivity(i);
+				break;
+
+			default:
+				break;
 			}
-		});
+
+		}
 	}
+
 }

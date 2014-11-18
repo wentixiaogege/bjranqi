@@ -46,6 +46,15 @@
         </activity>
 
         <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name=".NengyuanJiegou"
+            android:label="@string/title_activity_nengyuan_jiegou" >
+        </activity>
+        <activity
+            android:name=".ZongjiegouChart"
+            android:label="@string/title_activity_zongjiegou_chart" >
+        </activity>
     </application>
 
 </manifest>

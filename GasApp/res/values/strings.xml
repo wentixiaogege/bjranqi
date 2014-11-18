@@ -5,5 +5,7 @@
     <string name="hello_world">欢迎使用燃气App!</string>
     <string name="title_activity_line_activity_test">LineActivityTest</string>
     <string name="title_activity_line_chart">LineChartActivity</string>
+    <string name="title_activity_nengyuan_jiegou">NengyuanJiegou</string>
+    <string name="title_activity_zongjiegou_chart">ZongjiegouChart</string>
 
 </resources>
