@@ -1,6 +1,8 @@
 package com.bjgas.gasapp;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -15,6 +17,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.common.MyMarkerView;
 import com.bjgas.util.DateUtils;
@@ -26,6 +29,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.OnChartGestureListener;
 import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Legend;
 import com.github.mikephil.charting.utils.LimitLine;
 import com.github.mikephil.charting.utils.Legend.LegendForm;
@@ -33,6 +37,9 @@ import com.github.mikephil.charting.utils.LimitLine.LimitLabelPosition;
 
 public class ZongjiegouChart extends BaseActivity implements OnChartGestureListener, OnChartValueSelectedListener {
 
+	public static final String INPUT_ELEC = "电";
+	public static final String INPUT_AIR = "气";
+	public static final String INPUT_WATER = "水";
 	private static final int GET_JSON_SUCCESSFUL = 1;
 	private static final int GET_JSON_ERROR = 9;
 	private static final String TAG_ZONGJIEGOUCHART = "ZongjiegouChart";
@@ -43,6 +50,7 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
+
 	public ZongjiegouChart() {
 		super("construction", "all");
 		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BASE_URL, getModule(), getType(),
@@ -65,7 +73,6 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 				break;
 			}
 		}
-
 
 	};
 
@@ -140,7 +147,7 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 		mChart.setScaleEnabled(true);
 
 		// if disabled, scaling can be done on x- and y-axis separately
-		mChart.setPinchZoom(true);
+		mChart.setPinchZoom(false);
 
 		// set an alternative background color
 		// mChart.setBackgroundColor(Color.GRAY);
@@ -188,54 +195,52 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 	private void displayChart() {
 		try {
 			Log.d(TAG_ZONGJIEGOUCHART, String.format("get json info:%s", mJsonInfo));
-			JSONObject jObject = new JSONObject(mJsonInfo);
 			// 设置横坐标轴
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yElecs = new ArrayList<Entry>();
 			ArrayList<Entry> yAirs = new ArrayList<Entry>();
 			ArrayList<Entry> yWaters = new ArrayList<Entry>();
 
-			// 取得input信息
-			JSONArray inputs = jObject.getJSONArray("inputs");
-			for (int i = 0; i < inputs.length(); i++) {
-				try {
-					JSONObject oneObject = inputs.getJSONObject(i);
-					// Pulling items from the array
-					xTimes.add(oneObject.getInt("time") + "");
-					yElecs.add(new Entry(getProperData(oneObject, "elec"), i));
-					yAirs.add(new Entry(getProperData(oneObject, "air"), i));
-					yWaters.add(new Entry(getProperData(oneObject, "water"), i));
-				} catch (JSONException e) {
-					Log.d("Error", e.getMessage());
-				}
+			// 取得排序后的InputBean
+			ArrayList<AllInputBean> arrInputs = new ArrayList<AllInputBean>();
+			convertJsonToBean(arrInputs, mJsonInfo);
+
+			// 设置x坐标轴和y的值
+			int i = 0;
+			for (AllInputBean bean : arrInputs) {
+				xTimes.add(bean.getTime() + "");
+				yElecs.add(new Entry(bean.getElec(), i));
+				yAirs.add(new Entry(bean.getAir(), i));
+				yWaters.add(new Entry(bean.getWater(), i));
+				++i;
 			}
 
-			LineDataSet setElecs = new LineDataSet(yElecs, "电");
-			setElecs.enableDashedLine(10f, 5f, 0f);
-			setElecs.setColor(0xFF7A1C1D);
-			setElecs.setCircleColor(0xFF7A1C1D);
-			setElecs.setLineWidth(2f);
+			LineDataSet setElecs = new LineDataSet(yElecs, INPUT_ELEC);
+			// setElecs.enableDashedLine(10f, 5f, 0f);
+			setElecs.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+			setElecs.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+			setElecs.setLineWidth(2.5f);
 			setElecs.setCircleSize(4f);
 			setElecs.setFillAlpha(65);
-			setElecs.setFillColor(0xFF7A1C1D);
+			setElecs.setFillColor(ColorTemplate.VORDIPLOM_COLORS[0]);
 
-			LineDataSet setAirs = new LineDataSet(yAirs, "气");
-			setAirs.enableDashedLine(10f, 5f, 0f);
-			setAirs.setColor(0xFF30597F);
-			setAirs.setCircleColor(0xFF30597F);
-			setAirs.setLineWidth(2f);
+			LineDataSet setAirs = new LineDataSet(yAirs, INPUT_AIR);
+			// setAirs.enableDashedLine(10f, 5f, 0f);
+			setAirs.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
+			setAirs.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[1]);
+			setAirs.setLineWidth(2.5f);
 			setAirs.setCircleSize(4f);
 			setAirs.setFillAlpha(65);
-			setAirs.setFillColor(0xFF30597F);
+			setAirs.setFillColor(ColorTemplate.VORDIPLOM_COLORS[1]);
 
-			LineDataSet setWaters = new LineDataSet(yWaters, "水");
-			setWaters.enableDashedLine(10f, 5f, 0f);
-			setWaters.setColor(0xFF675708);
-			setWaters.setCircleColor(0xFF675708);
-			setWaters.setLineWidth(2f);
+			LineDataSet setWaters = new LineDataSet(yWaters, INPUT_WATER);
+			// setWaters.enableDashedLine(10f, 5f, 0f);
+			setWaters.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
+			setWaters.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[2]);
+			setWaters.setLineWidth(2.5f);
 			setWaters.setCircleSize(4f);
 			setWaters.setFillAlpha(65);
-			setWaters.setFillColor(0xFF675708);
+			setWaters.setFillColor(ColorTemplate.VORDIPLOM_COLORS[2]);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setElecs); // add the datasets
@@ -245,31 +250,62 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 			// create a data object with the datasets
 			LineData data = new LineData(xTimes, dataSets);
 
-			LimitLine ll1 = new LimitLine(100f);
-			ll1.setLineWidth(1f);
-			ll1.enableDashedLine(10f, 10f, 0f);
-			ll1.setDrawValue(false);
-			ll1.setLabelPosition(LimitLabelPosition.RIGHT);
-
-			LimitLine ll2 = new LimitLine(0f);
-			ll2.setLineWidth(1f);
-			ll2.enableDashedLine(10f, 10f, 0f);
-			ll2.setDrawValue(false);
-			ll2.setLabelPosition(LimitLabelPosition.RIGHT);
-
-			data.addLimitLine(ll1);
-			data.addLimitLine(ll2);
+			// 暂时不增加上下区域线
+			// LimitLine ll1 = new LimitLine(100f);
+			// ll1.setLineWidth(1f);
+			// ll1.enableDashedLine(10f, 10f, 0f);
+			// ll1.setDrawValue(false);
+			// ll1.setLabelPosition(LimitLabelPosition.RIGHT);
+			//
+			// LimitLine ll2 = new LimitLine(0f);
+			// ll2.setLineWidth(1f);
+			// ll2.enableDashedLine(10f, 10f, 0f);
+			// ll2.setDrawValue(false);
+			// ll2.setLabelPosition(LimitLabelPosition.RIGHT);
+			//
+			// data.addLimitLine(ll1);
+			// data.addLimitLine(ll2);
 
 			mChart.setData(data);
 			mChart.invalidate();
 			// 取得output信息
 
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
 
+	/**
+	 * 将传入的Json转化成AllInputBean数组
+	 * 
+	 * @param arrInputs
+	 * @param json
+	 */
+	private void convertJsonToBean(ArrayList<AllInputBean> arrInputs, String json) {
+		try {
+			JSONObject jObject = new JSONObject(json);
+			// 取得input信息
+			JSONArray inputs;
+			inputs = jObject.getJSONArray("inputs");
+
+			for (int i = 0; i < inputs.length(); i++) {
+				AllInputBean bean = new AllInputBean();
+
+				JSONObject oneObject = inputs.getJSONObject(i);
+				// Pulling items from the array
+				bean.setTime(oneObject.getInt("time"));
+				bean.setAir(getProperData(oneObject, "air"));
+				bean.setElec(getProperData(oneObject, "elec"));
+				bean.setWater(getProperData(oneObject, "water"));
+				arrInputs.add(bean);
+			}
+
+			Collections.sort(arrInputs);
+		} catch (JSONException e) {
+			Log.d("Error", e.getMessage());
+		}
 	}
 
 	/**
