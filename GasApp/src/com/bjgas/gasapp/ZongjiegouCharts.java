@@ -38,7 +38,7 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 
 			switch (pos) {
 			case 0:
-				f = SineCosineFragment.newInstance();
+				f = OutputsFragment.newInstance();
 				break;
 			case 1:
 				// f = ComplexityFragment.newInstance();

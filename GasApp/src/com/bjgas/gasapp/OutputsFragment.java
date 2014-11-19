@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bjgas.bean.AllInputBean;
+import com.bjgas.bean.AllOutPutBean;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.common.MyMarkerView;
@@ -36,13 +36,13 @@ import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 @SuppressLint("NewApi")
-public class InputsFragment extends BaseFragment<AllInputBean> implements OnChartGestureListener,
+public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnChartGestureListener,
 		OnChartValueSelectedListener {
 	public static Fragment newInstance() {
-		return new InputsFragment();
+		return new OutputsFragment();
 	}
 
-	private static final String TAG_ZONGJIEGOUCHART = "InputsFragment";
+	private static final String TAG_ZONGJIEGOUCHART = "OutputsFragment";
 
 	private String mJsonInfo;
 	private String mRequestUrl;
@@ -50,7 +50,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
 
-	public InputsFragment() {
+	public OutputsFragment() {
 		BaseActivity.act_module = "construction";
 		BaseActivity.act_type = "all";
 		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BaseActivity.BASE_URL, BaseActivity.act_module,
@@ -82,8 +82,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 		mChart.setOnChartGestureListener(this);
 		mChart.setOnChartValueSelectedListener(this);
 
-		mChart.setDescription("输入能源");
-
+		mChart.setDescription("输出能源");
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it（点击上面，会提示信息）
 		MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view, this);
@@ -98,7 +97,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
+		View v = inflater.inflate(R.layout.outputs_fragment, container, false);
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
@@ -131,68 +130,34 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 			// 设置横坐标轴
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yElecs = new ArrayList<Entry>();
-			ArrayList<Entry> yAirs = new ArrayList<Entry>();
-			ArrayList<Entry> yWaters = new ArrayList<Entry>();
+			ArrayList<Entry> yHots = new ArrayList<Entry>();
+			ArrayList<Entry> yColds = new ArrayList<Entry>();
 
 			// 取得排序后的InputBean
-			ArrayList<AllInputBean> arrInputs = new ArrayList<AllInputBean>();
+			ArrayList<AllOutPutBean> arrInputs = new ArrayList<AllOutPutBean>();
 			convertJsonToBean(arrInputs, mJsonInfo);
 
 			// 设置x坐标轴和y的值
 			int i = 0;
-			for (AllInputBean bean : arrInputs) {
+			for (AllOutPutBean bean : arrInputs) {
 				xTimes.add(bean.getTime() + "");
 				yElecs.add(new Entry(bean.getElec(), i));
-				yAirs.add(new Entry(bean.getAir(), i));
-				yWaters.add(new Entry(bean.getWater(), i));
+				yHots.add(new Entry(bean.getHot(), i));
+				yColds.add(new Entry(bean.getCold(), i));
 				++i;
 			}
 
-			LineDataSet setElecs = getDefaultDataset(yElecs, INPUT_ELEC, 1);
-
-			LineDataSet setAirs = getDefaultDataset(yAirs, INPUT_AIR, 2);
-			LineDataSet setWaters = getDefaultDataset(yWaters, INPUT_WATER, 3);
-			// LineDataSet setAirs = new LineDataSet(yAirs, INPUT_AIR);
-			// // setAirs.enableDashedLine(10f, 5f, 0f);
-			// setAirs.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			// setAirs.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			// setAirs.setLineWidth(2.5f);
-			// setAirs.setCircleSize(4f);
-			// setAirs.setFillAlpha(65);
-			// setAirs.setFillColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			//
-			// LineDataSet setWaters = new LineDataSet(yWaters, INPUT_WATER);
-			// // setWaters.enableDashedLine(10f, 5f, 0f);
-			// setWaters.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-			// setWaters.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-			// setWaters.setLineWidth(2.5f);
-			// setWaters.setCircleSize(4f);
-			// setWaters.setFillAlpha(65);
-			// setWaters.setFillColor(ColorTemplate.VORDIPLOM_COLORS[2]);
+			LineDataSet setElecs = getDefaultDataset(yElecs, OUTPUT_ELEC, 1);
+			LineDataSet setHots = getDefaultDataset(yHots, OUTPUT_HOT, 3);
+			LineDataSet setColds = getDefaultDataset(yColds, OUTPUT_COLD, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setElecs); // add the datasets
-			dataSets.add(setAirs);
-			dataSets.add(setWaters);
+			dataSets.add(setColds);
+			dataSets.add(setHots);
 
 			// create a data object with the datasets
 			LineData data = new LineData(xTimes, dataSets);
-
-			// 暂时不增加上下区域线
-			// LimitLine ll1 = new LimitLine(100f);
-			// ll1.setLineWidth(1f);
-			// ll1.enableDashedLine(10f, 10f, 0f);
-			// ll1.setDrawValue(false);
-			// ll1.setLabelPosition(LimitLabelPosition.RIGHT);
-			//
-			// LimitLine ll2 = new LimitLine(0f);
-			// ll2.setLineWidth(1f);
-			// ll2.enableDashedLine(10f, 10f, 0f);
-			// ll2.setDrawValue(false);
-			// ll2.setLabelPosition(LimitLabelPosition.RIGHT);
-			//
-			// data.addLimitLine(ll1);
-			// data.addLimitLine(ll2);
 
 			mChart.setData(data);
 			mChart.invalidate();
@@ -208,30 +173,30 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 	/**
 	 * 将传入的Json转化成AllInputBean数组
 	 * 
-	 * @param arrInputs
+	 * @param arrOutputs
 	 * @param json
 	 */
 	@Override
-	public void convertJsonToBean(ArrayList<AllInputBean> arrInputs, String json) {
+	public void convertJsonToBean(ArrayList<AllOutPutBean> arrOutputs, String json) {
 		try {
 			JSONObject jObject = new JSONObject(json);
 			// 取得input信息
 			JSONArray inputs;
-			inputs = jObject.getJSONArray("inputs");
+			inputs = jObject.getJSONArray("outputs");
 
 			for (int i = 0; i < inputs.length(); i++) {
-				AllInputBean bean = new AllInputBean();
+				AllOutPutBean bean = new AllOutPutBean();
 
 				JSONObject oneObject = inputs.getJSONObject(i);
 				// Pulling items from the array
 				bean.setTime(oneObject.getInt("time"));
-				bean.setAir(getProperData(oneObject, "air"));
+				bean.setCold(getProperData(oneObject, "cold"));
 				bean.setElec(getProperData(oneObject, "elec"));
-				bean.setWater(getProperData(oneObject, "water"));
-				arrInputs.add(bean);
+				bean.setHot(getProperData(oneObject, "hot"));
+				arrOutputs.add(bean);
 			}
 
-			Collections.sort(arrInputs);
+			Collections.sort(arrOutputs);
 		} catch (JSONException e) {
 			Log.d("Error", e.getMessage());
 		}
@@ -263,8 +228,8 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 
 	@Override
 	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? BaseFragment.INPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.INPUT_AIR
-				: BaseFragment.INPUT_WATER);
+		String label = dataSetIndex == 0 ? BaseFragment.OUTPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.OUTPUT_COLD
+				: BaseFragment.OUTPUT_HOT);
 		return label;
 	}
 

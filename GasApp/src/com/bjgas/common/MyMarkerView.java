@@ -12,11 +12,23 @@ import com.github.mikephil.charting.utils.Utils;
 public class MyMarkerView extends MarkerView {
 
 	private TextView tvContent;
+	BaseFragment<?> baseFragment;
 
-	public MyMarkerView(Context context, int layoutResource) {
+	/**
+	 * 通过调用getMarkViewDesc方法，返回对不同图表的描述
+	 * 
+	 * @author gqq
+	 *
+	 */
+	interface LabelInterface {
+		public String getMarkViewDesc(int dataSetIndex);
+	}
+
+	public MyMarkerView(Context context, int layoutResource, BaseFragment<?> base) {
 		super(context, layoutResource);
 
 		tvContent = (TextView) findViewById(R.id.tvContent);
+		baseFragment = base;
 	}
 
 	// callbacks everytime the MarkerView is redrawn, can be used to update the
@@ -30,9 +42,8 @@ public class MyMarkerView extends MarkerView {
 
 			tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
 		} else {
-			String label = dataSetIndex == 0 ? BaseFragment.INPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.INPUT_AIR
-					: BaseFragment.INPUT_WATER);
-			String info = String.format("%s:%s", label, Utils.formatNumber(e.getVal(), 2, true));
+			String info = String.format("%s:%s", baseFragment.getMarkViewDesc(dataSetIndex),
+					Utils.formatNumber(e.getVal(), 2, true));
 			tvContent.setText(info);
 		}
 	}
