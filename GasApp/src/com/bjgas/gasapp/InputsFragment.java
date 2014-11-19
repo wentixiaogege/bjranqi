@@ -1,7 +1,6 @@
 package com.bjgas.gasapp;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,39 +9,41 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.BaseActivity;
+import com.bjgas.common.BaseFragment;
 import com.bjgas.common.MyMarkerView;
 import com.bjgas.util.DateUtils;
 import com.bjgas.util.NetUtils;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.OnChartGestureListener;
 import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.Legend;
-import com.github.mikephil.charting.utils.LimitLine;
-import com.github.mikephil.charting.utils.Legend.LegendForm;
-import com.github.mikephil.charting.utils.LimitLine.LimitLabelPosition;
 
-public class ZongjiegouChart extends BaseActivity implements OnChartGestureListener, OnChartValueSelectedListener {
+@SuppressLint("NewApi")
+public class InputsFragment extends BaseFragment implements OnChartGestureListener, OnChartValueSelectedListener {
+	public static Fragment newInstance() {
+		return new InputsFragment();
+	}
 
-	public static final String INPUT_ELEC = "电";
-	public static final String INPUT_AIR = "气";
-	public static final String INPUT_WATER = "水";
+
 	private static final int GET_JSON_SUCCESSFUL = 1;
 	private static final int GET_JSON_ERROR = 9;
-	private static final String TAG_ZONGJIEGOUCHART = "ZongjiegouChart";
+	private static final String TAG_ZONGJIEGOUCHART = "InputsFragment";
 
 	private String mJsonInfo;
 	private String mRequestUrl;
@@ -51,9 +52,11 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
 
-	public ZongjiegouChart() {
-		super("construction", "all");
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BASE_URL, getModule(), getType(),
+	public InputsFragment() {
+		BaseActivity.act_module = "construction";
+		BaseActivity.act_type = "all";
+		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BaseActivity.BASE_URL, BaseActivity.act_module,
+				BaseActivity.act_type,
 				DateUtils.getTodaySimplestr());
 
 	}
@@ -77,11 +80,10 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 	};
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_zongjiegou_chart);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
 
-		mChart = (LineChart) findViewById(R.id.chart1);
+		mChart = (LineChart) v.findViewById(R.id.chart1);
 
 		// 新开启一个线程，获得Json数据
 		new Thread() {
@@ -89,7 +91,7 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 			@Override
 			public void run() {
 				Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s", mRequestUrl));
-				mJsonInfo = NetUtils.connServerForResult(ZongjiegouChart.this, mRequestUrl);
+				mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
 				if (StringUtils.isNotEmpty(mJsonInfo))
 					mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
 				else {
@@ -100,6 +102,7 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 
 		// 初始化chart
 		initChart();
+		return v;
 	}
 
 	/**
@@ -154,7 +157,7 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it（点击上面，会提示信息）
-		MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
+		MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
 
 		// define an offset to change the original position of the marker
 		// (optional)
@@ -366,4 +369,5 @@ public class ZongjiegouChart extends BaseActivity implements OnChartGestureListe
 		// TODO Auto-generated method stub
 
 	}
+
 }

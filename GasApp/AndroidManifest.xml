@@ -40,20 +40,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.bjgas.test.LineChartActivity"
-            android:label="@string/title_activity_line_chart" >
+        <activity android:name="com.bjgas.test.LineChartActivity" >
         </activity>
 
         <uses-library android:name="android.test.runner" />
 
-        <activity
-            android:name=".NengyuanJiegou"
-            android:label="@string/title_activity_nengyuan_jiegou" >
+        <activity android:name=".NengyuanJiegou" >
         </activity>
-        <activity
-            android:name=".ZongjiegouChart"
-            android:label="@string/title_activity_zongjiegou_chart" >
+        <activity android:name=".ZongjiegouCharts" >
         </activity>
     </application>
 

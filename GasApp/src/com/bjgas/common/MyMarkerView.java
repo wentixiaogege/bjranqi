@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.bjgas.gasapp.R;
-import com.bjgas.gasapp.ZongjiegouChart;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.MarkerView;
@@ -31,8 +30,8 @@ public class MyMarkerView extends MarkerView {
 
 			tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
 		} else {
-			String label = dataSetIndex == 0 ? ZongjiegouChart.INPUT_ELEC
-					: (dataSetIndex == 1 ? ZongjiegouChart.INPUT_AIR : ZongjiegouChart.INPUT_WATER);
+			String label = dataSetIndex == 0 ? BaseFragment.INPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.INPUT_AIR
+					: BaseFragment.INPUT_WATER);
 			String info = String.format("%s:%s", label, Utils.formatNumber(e.getVal(), 2, true));
 			tvContent.setText(info);
 		}

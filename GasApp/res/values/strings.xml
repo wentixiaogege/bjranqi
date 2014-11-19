@@ -7,5 +7,6 @@
     <string name="title_activity_line_chart">LineChartActivity</string>
     <string name="title_activity_nengyuan_jiegou">NengyuanJiegou</string>
     <string name="title_activity_zongjiegou_chart">ZongjiegouChart</string>
+    <string name="title_activity_zongjiegou_charts">ZongjiegouCharts</string>
 
 </resources>

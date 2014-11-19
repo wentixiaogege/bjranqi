@@ -56,7 +56,7 @@ public class NengyuanJiegou extends BaseActivity {
 				switch (position) {
 				case 0:
 					Log.d("Click", "0");
-					intent = new Intent(NengyuanJiegou.this, ZongjiegouChart.class);
+					intent = new Intent(NengyuanJiegou.this, ZongjiegouCharts.class);
 					startActivity(intent);
 					break;
 
