@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
+import com.bjgas.test.PopupWindowTest;
 
 public class MainActivity extends BaseActivity {
 
@@ -58,6 +59,8 @@ public class MainActivity extends BaseActivity {
 			switch (v.getId()) {
 			case R.id.imgGaikuang:
 				Log.d(IMAGE_CLICK, "imgGaikuang");
+				intent = new Intent(MainActivity.this, PopupWindowTest.class);
+				startActivity(intent);
 				break;
 			case R.id.imgJiegou:
 				Log.d(IMAGE_CLICK, "imgJiegou");

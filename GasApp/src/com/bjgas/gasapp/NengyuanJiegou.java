@@ -60,6 +60,11 @@ public class NengyuanJiegou extends BaseActivity {
 					startActivity(intent);
 					break;
 
+				case 1:
+					Log.d("Click", "1");
+					intent = new Intent(NengyuanJiegou.this, FadianjiCharts.class);
+					startActivity(intent);
+					break;
 				default:
 					break;
 				}

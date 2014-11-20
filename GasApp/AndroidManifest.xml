@@ -49,6 +49,12 @@
         </activity>
         <activity android:name=".ZongjiegouCharts" >
         </activity>
+        <activity android:name="com.bjgas.test.PopupWindowTest" >
+        </activity>
+        <activity
+            android:name=".FadianjiCharts"
+            android:label="@string/title_activity_fadianji_charts" >
+        </activity>
     </application>
 
 </manifest>

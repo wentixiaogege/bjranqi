@@ -44,9 +44,7 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 				// f = ComplexityFragment.newInstance();
 				f = InputsFragment.newInstance();
 				break;
-
 			}
-
 			return f;
 		}
 

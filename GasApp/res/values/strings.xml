@@ -8,5 +8,11 @@
     <string name="title_activity_nengyuan_jiegou">NengyuanJiegou</string>
     <string name="title_activity_zongjiegou_chart">ZongjiegouChart</string>
     <string name="title_activity_zongjiegou_charts">ZongjiegouCharts</string>
+    <string name="title_activity_popup_window_test">PopupWindowTest</string>
+    <string name="head_near_days">最近一周</string>
+    <string name="head_near_month">最近一月</string>
+    <string name="head_month">按月查询</string>
+    <string name="bottom_special">专题</string>
+    <string name="title_activity_fadianji_charts">FadianjiCharts</string>
 
 </resources>
