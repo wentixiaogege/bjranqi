@@ -1,4 +1,4 @@
-package com.bjgas.gasapp;
+package com.bjgas.gasapp.zongjiegou;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,21 +7,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
 import com.bjgas.common.BaseFragmentActivity;
+import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
+import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.R.id;
+import com.bjgas.gasapp.R.layout;
 import com.bjgas.gasapp.test.SineCosineFragment;
 
 public class ZongjiegouCharts extends BaseFragmentActivity {
 
-	VerticalViewPager mViewPager;
+	// VerticalViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zongjiegou_charts);
 
-		mViewPager = (VerticalViewPager) findViewById(R.id.pager);
+		pager = (VerticalViewPager) findViewById(R.id.pager);
 		PageAdapter a = new PageAdapter(getSupportFragmentManager());
-		mViewPager.setAdapter(a);
+		pager.setAdapter(a);
 
 	}
 
@@ -53,4 +57,5 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 			return 2;
 		}
 	}
+
 }

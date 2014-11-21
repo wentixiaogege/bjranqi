@@ -1,86 +1,73 @@
-package com.bjgas.gasapp;
+package com.bjgas.gasapp.zongjiegou;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bjgas.bean.AllInputBean;
-import com.bjgas.common.BaseActivity;
 import com.bjgas.common.BaseFragment;
+import com.bjgas.common.ChartDoNothing;
 import com.bjgas.common.MyMarkerView;
+import com.bjgas.gasapp.R;
 import com.bjgas.util.DateUtils;
-import com.bjgas.util.NetUtils;
-import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
+import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.OnChartGestureListener;
-import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 @SuppressLint("NewApi")
-public class InputsFragment extends BaseFragment<AllInputBean> implements OnChartGestureListener,
-		OnChartValueSelectedListener {
+public class InputsFragment extends BaseFragment<AllInputBean> {
 	public static Fragment newInstance() {
 		return new InputsFragment();
 	}
 
 	private static final String TAG_ZONGJIEGOUCHART = "InputsFragment";
 
-	private String mJsonInfo;
 	private String mRequestUrl;
 
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
 
-	public InputsFragment() {
-		BaseActivity.act_module = "construction";
-		BaseActivity.act_type = "all";
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BaseActivity.BASE_URL, BaseActivity.act_module,
-				BaseActivity.act_type, DateUtils.getTodaySimplestr());
 
-	}
 
-	// 定义一个Handler，用于线程同步。
-	@SuppressLint("HandlerLeak")
-	private Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case GET_JSON_SUCCESSFUL:
-				displayChart();
-				break;
-			case GET_JSON_ERROR:
-				displayErr();
-				break;
-			default:
-				break;
-			}
-		}
+	// // 定义一个Handler，用于线程同步。
+	// @SuppressLint("HandlerLeak")
+	// private Handler mHandler = new Handler() {
+	// public void handleMessage(Message msg) {
+	// switch (msg.what) {
+	// case GET_JSON_SUCCESSFUL:
+	// displayChart();
+	// break;
+	// case GET_JSON_ERROR:
+	// displayErr();
+	// break;
+	// default:
+	// break;
+	// }
+	// }
+	//
+	// };
 
-	};
-
+	/**
+	 * 初始化视图
+	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setOnChartGestureListener(this);
-		mChart.setOnChartValueSelectedListener(this);
+		mChart.setOnChartGestureListener(new ChartDoNothing());
+		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
 
 		mChart.setDescription("输入能源");
 
@@ -96,6 +83,9 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 		mChart.setMarkerView(mv);
 	};
 
+	/**
+	 * 创建视图时的回调
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
@@ -103,18 +93,20 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
 		// 新开启一个线程，获得Json数据
-		new Thread() {
-			@Override
-			public void run() {
-				Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s", mRequestUrl));
-				mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
-				if (StringUtils.isNotEmpty(mJsonInfo))
-					mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
-				else {
-					mHandler.sendEmptyMessage(GET_JSON_ERROR);
-				}
-			};
-		}.start();
+		// new Thread() {
+		// @Override
+		// public void run() {
+		// Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s",
+		// mRequestUrl));
+		// mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
+		// if (StringUtils.isNotEmpty(mJsonInfo))
+		// mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
+		// else {
+		// mHandler.sendEmptyMessage(GET_JSON_ERROR);
+		// }
+		// };
+		// }.start();
+		getDataFromweb();
 
 		// 初始化chart
 		initChart();
@@ -135,12 +127,12 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 			ArrayList<Entry> yWaters = new ArrayList<Entry>();
 
 			// 取得排序后的InputBean
-			ArrayList<AllInputBean> arrInputs = new ArrayList<AllInputBean>();
-			convertJsonToBean(arrInputs, mJsonInfo);
-
+			convertJsonToBean(mJsonInfo);
+			if (jsonResults.size() == 0)
+				return;
 			// 设置x坐标轴和y的值
 			int i = 0;
-			for (AllInputBean bean : arrInputs) {
+			for (AllInputBean bean : jsonResults) {
 				xTimes.add(bean.getTime() + "");
 				yElecs.add(new Entry(bean.getElec(), i));
 				yAirs.add(new Entry(bean.getAir(), i));
@@ -148,27 +140,10 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 				++i;
 			}
 
-			LineDataSet setElecs = getDefaultDataset(yElecs, INPUT_ELEC, 1);
+			LineDataSet setElecs = getDefaultDataset(yElecs, InfoUtils.INPUT_ELEC, 1);
 
-			LineDataSet setAirs = getDefaultDataset(yAirs, INPUT_AIR, 2);
-			LineDataSet setWaters = getDefaultDataset(yWaters, INPUT_WATER, 3);
-			// LineDataSet setAirs = new LineDataSet(yAirs, INPUT_AIR);
-			// // setAirs.enableDashedLine(10f, 5f, 0f);
-			// setAirs.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			// setAirs.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			// setAirs.setLineWidth(2.5f);
-			// setAirs.setCircleSize(4f);
-			// setAirs.setFillAlpha(65);
-			// setAirs.setFillColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-			//
-			// LineDataSet setWaters = new LineDataSet(yWaters, INPUT_WATER);
-			// // setWaters.enableDashedLine(10f, 5f, 0f);
-			// setWaters.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-			// setWaters.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-			// setWaters.setLineWidth(2.5f);
-			// setWaters.setCircleSize(4f);
-			// setWaters.setFillAlpha(65);
-			// setWaters.setFillColor(ColorTemplate.VORDIPLOM_COLORS[2]);
+			LineDataSet setAirs = getDefaultDataset(yAirs, InfoUtils.INPUT_AIR, 2);
+			LineDataSet setWaters = getDefaultDataset(yWaters, InfoUtils.INPUT_WATER, 3);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setElecs); // add the datasets
@@ -199,7 +174,6 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 			// 取得output信息
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -212,7 +186,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 	 * @param json
 	 */
 	@Override
-	public void convertJsonToBean(ArrayList<AllInputBean> arrInputs, String json) {
+	public void convertJsonToBean(String json) {
 		try {
 			JSONObject jObject = new JSONObject(json);
 			// 取得input信息
@@ -228,10 +202,10 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 				bean.setAir(getProperData(oneObject, "air"));
 				bean.setElec(getProperData(oneObject, "elec"));
 				bean.setWater(getProperData(oneObject, "water"));
-				arrInputs.add(bean);
+				jsonResults.add(bean);
 			}
 
-			Collections.sort(arrInputs);
+			Collections.sort(jsonResults);
 		} catch (JSONException e) {
 			Log.d("Error", e.getMessage());
 		}
@@ -263,47 +237,24 @@ public class InputsFragment extends BaseFragment<AllInputBean> implements OnChar
 
 	@Override
 	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? BaseFragment.INPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.INPUT_AIR
-				: BaseFragment.INPUT_WATER);
+		String label = dataSetIndex == 0 ? InfoUtils.INPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.INPUT_AIR
+				: InfoUtils.INPUT_WATER);
 		return label;
 	}
 
+
+
+	/**
+	 * 请求页面的url
+	 */
 	@Override
-	public void onValueSelected(Entry e, int dataSetIndex) {
-		// TODO Auto-generated method stub
-
+	public String getRequestUrl() {
+		act_module = "construction";
+		act_type = "all";
+		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
+				DateUtils.getTodaySimplestr());
+		return mRequestUrl;
 	}
-
-	@Override
-	public void onNothingSelected() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartLongPressed(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartDoubleTapped(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartSingleTapped(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-		// TODO Auto-generated method stub
-
-	}
-
 
 
 }

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.test.PopupWindowTest;
+import com.bjgas.test.TestHeaderChartViewActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -69,7 +70,8 @@ public class MainActivity extends BaseActivity {
 				break;
 			case R.id.imgXiaolv:
 				Log.d(IMAGE_CLICK, "imgXiaolv");
-
+				intent = new Intent(MainActivity.this, TestHeaderChartViewActivity.class);
+				startActivity(intent);
 				break;
 
 			default:

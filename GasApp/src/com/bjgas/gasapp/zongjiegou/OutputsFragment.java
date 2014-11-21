@@ -1,86 +1,76 @@
-package com.bjgas.gasapp;
+package com.bjgas.gasapp.zongjiegou;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bjgas.bean.AllInputBean;
 import com.bjgas.bean.AllOutPutBean;
-import com.bjgas.common.BaseActivity;
 import com.bjgas.common.BaseFragment;
+import com.bjgas.common.ChartDoNothing;
 import com.bjgas.common.MyMarkerView;
+import com.bjgas.gasapp.R;
 import com.bjgas.util.DateUtils;
-import com.bjgas.util.NetUtils;
-import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
+import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.OnChartGestureListener;
-import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 @SuppressLint("NewApi")
-public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnChartGestureListener,
-		OnChartValueSelectedListener {
+public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	public static Fragment newInstance() {
 		return new OutputsFragment();
 	}
 
 	private static final String TAG_ZONGJIEGOUCHART = "OutputsFragment";
 
-	private String mJsonInfo;
 	private String mRequestUrl;
 
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
 
 	public OutputsFragment() {
-		BaseActivity.act_module = "construction";
-		BaseActivity.act_type = "all";
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", BaseActivity.BASE_URL, BaseActivity.act_module,
-				BaseActivity.act_type, DateUtils.getTodaySimplestr());
+		act_module = "construction";
+		act_type = "all";
+		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
+				DateUtils.getTodaySimplestr());
 
 	}
 
-	// 定义一个Handler，用于线程同步。
-	@SuppressLint("HandlerLeak")
-	private Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case GET_JSON_SUCCESSFUL:
-				displayChart();
-				break;
-			case GET_JSON_ERROR:
-				displayErr();
-				break;
-			default:
-				break;
-			}
-		}
-
-	};
+	// // 定义一个Handler，用于线程同步。
+	// @SuppressLint("HandlerLeak")
+	// private Handler mHandler = new Handler() {
+	// public void handleMessage(Message msg) {
+	// switch (msg.what) {
+	// case GET_JSON_SUCCESSFUL:
+	// displayChart();
+	// break;
+	// case GET_JSON_ERROR:
+	// displayErr();
+	// break;
+	// default:
+	// break;
+	// }
+	// }
+	//
+	// };
 
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setOnChartGestureListener(this);
-		mChart.setOnChartValueSelectedListener(this);
+		mChart.setOnChartGestureListener(new ChartDoNothing());
+		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
 
 		mChart.setDescription("输出能源");
 		// create a custom MarkerView (extend MarkerView) and specify the layout
@@ -101,19 +91,21 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// 新开启一个线程，获得Json数据
-		new Thread() {
-			@Override
-			public void run() {
-				Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s", mRequestUrl));
-				mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
-				if (StringUtils.isNotEmpty(mJsonInfo))
-					mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
-				else {
-					mHandler.sendEmptyMessage(GET_JSON_ERROR);
-				}
-			};
-		}.start();
+		// // 新开启一个线程，获得Json数据
+		// new Thread() {
+		// @Override
+		// public void run() {
+		// Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s",
+		// mRequestUrl));
+		// mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
+		// if (StringUtils.isNotEmpty(mJsonInfo))
+		// mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
+		// else {
+		// mHandler.sendEmptyMessage(GET_JSON_ERROR);
+		// }
+		// };
+		// }.start();
+		getDataFromweb();
 
 		// 初始化chart
 		initChart();
@@ -134,12 +126,13 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 			ArrayList<Entry> yColds = new ArrayList<Entry>();
 
 			// 取得排序后的InputBean
-			ArrayList<AllOutPutBean> arrInputs = new ArrayList<AllOutPutBean>();
-			convertJsonToBean(arrInputs, mJsonInfo);
-
+			convertJsonToBean(mJsonInfo);
+			if (jsonResults.size() == 0) {
+				return;
+			}
 			// 设置x坐标轴和y的值
 			int i = 0;
-			for (AllOutPutBean bean : arrInputs) {
+			for (AllOutPutBean bean : jsonResults) {
 				xTimes.add(bean.getTime() + "");
 				yElecs.add(new Entry(bean.getElec(), i));
 				yHots.add(new Entry(bean.getHot(), i));
@@ -147,9 +140,9 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 				++i;
 			}
 
-			LineDataSet setElecs = getDefaultDataset(yElecs, OUTPUT_ELEC, 1);
-			LineDataSet setHots = getDefaultDataset(yHots, OUTPUT_HOT, 3);
-			LineDataSet setColds = getDefaultDataset(yColds, OUTPUT_COLD, 2);
+			LineDataSet setElecs = getDefaultDataset(yElecs, InfoUtils.OUTPUT_ELEC, 1);
+			LineDataSet setHots = getDefaultDataset(yHots, InfoUtils.OUTPUT_HOT, 3);
+			LineDataSet setColds = getDefaultDataset(yColds, InfoUtils.OUTPUT_COLD, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setElecs); // add the datasets
@@ -177,7 +170,7 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 	 * @param json
 	 */
 	@Override
-	public void convertJsonToBean(ArrayList<AllOutPutBean> arrOutputs, String json) {
+	public void convertJsonToBean(String json) {
 		try {
 			JSONObject jObject = new JSONObject(json);
 			// 取得input信息
@@ -193,10 +186,10 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 				bean.setCold(getProperData(oneObject, "cold"));
 				bean.setElec(getProperData(oneObject, "elec"));
 				bean.setHot(getProperData(oneObject, "hot"));
-				arrOutputs.add(bean);
+				jsonResults.add(bean);
 			}
 
-			Collections.sort(arrOutputs);
+			Collections.sort(jsonResults);
 		} catch (JSONException e) {
 			Log.d("Error", e.getMessage());
 		}
@@ -228,47 +221,21 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> implements OnCh
 
 	@Override
 	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? BaseFragment.OUTPUT_ELEC : (dataSetIndex == 1 ? BaseFragment.OUTPUT_COLD
-				: BaseFragment.OUTPUT_HOT);
+		String label = dataSetIndex == 0 ? InfoUtils.OUTPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.OUTPUT_COLD
+				: InfoUtils.OUTPUT_HOT);
 		return label;
 	}
 
+	/**
+	 * 请求页面的url
+	 */
 	@Override
-	public void onValueSelected(Entry e, int dataSetIndex) {
-		// TODO Auto-generated method stub
-
+	public String getRequestUrl() {
+		act_module = "construction";
+		act_type = "all";
+		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
+				DateUtils.getTodaySimplestr());
+		return mRequestUrl;
 	}
-
-	@Override
-	public void onNothingSelected() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartLongPressed(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartDoubleTapped(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartSingleTapped(MotionEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-		// TODO Auto-generated method stub
-
-	}
-
-
 
 }
