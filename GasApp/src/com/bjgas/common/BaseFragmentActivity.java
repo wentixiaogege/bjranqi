@@ -2,7 +2,6 @@ package com.bjgas.common;
 
 import java.util.ArrayList;
 
-import android.R.integer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -10,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -72,10 +73,25 @@ public class BaseFragmentActivity extends FragmentActivity {
 
 		popupViewList.setAdapter(adapter);
 
+		// 设置listView的click事件
+		popupViewList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				Log.d("parent_class", parent.getClass().getSimpleName());
+				Log.d("view_class", view.getClass().getSimpleName());
+				dismissPopviewWindow();
+			}
+		});
+
+
+		// 设置linearLayoutTopic的click事件
 		linearLayoutTopic.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				Log.d("setOnClickListener", "onclick");
 
 				if (popupwindow != null && popupwindow.isShowing()) {
 					popupwindow.dismiss();
@@ -85,10 +101,13 @@ public class BaseFragmentActivity extends FragmentActivity {
 					showPopupWindowView();
 					ivTopic.setImageResource(R.drawable.ic_menu_trangle_up);
 					// popupwindow.showAsDropDown(v, 0, 5);
+
 				}
 
 			}
 		});
+
+
 
 	}
 
@@ -112,7 +131,23 @@ public class BaseFragmentActivity extends FragmentActivity {
 		LocalUtils.getScreenWidthAndHeight(this, screenInfo);
 		int width = screenInfo.getWidth() / 4;
 		int heigth = screenInfo.getHeight() / 2;
-		popupwindow = new PopupWindow(popupView, width, heigth);
+		popupwindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT);
+
+		popupwindow.setFocusable(true);
+		popupwindow.setOutsideTouchable(true);
+		popupwindow.setTouchable(true);
+
+		// 设置背景为null，按返回键PopupWindow就会隐藏
+		popupwindow.setBackgroundDrawable(null);
+
+		popupView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dismissPopviewWindow();
+			}
+		});
+
 		// popupwindow.setAnimationStyle(R.style.AnimationFade);
 		popupwindow.showAsDropDown(linearLayoutTopic);
 		// 设置动画效果 [R.style.AnimationFade 是自己事先定义好的]
