@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.bjgas.common.GasBase;
-import com.bjgas.common.MyMarkerView;
+import com.bjgas.common.GasMarkerView;
 import com.bjgas.gasapp.R;
 import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
 import com.github.mikephil.charting.charts.LineChart;

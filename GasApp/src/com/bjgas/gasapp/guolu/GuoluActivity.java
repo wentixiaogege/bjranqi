@@ -1,4 +1,4 @@
-package com.bjgas.gasapp.zhileng;
+package com.bjgas.gasapp.guolu;
 
 import java.util.ArrayList;
 
@@ -13,19 +13,19 @@ import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.R;
 import com.bjgas.view.HeaderChartView;
 
-public class ZhilengActivity extends BaseFragmentActivity {
+public class GuoluActivity extends BaseFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.d("ZhilengActivity", "oncreate");
+		Log.d(this.getClass().getSimpleName(), "oncreate");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_zhileng_charts);
+		setContentView(R.layout.activity_guolu);
 		headerChartView = (HeaderChartView) findViewById(R.id.headChartView);
 
 		// 传入需要展示的fragments
 		pager = (VerticalViewPager) headerChartView.findViewById(R.id.pager);
 		ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-		fragments.add(new ZhilengWeekFragment());
+		fragments.add(new GuoluWeekFragment());
 		PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), fragments);
 		pager.setAdapter(adapter);
 
@@ -45,12 +45,12 @@ public class ZhilengActivity extends BaseFragmentActivity {
 
 				// 初始化fragments
 				if (sm == SearchMethod.Week)
-					fragments.add(new ZhilengWeekFragment());
+					fragments.add(new GuoluWeekFragment());
 				else if (sm == SearchMethod.Month) {
-					fragments.add(new ZhilengMonthFragment());
+					fragments.add(new GuoluMonthFragment());
 				} else {
-					fragments.add(new ZhilengWeekFragment());
-					fragments.add(new ZhilengMonthFragment());
+					fragments.add(new GuoluMonthFragment());
+					fragments.add(new GuoluWeekFragment());
 				}
 				PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), fragments);
 				pager.removeAllViews();
@@ -58,6 +58,5 @@ public class ZhilengActivity extends BaseFragmentActivity {
 			}
 		});
 	}
-
 
 }

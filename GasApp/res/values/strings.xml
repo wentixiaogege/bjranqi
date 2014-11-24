@@ -16,5 +16,6 @@
     <string name="title_activity_fadianji_charts">FadianjiCharts</string>
     <string name="title_activity_test_header_chart_view">TestHeaderChartViewActivity</string>
     <string name="title_activity_zhileng_charts">ZhilengCharts</string>
+    <string name="title_activity_guolu">GuoluActivity</string>
 
 </resources>

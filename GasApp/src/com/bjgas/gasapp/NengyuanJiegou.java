@@ -16,9 +16,11 @@ import android.widget.GridView;
 
 import com.bjgas.adapter.CustomGridViewAdapter;
 import com.bjgas.bean.GridItem;
+import com.bjgas.bean.GuoluBean;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.gasapp.fadianji.FadianjiActivity;
+import com.bjgas.gasapp.guolu.GuoluActivity;
 import com.bjgas.gasapp.zhileng.ZhilengActivity;
 import com.bjgas.gasapp.zongjiegou.ZongjiegouCharts;
 
@@ -72,6 +74,10 @@ public class NengyuanJiegou extends BaseActivity {
 				case 2:
 					Log.d("Click", "2");
 					intent = new Intent(NengyuanJiegou.this, ZhilengActivity.class);
+					startActivity(intent);
+				case 3:
+					Log.d("Click", "3");
+					intent = new Intent(NengyuanJiegou.this, GuoluActivity.class);
 					startActivity(intent);
 				default:
 					break;

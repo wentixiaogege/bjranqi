@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 
 import com.bjgas.bean.AllInputBean;
-import com.bjgas.common.MyMarkerView.LabelInterface;
+import com.bjgas.common.GasMarkerView.LabelInterface;
 import com.bjgas.gasapp.R;
 import com.bjgas.util.NetUtils;
 import com.bjgas.util.TagUtil;
@@ -65,6 +65,9 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	 * 初始化chart
 	 */
 	public void initChart() {
+
+		mChart.setOnChartGestureListener(new ChartDoNothing());
+		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
 
 		mChart.setUnit("");
 		mChart.setDrawUnitsInChart(true);
@@ -132,6 +135,17 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 
 		// // dont forget to refresh the drawing
 		// mChart.invalidate();
+
+		// create a custom MarkerView (extend MarkerView) and specify the layout
+		// to use for it（点击上面，会提示信息）
+		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
+
+		// define an offset to change the original position of the marker
+		// (optional)
+		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
+
+		// set the marker to the chart
+		mChart.setMarkerView(mv);
 	}
 
 	public LineDataSet getDefaultDataset(ArrayList<Entry> yValus, String label, int chartNum) {

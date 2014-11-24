@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.common.ChartDoNothing;
-import com.bjgas.common.MyMarkerView;
+import com.bjgas.common.GasMarkerView;
 import com.bjgas.gasapp.R;
 import com.bjgas.util.DateUtils;
 import com.bjgas.util.InfoUtils;
@@ -73,7 +73,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it（点击上面，会提示信息）
-		MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view, this);
+		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
 
 		// define an offset to change the original position of the marker
 		// (optional)

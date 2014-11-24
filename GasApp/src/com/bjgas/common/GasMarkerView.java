@@ -9,7 +9,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.MarkerView;
 import com.github.mikephil.charting.utils.Utils;
 
-public class MyMarkerView extends MarkerView {
+public class GasMarkerView extends MarkerView {
 
 	private TextView tvContent;
 	BaseFragment<?> baseFragment;
@@ -24,7 +24,7 @@ public class MyMarkerView extends MarkerView {
 		public String getMarkViewDesc(int dataSetIndex);
 	}
 
-	public MyMarkerView(Context context, int layoutResource, BaseFragment<?> base) {
+	public GasMarkerView(Context context, int layoutResource, BaseFragment<?> base) {
 		super(context, layoutResource);
 
 		tvContent = (TextView) findViewById(R.id.tvContent);
