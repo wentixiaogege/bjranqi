@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
 				break;
 			case R.id.imgXiaolv:
 				Log.d(IMAGE_CLICK, "imgXiaolv");
-				intent = new Intent(MainActivity.this, TestHeaderChartViewActivity.class);
+				intent = new Intent(MainActivity.this, NengyuanXiaolv.class);
 				startActivity(intent);
 				break;
 

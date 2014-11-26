@@ -58,8 +58,12 @@
         <activity android:name=".zhileng.ZhilengActivity" >
         </activity>
         <activity
-            android:name="com.bjgas.gasapp.guolu.GuoluActivity"
+            android:name=".guolu.GuoluActivity"
             android:label="@string/title_activity_guolu" >
+        </activity>
+        <activity
+            android:name=".NengyuanXiaolv"
+            android:label="@string/title_activity_nengyuan_xiaolv" >
         </activity>
     </application>
 
