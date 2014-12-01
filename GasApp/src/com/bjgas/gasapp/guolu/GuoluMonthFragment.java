@@ -2,6 +2,7 @@ package com.bjgas.gasapp.guolu;
 
 import android.support.v4.app.Fragment;
 
+import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
 public class GuoluMonthFragment extends GuoluFragments {
@@ -15,10 +16,8 @@ public class GuoluMonthFragment extends GuoluFragments {
 	 */
 	@Override
 	public String getRequestUrl() {
-		act_module = "guolu";
-		act_type = "month";
-		String mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
+				SearchMethod.Month);
 		return mRequestUrl;
 	}
 }

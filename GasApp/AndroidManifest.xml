@@ -61,23 +61,23 @@
         </activity>
         <activity android:name=".NengyuanXiaolv" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.zongxiaolv.ZongXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.fadianjixiaolv.FadianjiXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.dianzhilengxiaolv.DianzhilengXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.guoluxiaolv.GuoluXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.zhiranjixiaolv.ZhiranjiXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.lengqutaxiaolv.LengqutaXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.lengdongtaxiaolv.LengdongtaXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.yurexiaolv.YureXiaolvActivity" >
+        <activity android:name="com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvActivity" >
         </activity>
     </application>
 

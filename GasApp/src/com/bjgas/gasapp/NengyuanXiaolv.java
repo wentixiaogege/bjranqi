@@ -15,18 +15,14 @@ import android.widget.GridView;
 import com.bjgas.adapter.CustomGridViewAdapter;
 import com.bjgas.bean.GridItem;
 import com.bjgas.common.BaseActivity;
-import com.bjgas.gasapp.dianzhilengxiaolv.DianzhilengXiaolvActivity;
-import com.bjgas.gasapp.fadianji.FadianjiActivity;
-import com.bjgas.gasapp.fadianjixiaolv.FadianjiXiaolvActivity;
-import com.bjgas.gasapp.guolu.GuoluActivity;
-import com.bjgas.gasapp.guoluxiaolv.GuoluXiaolvActivity;
-import com.bjgas.gasapp.lengdongtaxiaolv.LengdongtaXiaolvActivity;
-import com.bjgas.gasapp.lengqutaxiaolv.LengqutaXiaolvActivity;
-import com.bjgas.gasapp.yurexiaolv.YureXiaolvActivity;
-import com.bjgas.gasapp.zhileng.ZhilengActivity;
-import com.bjgas.gasapp.zhiranjixiaolv.ZhiranjiXiaolvActivity;
-import com.bjgas.gasapp.zongjiegou.ZongjiegouCharts;
-import com.bjgas.gasapp.zongxiaolv.ZongXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvActivity;
 
 public class NengyuanXiaolv extends BaseActivity {
 
@@ -75,7 +71,7 @@ public class NengyuanXiaolv extends BaseActivity {
 					switch (position) {
 					case 0:
 						Log.d("Click", "0");
-						intent = new Intent(NengyuanXiaolv.this, ZongXiaolvActivity.class);
+						intent = new Intent(NengyuanXiaolv.this, ZongxiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 1:
@@ -100,7 +96,7 @@ public class NengyuanXiaolv extends BaseActivity {
 						break;
 					case 5:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, LengqutaXiaolvActivity.class);
+						intent = new Intent(NengyuanXiaolv.this, LengquetaXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 6:

@@ -29,6 +29,7 @@ public class HeaderChartView extends LinearLayout {
 	protected PopupWindow popupwindow;
 	private ImageView ivTopic;
 	private TextView textViewTopic;
+	private SearchMethod searchMethod;
 
 	LayoutInflater layoutInflater;
 
@@ -40,7 +41,7 @@ public class HeaderChartView extends LinearLayout {
 	OnPopupWindowListItemClick mpoPopupWindowListItemClick;
 
 	public interface OnPopupWindowListItemClick {
-		void changeFragments(SearchMethod sm);
+		void changeFragments();
 	}
 
 	public void setOnPopupWindowListItemClick(OnPopupWindowListItemClick k) {
@@ -60,6 +61,7 @@ public class HeaderChartView extends LinearLayout {
 	private void initView(Context context) {
 		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = layoutInflater.inflate(R.layout.header_chart, this);
+		setSearchMethod(SearchMethod.Now);
 		initHead();
 	}
 
@@ -97,15 +99,18 @@ public class HeaderChartView extends LinearLayout {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Log.d("parent_class", parent.getClass().getSimpleName());
 				Log.d("view_class", view.getClass().getSimpleName());
-				if (1 == position && mpoPopupWindowListItemClick != null)
-					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Week);
-				else if (2 == position && mpoPopupWindowListItemClick != null) {
-					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Month);
+				if (1 == position && mpoPopupWindowListItemClick != null) {
+					setSearchMethod(SearchMethod.Week);
+					mpoPopupWindowListItemClick.changeFragments();
+				} else if (2 == position && mpoPopupWindowListItemClick != null) {
+					setSearchMethod(SearchMethod.Month);
+					mpoPopupWindowListItemClick.changeFragments();
 				} else if (3 == position && mpoPopupWindowListItemClick != null) {
-					mpoPopupWindowListItemClick.changeFragments(SearchMethod.ExactMonth);
+					setSearchMethod(SearchMethod.ExactMonth);
+					mpoPopupWindowListItemClick.changeFragments();
 				} else {
-					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Now);
-
+					setSearchMethod(SearchMethod.Now);
+					mpoPopupWindowListItemClick.changeFragments();
 				}
 				changeTopicLabel(position);
 				dismissPopviewWindow();
@@ -180,6 +185,14 @@ public class HeaderChartView extends LinearLayout {
 		// popupwindow.setAnimationStyle(R.style.AnimationFade);
 		popupwindow.showAsDropDown(linearLayoutTopic);
 		// 设置动画效果 [R.style.AnimationFade 是自己事先定义好的]
+	}
+
+	public SearchMethod getSearchMethod() {
+		return searchMethod;
+	}
+
+	private void setSearchMethod(SearchMethod searchMethod) {
+		this.searchMethod = searchMethod;
 	}
 
 }

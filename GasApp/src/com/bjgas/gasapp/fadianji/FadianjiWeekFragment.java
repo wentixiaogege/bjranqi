@@ -1,5 +1,6 @@
 package com.bjgas.gasapp.fadianji;
 
+import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
 import android.support.v4.app.Fragment;
@@ -11,14 +12,12 @@ public class FadianjiWeekFragment extends FadianjiFragments {
 	}
 
 	/**
-	 * 请求页面的url
+	 * 请求页面的url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {
-		act_module = "dynamo";
-		act_type = "week";
-		String mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
+				SearchMethod.Month);
 		return mRequestUrl;
 	}
 }

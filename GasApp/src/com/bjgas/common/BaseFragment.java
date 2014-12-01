@@ -53,6 +53,14 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	protected ArrayList<T> jsonResults = new ArrayList<T>();
 	protected String mJsonInfo;
 
+	/**
+	 * 获得请求的module，通过获得的module进行html请求<br>
+	 * 因为这个module是必须要有的，所以一定得写成抽象函数，供子类实现
+	 * 
+	 * @return
+	 */
+	protected abstract String getModule();
+
 	// 定义一个Handler，用于线程同步。
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {

@@ -1,21 +1,31 @@
 package com.bjgas.common;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bjgas.adapter.PageAdapter;
 import com.bjgas.bean.PopupItem;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvWeekFragment;
 
 public abstract class BaseFragmentActivity extends FragmentActivity {
 
 	protected com.bjgas.view.HeaderChartView headerChartView;
 	protected com.bjgas.common.VerticalViewPager pager;
-	protected SearchMethod searchMethod;
+	private SearchMethod searchMethod;
+
+	protected SearchMethod getSearchMethod() {
+		return searchMethod;
+	}
+
 	protected ArrayList<PopupItem> popupItems;
 
 	@Override
@@ -42,8 +52,37 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 	/**
 	 * 清除所有的Fragments
 	 */
-	public void clearFragments() {
-		getSupportFragmentManager().getFragments().clear();
+	protected void clearFragments() {
+		List<Fragment> fragments = getSupportFragmentManager().getFragments();
+		if (null != fragments)
+			fragments.clear();
+	}
+
+	/**
+	 * 根据sm的不同，安装不同的fragments
+	 * 
+	 * @param sm
+	 * @param fragments
+	 */
+	public abstract void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments);
+
+	/**
+	 * 根据sm的不同，更新Adapter，改变chart的显示
+	 * 
+	 * @param sm
+	 */
+	protected void clearAndReplaceFragments(SearchMethod sm) {
+		// 重新加载chart中的数据
+		clearFragments();
+		ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+
+		addNewFragments(sm, fragments);
+
+		searchMethod = sm;
+
+		PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), fragments);
+		pager.removeAllViews();
+		pager.setAdapter(adapter);
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.bjgas.bean;
 
-public class FadianjiBean implements Comparable<FadianjiBean> {
+public class FadianjiBean {
 	// 日期(返回离现在多少天，前n日)
-	private int riqi;
+	private String riqi;
 	// 号店
 	private float haodian;
 	// 发电
@@ -10,11 +10,11 @@ public class FadianjiBean implements Comparable<FadianjiBean> {
 	// 余热
 	private float yure;
 
-	public int getRiqi() {
+	public String getRiqi() {
 		return riqi;
 	}
 
-	public void setRiqi(int riqi) {
+	public void setRiqi(String riqi) {
 		this.riqi = riqi;
 	}
 
@@ -40,17 +40,6 @@ public class FadianjiBean implements Comparable<FadianjiBean> {
 
 	public void setYure(float yure) {
 		this.yure = yure;
-	}
-
-	@Override
-	public int compareTo(FadianjiBean another) {
-		if (this.riqi > another.riqi)
-			return -1;
-
-		else if (this.riqi < another.riqi) {
-			return 1;
-		}
-		return 0;
 	}
 
 }

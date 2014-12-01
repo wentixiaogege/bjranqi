@@ -1,16 +1,16 @@
 package com.bjgas.bean;
 
-public class AllOutPutBean implements Comparable<AllOutPutBean> {
-	private int time;
+public class AllOutPutBean {
+	private String time;
 	private float hot;
 	private float cold;
 	private float elec;
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -36,17 +36,6 @@ public class AllOutPutBean implements Comparable<AllOutPutBean> {
 
 	public void setElec(float elec) {
 		this.elec = elec;
-	}
-
-	@Override
-	public int compareTo(AllOutPutBean another) {
-		if (this.time > another.time)
-			return 1;
-
-		else if (this.time < another.time) {
-			return -1;
-		}
-		return 0;
 	}
 
 }

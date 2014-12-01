@@ -224,4 +224,9 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 		return mRequestUrl;
 	}
 
+	@Override
+	protected String getModule() {
+		return "zongjiegou";
+	}
+
 }

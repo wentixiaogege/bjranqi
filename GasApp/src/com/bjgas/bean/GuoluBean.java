@@ -1,8 +1,8 @@
 package com.bjgas.bean;
 
-public class GuoluBean implements Comparable<GuoluBean> {
+public class GuoluBean {
 	// 日期(返回离现在多少天，前n日)
-	private int riqi;
+	private String riqi;
 
 	/**
 	 * 耗电
@@ -14,11 +14,11 @@ public class GuoluBean implements Comparable<GuoluBean> {
 	 */
 	private float zhire;
 
-	public int getRiqi() {
+	public String getRiqi() {
 		return riqi;
 	}
 
-	public void setRiqi(int riqi) {
+	public void setRiqi(String riqi) {
 		this.riqi = riqi;
 	}
 
@@ -38,14 +38,4 @@ public class GuoluBean implements Comparable<GuoluBean> {
 		this.zhire = zhire;
 	}
 
-	@Override
-	public int compareTo(GuoluBean another) {
-		if (this.riqi > another.riqi)
-			return -1;
-
-		else if (this.riqi < another.riqi) {
-			return 1;
-		}
-		return 0;
-	}
 }

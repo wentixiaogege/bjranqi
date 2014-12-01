@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bjgas.bean.FadianjiBean;
 import com.bjgas.bean.ZhilengBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
@@ -25,8 +26,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
-
-
 
 	/**
 	 * 初始化视图
@@ -52,30 +51,54 @@ public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
 		return v;
 	}
 
+
+	/**
+	 * 将传入的Json转化成AllInputBean数组
+	 * 
+	 * @param arrInputs
+	 * @param json
+	 */
 	@Override
 	public void convertJsonToBean(String json) {
 		try {
-			JSONArray fdjInfos = new JSONArray(json);
+			JSONArray jArray = new JSONArray(json);
+			jsonResults.clear();
 
-			for (int i = 0; i < fdjInfos.length(); i++) {
-				ZhilengBean bean = new ZhilengBean();
+			for (int i = 0; i < jArray.length(); i++) {
+				// 利用这个函数，将i转化成日期。
+				JSONObject jo = jArray.getJSONObject(i);
+				String key = jo.getString("name");
+				JSONArray values = jo.getJSONArray("data");
 
-				JSONObject oneObject = fdjInfos.getJSONObject(i);
-				bean.setRiqi(oneObject.getInt("day"));
-				bean.setHaodian(getProperData(oneObject, "haodian"));
-				bean.setZhileng(getProperData(oneObject, "zhileng"));
-				// arrOutputs.add(bean);
-				jsonResults.add(bean);
+				// 根据values的长度，初始化jsonResults，并初始化时间。
+				// 如果是第一次循环
+				if (0 == i)
+					for (int k = 0; k < values.length(); k++) {
+						ZhilengBean bean = new ZhilengBean();
+						bean.setRiqi("前" + k + "天");
+						jsonResults.add(bean);
+					}
+
+				for (int j = 0; j < values.length(); j++) {
+					ZhilengBean bean = jsonResults.get(j);
+					// 如果是总耗电
+					if (key.equals(InfoUtils.ZHILENG_HAODIAN)) {
+						bean.setHaodian((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.ZHILENG_ZHILENG)) {
+						bean.setZhileng((float) values.getDouble(j));
+					}
+				}
 			}
-			Collections.sort(jsonResults);
+
 		} catch (JSONException e) {
-			Log.d("convertJsonToBean Error", e.getMessage());
+			Log.d("Error", e.getMessage());
 		}
+
 	}
 
-	private float getProperData(JSONObject jo, String string) throws JSONException {
-		double value = jo.getDouble(string);
-		return (float) value;
+	@Override
+	protected String getModule() {
+		return InfoUtils.ZHILENG_KEY;
 	}
 
 	@Override

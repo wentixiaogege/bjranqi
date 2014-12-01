@@ -2,6 +2,7 @@ package com.bjgas.gasapp.zhileng;
 
 import android.support.v4.app.Fragment;
 
+import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
 public class ZhilengMonthFragment extends ZhilengFragments {
@@ -15,10 +16,8 @@ public class ZhilengMonthFragment extends ZhilengFragments {
 	 */
 	@Override
 	public String getRequestUrl() {
-		act_module = "zhileng";
-		act_type = "month";
-		String mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
+				SearchMethod.Month);
 		return mRequestUrl;
 	}
 }

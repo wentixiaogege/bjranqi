@@ -15,10 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bjgas.bean.AllInputBean;
 import com.bjgas.bean.AllOutPutBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.common.ChartDoNothing;
 import com.bjgas.common.GasMarkerView;
+import com.bjgas.common.SearchMethod;
 import com.bjgas.gasapp.R;
 import com.bjgas.util.DateUtils;
 import com.bjgas.util.InfoUtils;
@@ -29,60 +31,24 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 @SuppressLint("NewApi")
 public class OutputsFragment extends BaseFragment<AllOutPutBean> {
-	public static Fragment newInstance() {
-		return new OutputsFragment();
+	public static Fragment newInstance(SearchMethod sm) {
+		return new OutputsFragment(sm);
+	}
+
+	private SearchMethod searchMethod;
+
+	public OutputsFragment(SearchMethod sm) {
+		this.searchMethod = sm;
 	}
 
 	private static final String TAG_ZONGJIEGOUCHART = "OutputsFragment";
 
-	private String mRequestUrl;
-
-	private double minValue = 0.0;
-	private double maxValue = 100.0;
-
-	public OutputsFragment() {
-		act_module = "construction";
-		act_type = "all";
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
-
-	}
-
-	// // 定义一个Handler，用于线程同步。
-	// @SuppressLint("HandlerLeak")
-	// private Handler mHandler = new Handler() {
-	// public void handleMessage(Message msg) {
-	// switch (msg.what) {
-	// case GET_JSON_SUCCESSFUL:
-	// displayChart();
-	// break;
-	// case GET_JSON_ERROR:
-	// displayErr();
-	// break;
-	// default:
-	// break;
-	// }
-	// }
-	//
-	// };
-
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setOnChartGestureListener(new ChartDoNothing());
-		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
 
 		mChart.setDescription("输出能源");
-		// create a custom MarkerView (extend MarkerView) and specify the layout
-		// to use for it（点击上面，会提示信息）
-		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
 
-		// define an offset to change the original position of the marker
-		// (optional)
-		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
-
-		// set the marker to the chart
-		mChart.setMarkerView(mv);
 	};
 
 	@Override
@@ -91,20 +57,6 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// // 新开启一个线程，获得Json数据
-		// new Thread() {
-		// @Override
-		// public void run() {
-		// Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s",
-		// mRequestUrl));
-		// mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
-		// if (StringUtils.isNotEmpty(mJsonInfo))
-		// mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
-		// else {
-		// mHandler.sendEmptyMessage(GET_JSON_ERROR);
-		// }
-		// };
-		// }.start();
 		getDataFromweb();
 
 		// 初始化chart
@@ -157,7 +109,6 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 			// 取得output信息
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -166,51 +117,47 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	/**
 	 * 将传入的Json转化成AllInputBean数组
 	 * 
-	 * @param arrOutputs
+	 * @param arrInputs
 	 * @param json
 	 */
 	@Override
 	public void convertJsonToBean(String json) {
 		try {
-			JSONObject jObject = new JSONObject(json);
-			// 取得input信息
-			JSONArray inputs;
-			inputs = jObject.getJSONArray("outputs");
+			JSONArray jArray = new JSONArray(json);
+			jsonResults.clear();
 
-			for (int i = 0; i < inputs.length(); i++) {
-				AllOutPutBean bean = new AllOutPutBean();
+			for (int i = 0; i < jArray.length(); i++) {
+				// 利用这个函数，将i转化成日期。
+				JSONObject jo = jArray.getJSONObject(i);
+				String key = jo.getString("name");
+				JSONArray values = jo.getJSONArray("data");
 
-				JSONObject oneObject = inputs.getJSONObject(i);
-				// Pulling items from the array
-				bean.setTime(oneObject.getInt("time"));
-				bean.setCold(getProperData(oneObject, "cold"));
-				bean.setElec(getProperData(oneObject, "elec"));
-				bean.setHot(getProperData(oneObject, "hot"));
-				jsonResults.add(bean);
+				// 根据values的长度，初始化jsonResults，并初始化时间。
+				// 如果是第一次循环
+				if (0 == i)
+					for (int k = 0; k < values.length(); k++) {
+						AllOutPutBean bean = new AllOutPutBean();
+						bean.setTime("前" + k + "天");
+						jsonResults.add(bean);
+					}
+
+				for (int j = 0; j < values.length(); j++) {
+					AllOutPutBean bean = jsonResults.get(j);
+					// 如果是总耗电
+					if (key.equals(InfoUtils.OUTPUT_ELEC)) {
+						bean.setElec((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+						bean.setCold((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+						bean.setHot((float) values.getDouble(j));
+					}
+				}
 			}
 
-			Collections.sort(jsonResults);
 		} catch (JSONException e) {
 			Log.d("Error", e.getMessage());
 		}
-	}
 
-	/**
-	 * 如果取得的数据比理论上最大值大，或者比理论上最小值小，则变为最大值或最小值。
-	 * 
-	 * @param jo
-	 * @param string
-	 * @return
-	 * @throws JSONException
-	 */
-	private float getProperData(JSONObject jo, String string) throws JSONException {
-		double value = jo.getDouble(string);
-		if (value < minValue) {
-			value = minValue;
-		} else if (value > maxValue) {
-			value = maxValue;
-		}
-		return (float) value;
 	}
 
 	@Override
@@ -231,11 +178,19 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	 */
 	@Override
 	public String getRequestUrl() {
-		act_module = "construction";
-		act_type = "all";
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
+		String searchFilter = SearchMethod.Now.toString();
+		if (searchMethod.equals(SearchMethod.Week))
+			searchFilter = SearchMethod.Week.toString();
+		else if (searchMethod.equals(SearchMethod.Month)) {
+			searchFilter = SearchMethod.Month.toString();
+		}
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, "zongjiegou", searchFilter);
 		return mRequestUrl;
+	}
+
+	@Override
+	protected String getModule() {
+		return "zongjiegou";
 	}
 
 }
