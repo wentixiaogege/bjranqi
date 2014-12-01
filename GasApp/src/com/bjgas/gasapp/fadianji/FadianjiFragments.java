@@ -28,31 +28,14 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 
-	public static Fragment newInstance() {
-		return new InputsFragment();
-	}
-
 	/**
 	 * 初始化视图
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setOnChartGestureListener(new ChartDoNothing());
-		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
 
-		mChart.setDescription("输入能源");
-
-		// create a custom MarkerView (extend MarkerView) and specify the layout
-		// to use for it（点击上面，会提示信息）
-		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
-
-		// define an offset to change the original position of the marker
-		// (optional)
-		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
-
-		// set the marker to the chart
-		mChart.setMarkerView(mv);
+		mChart.setDescription("发电机系统");
 	};
 
 	/**

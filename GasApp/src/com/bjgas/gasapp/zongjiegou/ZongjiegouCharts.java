@@ -46,7 +46,7 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 				break;
 			case 1:
 				// f = ComplexityFragment.newInstance();
-				f = InputsFragment.newInstance();
+				f = InputsFragment.Instance(SearchMethod.Week);
 				break;
 			}
 			return f;

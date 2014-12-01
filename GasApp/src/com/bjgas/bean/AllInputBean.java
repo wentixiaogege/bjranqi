@@ -1,15 +1,15 @@
 package com.bjgas.bean;
 
-public class AllInputBean implements Comparable<AllInputBean> {
-	private int time;
+public class AllInputBean {
+	private String time;
 	private float elec;
 	private float air;
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -39,15 +39,6 @@ public class AllInputBean implements Comparable<AllInputBean> {
 
 	private float water;
 
-	@Override
-	public int compareTo(AllInputBean another) {
-		if (this.time > another.time)
-			return 1;
 
-		else if (this.time < another.time) {
-			return -1;
-		}
-		return 0;
-	}
 
 }

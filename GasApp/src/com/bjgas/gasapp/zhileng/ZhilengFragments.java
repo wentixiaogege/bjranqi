@@ -26,9 +26,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
 
-	public static Fragment newInstance() {
-		return new InputsFragment();
-	}
+
 
 	/**
 	 * ≥ı ºªØ ”Õº

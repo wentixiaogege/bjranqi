@@ -13,9 +13,9 @@ public class InfoUtils {
 	public static final String DISPLAY_HAOQI = "耗气";
 	public static final String DISPLAY_YURE = "余热";
 
-	public static final String INPUT_ELEC = "电";
-	public static final String INPUT_AIR = "气";
-	public static final String INPUT_WATER = "水";
+	public static final String INPUT_ELEC = "总耗电";
+	public static final String INPUT_AIR = "总耗天然气";
+	public static final String INPUT_WATER = "总耗水";
 
 	public static final String OUTPUT_ELEC = "电";
 	public static final String OUTPUT_COLD = "冷";

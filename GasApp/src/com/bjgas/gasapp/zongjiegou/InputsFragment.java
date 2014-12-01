@@ -1,7 +1,6 @@
 package com.bjgas.gasapp.zongjiegou;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,7 +8,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,8 @@ import android.view.ViewGroup;
 
 import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.BaseFragment;
-import com.bjgas.common.ChartDoNothing;
-import com.bjgas.common.GasMarkerView;
+import com.bjgas.common.SearchMethod;
 import com.bjgas.gasapp.R;
-import com.bjgas.util.DateUtils;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -29,36 +25,21 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 @SuppressLint("NewApi")
 public class InputsFragment extends BaseFragment<AllInputBean> {
-	public static Fragment newInstance() {
-		return new InputsFragment();
+
+	private SearchMethod searchMethod;
+
+	public InputsFragment(SearchMethod sm) {
+		this.searchMethod = sm;
+	}
+
+	public static InputsFragment Instance(SearchMethod sm) {
+		return new InputsFragment(sm);
 	}
 
 	private static final String TAG_ZONGJIEGOUCHART = "InputsFragment";
 
-	private String mRequestUrl;
-
 	private double minValue = 0.0;
 	private double maxValue = 100.0;
-
-
-
-	// // 定义一个Handler，用于线程同步。
-	// @SuppressLint("HandlerLeak")
-	// private Handler mHandler = new Handler() {
-	// public void handleMessage(Message msg) {
-	// switch (msg.what) {
-	// case GET_JSON_SUCCESSFUL:
-	// displayChart();
-	// break;
-	// case GET_JSON_ERROR:
-	// displayErr();
-	// break;
-	// default:
-	// break;
-	// }
-	// }
-	//
-	// };
 
 	/**
 	 * 初始化视图
@@ -66,21 +47,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setOnChartGestureListener(new ChartDoNothing());
-		mChart.setOnChartValueSelectedListener(new ChartDoNothing());
-
 		mChart.setDescription("输入能源");
-
-		// create a custom MarkerView (extend MarkerView) and specify the layout
-		// to use for it（点击上面，会提示信息）
-		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
-
-		// define an offset to change the original position of the marker
-		// (optional)
-		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
-
-		// set the marker to the chart
-		mChart.setMarkerView(mv);
 	};
 
 	/**
@@ -92,20 +59,6 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// 新开启一个线程，获得Json数据
-		// new Thread() {
-		// @Override
-		// public void run() {
-		// Log.d(TAG_ZONGJIEGOUCHART, String.format("mRequestUrl:%s",
-		// mRequestUrl));
-		// mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
-		// if (StringUtils.isNotEmpty(mJsonInfo))
-		// mHandler.sendEmptyMessage(GET_JSON_SUCCESSFUL);
-		// else {
-		// mHandler.sendEmptyMessage(GET_JSON_ERROR);
-		// }
-		// };
-		// }.start();
 		getDataFromweb();
 
 		// 初始化chart
@@ -188,27 +141,41 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	@Override
 	public void convertJsonToBean(String json) {
 		try {
-			JSONObject jObject = new JSONObject(json);
-			// 取得input信息
-			JSONArray inputs;
-			inputs = jObject.getJSONArray("inputs");
+			JSONArray jArray = new JSONArray(json);
+			jsonResults.clear();
 
-			for (int i = 0; i < inputs.length(); i++) {
-				AllInputBean bean = new AllInputBean();
+			for (int i = 0; i < jArray.length(); i++) {
+				// 利用这个函数，将i转化成日期。
+				JSONObject jo = jArray.getJSONObject(i);
+				String key = jo.getString("name");
+				JSONArray values = jo.getJSONArray("data");
 
-				JSONObject oneObject = inputs.getJSONObject(i);
-				// Pulling items from the array
-				bean.setTime(oneObject.getInt("time"));
-				bean.setAir(getProperData(oneObject, "air"));
-				bean.setElec(getProperData(oneObject, "elec"));
-				bean.setWater(getProperData(oneObject, "water"));
-				jsonResults.add(bean);
+				// 根据values的长度，初始化jsonResults，并初始化时间。
+				// 如果是第一次循环
+				if (0 == i)
+					for (int k = 0; k < values.length(); k++) {
+						AllInputBean bean = new AllInputBean();
+						bean.setTime("前" + k + "天");
+						jsonResults.add(bean);
+					}
+
+				for (int j = 0; j < values.length(); j++) {
+					AllInputBean bean = jsonResults.get(j);
+					// 如果是总耗电
+					if (key.equals(InfoUtils.INPUT_ELEC)) {
+						bean.setElec((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.INPUT_AIR)) {
+						bean.setAir((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.INPUT_WATER)) {
+						bean.setWater((float) values.getDouble(j));
+					}
+				}
 			}
 
-			Collections.sort(jsonResults);
 		} catch (JSONException e) {
 			Log.d("Error", e.getMessage());
 		}
+
 	}
 
 	/**
@@ -242,19 +209,19 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 		return label;
 	}
 
-
-
 	/**
 	 * 请求页面的url
 	 */
 	@Override
 	public String getRequestUrl() {
-		act_module = "construction";
-		act_type = "all";
-		mRequestUrl = String.format("%s?module=%s&type=%s&date=%s", REQUEST_WEBSITE, act_module, act_type,
-				DateUtils.getTodaySimplestr());
+		String searchFilter = SearchMethod.Now.toString();
+		if (searchMethod.equals(SearchMethod.Week))
+			searchFilter = SearchMethod.Week.toString();
+		else if (searchMethod.equals(SearchMethod.Month)) {
+			searchFilter = SearchMethod.Month.toString();
+		}
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, "zongjiegou", searchFilter);
 		return mRequestUrl;
 	}
-
 
 }

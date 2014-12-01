@@ -27,9 +27,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 public abstract class DianzhilengXiaolvFragments extends BaseFragment<XiaolvBean> {
 
-	public static Fragment newInstance() {
-		return new InputsFragment();
-	}
+
 
 	/**
 	 * ≥ı ºªØ ”Õº

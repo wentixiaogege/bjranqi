@@ -26,9 +26,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 
-	public static Fragment newInstance() {
-		return new InputsFragment();
-	}
 
 	/**
 	 * ≥ı ºªØ ”Õº

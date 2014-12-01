@@ -28,6 +28,12 @@ import android.util.Log;
 public abstract class BaseFragment<T> extends Fragment implements LabelInterface {
 
 	protected final String REQUEST_WEBSITE = "http://gqqapp.sinaapp.com/ranqi.php";
+	// 4个参数
+	protected final String FORMAT_URL = "%s?category=%s&module=%s&type=%s";
+	// 5个参数
+	protected final String FORMAT_URL_WITHDATE = "%s?category=%s&module=%s&type=search&startMonth=%s&endMonth=%s";
+	protected final String NENTYUAN_CATEGORY = "nengyuan";
+	protected final String XIAOLV_CATEGORY = "xiaolv";
 	protected String act_module;
 	protected String act_type;
 
