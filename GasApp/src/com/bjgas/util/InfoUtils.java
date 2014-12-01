@@ -1,6 +1,8 @@
 package com.bjgas.util;
 
 public class InfoUtils {
+	public static final String DISPLAY_ZONGXIAOLV = "总效率";
+
 	public static final String DISPLAY_HAOQi = "耗气";
 	public static final String DISPLAY_ZHIRE = "制热";
 

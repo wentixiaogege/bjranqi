@@ -9,13 +9,17 @@ import com.bjgas.common.GasMarkerView.LabelInterface;
 import com.bjgas.gasapp.R;
 import com.bjgas.util.NetUtils;
 import com.bjgas.util.TagUtil;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.BarLineChartBase.BorderPosition;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.Utils;
+import com.github.mikephil.charting.utils.XLabels.XLabelPosition;
 
 import android.annotation.SuppressLint;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -85,6 +89,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		mChart.setDescription("");
 		mChart.setNoDataTextDescription("暂时没有取得数据");
 
+
 		// // enable / disable grid lines
 		// mChart.setDrawVerticalGrid(false);
 		// mChart.setDrawHorizontalGrid(false);
@@ -118,6 +123,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// add data
 		// setData(45, 100);
 
+		// 设置x轴的动画
 		mChart.animateX(2500);
 
 		// restrain the maximum scale-out factor
@@ -146,6 +152,14 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 
 		// set the marker to the chart
 		mChart.setMarkerView(mv);
+
+		// 设置x轴的位置
+		mChart.getXLabels().setPosition(XLabelPosition.BOTTOM);
+
+		// 设置描述字体
+		Paint mDescPaint = mChart.getPaint(Chart.PAINT_DESCRIPTION);
+		mDescPaint.setColor(0xffff0000);
+		mDescPaint.setTextSize(Utils.convertDpToPixel(13f));
 	}
 
 	public LineDataSet getDefaultDataset(ArrayList<Entry> yValus, String label, int chartNum) {

@@ -57,13 +57,27 @@
         </activity>
         <activity android:name=".zhileng.ZhilengActivity" >
         </activity>
-        <activity
-            android:name=".guolu.GuoluActivity"
-            android:label="@string/title_activity_guolu" >
+        <activity android:name=".guolu.GuoluActivity" >
         </activity>
-        <activity
-            android:name=".NengyuanXiaolv"
-            android:label="@string/title_activity_nengyuan_xiaolv" >
+        <activity android:name=".NengyuanXiaolv" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.zongxiaolv.ZongXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.fadianjixiaolv.FadianjiXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.dianzhilengxiaolv.DianzhilengXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.guoluxiaolv.GuoluXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.zhiranjixiaolv.ZhiranjiXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.lengqutaxiaolv.LengqutaXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.lengdongtaxiaolv.LengdongtaXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity" >
+        </activity>
+        <activity android:name="com.bjgas.gasapp.yurexiaolv.YureXiaolvActivity" >
         </activity>
     </application>
 

@@ -78,6 +78,8 @@ public class HeaderChartView extends LinearLayout {
 
 		popupItems = new ArrayList<PopupItem>();
 		popupItems.add(new PopupItem(android.R.drawable.ic_menu_info_details, getResources().getString(
+				R.string.head_today)));
+		popupItems.add(new PopupItem(android.R.drawable.ic_menu_info_details, getResources().getString(
 				R.string.head_near_days)));
 		popupItems.add(new PopupItem(android.R.drawable.ic_menu_info_details, getResources().getString(
 				R.string.head_near_month)));
@@ -95,12 +97,15 @@ public class HeaderChartView extends LinearLayout {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Log.d("parent_class", parent.getClass().getSimpleName());
 				Log.d("view_class", view.getClass().getSimpleName());
-				if (0 == position && mpoPopupWindowListItemClick != null)
+				if (1 == position && mpoPopupWindowListItemClick != null)
 					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Week);
-				else if (1 == position && mpoPopupWindowListItemClick != null) {
+				else if (2 == position && mpoPopupWindowListItemClick != null) {
 					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Month);
-				} else {
+				} else if (3 == position && mpoPopupWindowListItemClick != null) {
 					mpoPopupWindowListItemClick.changeFragments(SearchMethod.ExactMonth);
+				} else {
+					mpoPopupWindowListItemClick.changeFragments(SearchMethod.Now);
+
 				}
 				changeTopicLabel(position);
 				dismissPopviewWindow();

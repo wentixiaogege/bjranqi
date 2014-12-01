@@ -23,7 +23,7 @@
                 android:id="@+id/textViewTopic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/head_near_days"
+                android:text="@string/head_today"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 

@@ -15,10 +15,18 @@ import android.widget.GridView;
 import com.bjgas.adapter.CustomGridViewAdapter;
 import com.bjgas.bean.GridItem;
 import com.bjgas.common.BaseActivity;
+import com.bjgas.gasapp.dianzhilengxiaolv.DianzhilengXiaolvActivity;
 import com.bjgas.gasapp.fadianji.FadianjiActivity;
+import com.bjgas.gasapp.fadianjixiaolv.FadianjiXiaolvActivity;
 import com.bjgas.gasapp.guolu.GuoluActivity;
+import com.bjgas.gasapp.guoluxiaolv.GuoluXiaolvActivity;
+import com.bjgas.gasapp.lengdongtaxiaolv.LengdongtaXiaolvActivity;
+import com.bjgas.gasapp.lengqutaxiaolv.LengqutaXiaolvActivity;
+import com.bjgas.gasapp.yurexiaolv.YureXiaolvActivity;
 import com.bjgas.gasapp.zhileng.ZhilengActivity;
+import com.bjgas.gasapp.zhiranjixiaolv.ZhiranjiXiaolvActivity;
 import com.bjgas.gasapp.zongjiegou.ZongjiegouCharts;
+import com.bjgas.gasapp.zongxiaolv.ZongXiaolvActivity;
 
 public class NengyuanXiaolv extends BaseActivity {
 
@@ -67,23 +75,49 @@ public class NengyuanXiaolv extends BaseActivity {
 					switch (position) {
 					case 0:
 						Log.d("Click", "0");
-						intent = new Intent(NengyuanXiaolv.this, ZongjiegouCharts.class);
+						intent = new Intent(NengyuanXiaolv.this, ZongXiaolvActivity.class);
 						startActivity(intent);
 						break;
-
 					case 1:
 						Log.d("Click", "1");
-						intent = new Intent(NengyuanXiaolv.this, FadianjiActivity.class);
+						intent = new Intent(NengyuanXiaolv.this, FadianjiXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 2:
 						Log.d("Click", "2");
-						intent = new Intent(NengyuanXiaolv.this, ZhilengActivity.class);
+						intent = new Intent(NengyuanXiaolv.this, DianzhilengXiaolvActivity.class);
 						startActivity(intent);
+						break;
 					case 3:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, GuoluActivity.class);
+						intent = new Intent(NengyuanXiaolv.this, GuoluXiaolvActivity.class);
 						startActivity(intent);
+						break;
+					case 4:
+						Log.d("Click", "3");
+						intent = new Intent(NengyuanXiaolv.this, ZhiranjiXiaolvActivity.class);
+						startActivity(intent);
+						break;
+					case 5:
+						Log.d("Click", "3");
+						intent = new Intent(NengyuanXiaolv.this, LengqutaXiaolvActivity.class);
+						startActivity(intent);
+						break;
+					case 6:
+						Log.d("Click", "3");
+						intent = new Intent(NengyuanXiaolv.this, LengdongtaXiaolvActivity.class);
+						startActivity(intent);
+						break;
+					case 7:
+						Log.d("Click", "3");
+						intent = new Intent(NengyuanXiaolv.this, NengyuanXiaolv.class);
+						startActivity(intent);
+						break;
+					case 8:
+						Log.d("Click", "3");
+						intent = new Intent(NengyuanXiaolv.this, YureXiaolvActivity.class);
+						startActivity(intent);
+						break;
 					default:
 						break;
 					}

@@ -7,7 +7,7 @@
     <ListView
         android:id="@+id/lstPopView"
         android:layout_width="150dp"
-        android:layout_height="158dp"
+        android:layout_height="210dp"
         android:background="#ff22292C" >
     </ListView>
 
