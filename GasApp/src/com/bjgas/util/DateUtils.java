@@ -12,15 +12,15 @@ public final class DateUtils {
 	static Date today;
 
 	static {
-		// È¡µÃµ±Ç°µÄÊ±¼ä
+		// å–å¾—å½“å‰çš„æ—¶é—´
 		now = Calendar.getInstance();
-		// È¡µÃ½ñÌìµÄÈÕÆÚ£¬Ê±¼ä´Ó0µã¿ªÊ¼ËãÆğ¡£
+		// å–å¾—ä»Šå¤©çš„æ—¥æœŸï¼Œæ—¶é—´ä»0ç‚¹å¼€å§‹ç®—èµ·ã€‚
 		today = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE))
 				.getTime();
 	}
 
 	/**
-	 * ·µ»Øµ±Ç°Ê±¼ä¡£
+	 * è¿”å›å½“å‰æ—¶é—´ã€‚
 	 * 
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ±äÎªUnixÊ±¼ä´Á
+	 * å˜ä¸ºUnixæ—¶é—´æˆ³
 	 * 
 	 * @param cd
 	 * @return
@@ -44,10 +44,10 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ±äÎªUnixÊ±¼ä´Á
+	 * å˜ä¸ºUnixæ—¶é—´æˆ³
 	 * 
 	 * @param dtStr
-	 *            £º±ØĞëÊÇyyyy-MM-dd¸ñÊ½µÄ×Ö·û´®¡£
+	 *            ï¼šå¿…é¡»æ˜¯yyyy-MM-ddæ ¼å¼çš„å­—ç¬¦ä¸²ã€‚
 	 * @return
 	 */
 	public static long toUnixTime(String dtStr) {
@@ -64,10 +64,10 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ½«¾ßÌåµÄÊ±¼ä¸ñÊ½±äÎªUnixÊ±¼ä´Á
+	 * å°†å…·ä½“çš„æ—¶é—´æ ¼å¼å˜ä¸ºUnixæ—¶é—´æˆ³
 	 * 
 	 * @param dtStr
-	 *            £º±ØĞëÊÇyyyy-MM-dd HH:mm:ss¸ñÊ½µÄ×Ö·û´®¡£
+	 *            ï¼šå¿…é¡»æ˜¯yyyy-MM-dd HH:mm:ssæ ¼å¼çš„å­—ç¬¦ä¸²ã€‚
 	 * @return
 	 */
 	public static long toUnixTimeDetail(String dtStr) {
@@ -84,7 +84,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * °ÑUnixÊ±¼ä´Á×ª»¯ÎªjavaÈÕÆÚ
+	 * æŠŠUnixæ—¶é—´æˆ³è½¬åŒ–ä¸ºjavaæ—¥æœŸ
 	 * 
 	 * @param uTime
 	 * @return
@@ -94,7 +94,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * °ÑUnixÊ±¼ä´Á×ª»¯ÎªjavaÈÕÆÚ£¬²¢¸ñÊ½»¯Îªyyyy-MM-dd HH:mm:ssµÄĞÎÊ½¡£
+	 * æŠŠUnixæ—¶é—´æˆ³è½¬åŒ–ä¸ºjavaæ—¥æœŸï¼Œå¹¶æ ¼å¼åŒ–ä¸ºyyyy-MM-dd HH:mm:ssçš„å½¢å¼ã€‚
 	 * 
 	 * @param uTime
 	 * @return
@@ -104,7 +104,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * °ÑUnixÊ±¼ä´Á×ª»¯ÎªjavaÈÕÆÚ£¬²¢¸ñÊ½»¯Îªyyyy-MM-dd HH:mm:ssµÄĞÎÊ½¡£
+	 * æŠŠUnixæ—¶é—´æˆ³è½¬åŒ–ä¸ºjavaæ—¥æœŸï¼Œå¹¶æ ¼å¼åŒ–ä¸ºyyyy-MM-dd HH:mm:ssçš„å½¢å¼ã€‚
 	 * 
 	 * @param uTime
 	 * @return
@@ -116,7 +116,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ÒÔUnixtimeµÄĞÎÊ½·µ»Ø½ñÌìÈÕÆÚ
+	 * ä»¥Unixtimeçš„å½¢å¼è¿”å›ä»Šå¤©æ—¥æœŸ
 	 * 
 	 * @return
 	 */
@@ -125,7 +125,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ÒÔÈÕÆÚµÄĞÎÊ½·µ»Ø½ñÌìÈÕÆÚ
+	 * ä»¥æ—¥æœŸçš„å½¢å¼è¿”å›ä»Šå¤©æ—¥æœŸ
 	 * 
 	 * @return
 	 */
@@ -134,7 +134,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ÒÔ×Ö·û´®µÄĞÎÊ½·µ»Ø½ñÌìÈÕÆÚ
+	 * ä»¥å­—ç¬¦ä¸²çš„å½¢å¼è¿”å›ä»Šå¤©æ—¥æœŸ
 	 * 
 	 * @return
 	 */
@@ -144,7 +144,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * ÒÔyyMMdd×Ö·û´®µÄĞÎÊ½·µ»Ø½ñÌìÈÕÆÚ
+	 * ä»¥yyMMddå­—ç¬¦ä¸²çš„å½¢å¼è¿”å›ä»Šå¤©æ—¥æœŸ
 	 * 
 	 * @return
 	 */

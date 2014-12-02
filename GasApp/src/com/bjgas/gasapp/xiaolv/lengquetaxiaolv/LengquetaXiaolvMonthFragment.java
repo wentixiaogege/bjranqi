@@ -12,12 +12,11 @@ public class LengquetaXiaolvMonthFragment extends LengquetaXiaolvFragments {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl FadianjiFragments
+	 * ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {
-		String mRequestUrl = String
-.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
 				SearchMethod.Month);
 		return mRequestUrl;
 	}

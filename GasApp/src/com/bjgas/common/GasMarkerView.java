@@ -15,7 +15,7 @@ public class GasMarkerView extends MarkerView {
 	BaseFragment<?> baseFragment;
 
 	/**
-	 * Í¨¹ıµ÷ÓÃgetMarkViewDesc·½·¨£¬·µ»Ø¶Ô²»Í¬Í¼±íµÄÃèÊö
+	 * é€šè¿‡è°ƒç”¨getMarkViewDescæ–¹æ³•ï¼Œè¿”å›å¯¹ä¸åŒå›¾è¡¨çš„æè¿°
 	 * 
 	 * @author gqq
 	 *

@@ -11,7 +11,7 @@ import com.bjgas.common.BaseFragment;
 
 public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment<XiaolvBean> {
 	/**
-	 * ½«´«ÈëµÄJson×ª»¯³ÉAllInputBeanÊı×é
+	 * å°†ä¼ å…¥çš„Jsonè½¬åŒ–æˆAllInputBeanæ•°ç»„
 	 * 
 	 * @param arrInputs
 	 * @param json
@@ -23,16 +23,16 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 			jsonResults.clear();
 
 			for (int i = 0; i < jArray.length(); i++) {
-				// ÀûÓÃÕâ¸öº¯Êı£¬½«i×ª»¯³ÉÈÕÆÚ¡£
+				// åˆ©ç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†iè½¬åŒ–æˆæ—¥æœŸã€‚
 				JSONObject jo = jArray.getJSONObject(i);
 				JSONArray values = jo.getJSONArray("data");
 
-				// ¸ù¾İvaluesµÄ³¤¶È£¬³õÊ¼»¯jsonResults£¬²¢³õÊ¼»¯Ê±¼ä¡£
-				// Èç¹ûÊÇµÚÒ»´ÎÑ­»·
+				// æ ¹æ®valuesçš„é•¿åº¦ï¼Œåˆå§‹åŒ–jsonResultsï¼Œå¹¶åˆå§‹åŒ–æ—¶é—´ã€‚
+				// å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡å¾ªç¯
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						XiaolvBean bean = new XiaolvBean();
-						bean.setTime("Ç°" + k + "Ìì");
+						bean.setTime("å‰" + k + "å¤©");
 						jsonResults.add(bean);
 					}
 

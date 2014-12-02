@@ -17,7 +17,7 @@ public abstract class XiaolvActivity extends BaseFragmentActivity {
 		setContentView(R.layout.activity_xiaolv);
 		headerChartView = (HeaderChartView) findViewById(R.id.headChartView);
 
-		// 传入需要展示的fragments
+		// 浼犲叆闇�瑕佸睍绀虹殑fragments
 		pager = (VerticalViewPager) headerChartView.findViewById(R.id.pager);
 		clearAndReplaceFragments(SearchMethod.Now);
 
@@ -27,7 +27,7 @@ public abstract class XiaolvActivity extends BaseFragmentActivity {
 		// fragments);
 		// pager.setAdapter(adapter);
 
-		// 绑定popupWindow的click事件
+		// 缁戝畾popupWindow鐨刢lick浜嬩欢
 		headerChartView.setOnPopupWindowListItemClick(new HeaderChartView.OnPopupWindowListItemClick() {
 			@Override
 			public void changeFragments() {

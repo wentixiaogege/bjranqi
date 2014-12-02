@@ -31,17 +31,17 @@ public class PopupListArrayAdapter extends ArrayAdapter<PopupItem> {
 		if (convertView == null) {
 			holder = new ViewHolder();
 
-			// 从resource文件中得到一个view
+			// 浠巖esource鏂囦欢涓緱鍒颁竴涓獀iew
 			convertView = LayoutInflater.from(mContext).inflate(resource, parent, false);
 			holder.image = (ImageView) convertView.findViewById(R.id.ItemImage);
 			holder.text = (TextView) convertView.findViewById(R.id.ItemText);
-			// 将holder绑定到convertView
+			// 灏唄older缁戝畾鍒癱onvertView
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		// 向ViewHolder中填入的数据
+		// 鍚慥iewHolder涓～鍏ョ殑鏁版嵁
 		holder.image.setImageResource(getItem(position).getImage());
 		holder.text.setText(getItem(position).getText());
 
@@ -52,7 +52,7 @@ public class PopupListArrayAdapter extends ArrayAdapter<PopupItem> {
 	}
 
 	/**
-	 * ViewHolder类用以储存item中控件的引用
+	 * ViewHolder绫荤敤浠ュ偍瀛榠tem涓帶浠剁殑寮曠敤
 	 */
 	final class ViewHolder {
 		ImageView image;

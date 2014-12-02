@@ -23,7 +23,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<GridItem> {
 	LinearLayout layout;
 
 	public CustomGridViewAdapter(Context context, int resource, ArrayList<GridItem> items) {
-		// Ò»¶¨Òª°ÑÊı¾İ´«µ½superÖĞÈ¥£¡£¡£¡²»È»Ê²Ã´¶¼ÏÔÊ¾²»³öÀ´
+		// ä¸€å®šè¦æŠŠæ•°æ®ä¼ åˆ°superä¸­å»ï¼ï¼ï¼ä¸ç„¶ä»€ä¹ˆéƒ½æ˜¾ç¤ºä¸å‡ºæ¥
 		super(context, resource, items);
 		this.context = context;
 		this.resource = resource;
@@ -35,12 +35,12 @@ public class CustomGridViewAdapter extends ArrayAdapter<GridItem> {
 		View row = convertView;
 		Holder holder = null;
 		if (row == null) {
-			// Èç¹ûviewÎªnull£¬Ôò´ÓresourceÖĞÈ¡³örow
-			// inflate·½·¨±íÊ¾°ÑÒ»¸öresource×ª»»³Éview£¬È»ºó¿ÉÒÔÍ¨¹ıfindviewbyidµÄ·½Ê½À´È¡µÃËùÓĞµÄ¿Ø¼ş
+			// å¦‚æœviewä¸ºnullï¼Œåˆ™ä»resourceä¸­å–å‡ºrow
+			// inflateæ–¹æ³•è¡¨ç¤ºæŠŠä¸€ä¸ªresourceè½¬æ¢æˆviewï¼Œç„¶åå¯ä»¥é€šè¿‡findviewbyidçš„æ–¹å¼æ¥å–å¾—æ‰€æœ‰çš„æ§ä»¶
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 			row = inflater.inflate(resource, parent, false);
 
-			// ÉêÇëÒ»¸önew holder£¬½«È¡µÃµÄÄÚÈİ·ÅÔÚholderÖĞ
+			// ç”³è¯·ä¸€ä¸ªnew holderï¼Œå°†å–å¾—çš„å†…å®¹æ”¾åœ¨holderä¸­
 			holder = new Holder();
 			holder.imgView = (ImageView) row.findViewById(R.id.item_image);
 			holder.tvView = (TextView) row.findViewById(R.id.item_text);
@@ -50,7 +50,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<GridItem> {
 			holder = (Holder) row.getTag();
 		}
 
-		// ½«ÄÚÈİ·ÅÈëµ½holderÖĞ
+		// å°†å†…å®¹æ”¾å…¥åˆ°holderä¸­
 		GridItem item = items.get(position);
 		holder.imgView.setImageBitmap(item.getImage());
 		holder.tvView.setText(item.getTitle());
@@ -59,8 +59,8 @@ public class CustomGridViewAdapter extends ArrayAdapter<GridItem> {
 	}
 
 	/**
-	 * HolderÀà£¬¶ÔÓ¦µÄÊÇgrid_itemÖĞµÄ¿Ø¼ş ËùÎ½µÄAdapter£¬ÆäÊµ¾ÍÊÇ¿Ø¼şºÍÀà¶ÔÓ¦¹ØÏµµÄÊÊÅäÆ÷ <br>
-	 * row_grid.xmlºÍgriditemÀàÖĞµÄÊı¾İÈçºÎ¶ÔÓ¦ÆğÀ´
+	 * Holderç±»ï¼Œå¯¹åº”çš„æ˜¯grid_itemä¸­çš„æ§ä»¶ æ‰€è°“çš„Adapterï¼Œå…¶å®å°±æ˜¯æ§ä»¶å’Œç±»å¯¹åº”å…³ç³»çš„é€‚é…å™¨ <br>
+	 * row_grid.xmlå’Œgriditemç±»ä¸­çš„æ•°æ®å¦‚ä½•å¯¹åº”èµ·æ¥
 	 * 
 	 * @author gqq
 	 *

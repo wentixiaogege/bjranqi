@@ -1,16 +1,16 @@
 package com.bjgas.bean;
 
 public class GuoluBean {
-	// ÈÕÆÚ(·µ»ØÀëÏÖÔÚ¶àÉÙÌì£¬Ç°nÈÕ)
+	// æ—¥æœŸ(è¿”å›ç¦»ç°åœ¨å¤šå°‘å¤©ï¼Œå‰næ—¥)
 	private String riqi;
 
 	/**
-	 * ºÄµç
+	 * è€—ç”µ
 	 */
 	private float haoqi;
 
 	/**
-	 * ÖÆÀä
+	 * åˆ¶å†·
 	 */
 	private float zhire;
 

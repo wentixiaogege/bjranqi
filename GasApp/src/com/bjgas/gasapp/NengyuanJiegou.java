@@ -34,23 +34,23 @@ public class NengyuanJiegou extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nengyuan_jiegou);
 
-		// È¡µÃgridview¶ÔÏó
+		// å–å¾—gridviewå¯¹è±¡
 		gridView = (GridView) findViewById(R.id.gridView1);
-		// È¡µÃÍ¼Æ¬¶ÔÏó
+		// å–å¾—å›¾ç‰‡å¯¹è±¡
 		Bitmap bmZongjiegou = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongjiegou);
 		Bitmap bmFadianji = BitmapFactory.decodeResource(this.getResources(), R.drawable.fadianji);
 		Bitmap bmZhileng = BitmapFactory.decodeResource(this.getResources(), R.drawable.zhileng);
 		Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(), R.drawable.guolu);
 		Bitmap bmShengchanyongdian = BitmapFactory.decodeResource(this.getResources(), R.drawable.shengchanyongdian);
 
-		items.add(new GridItem(bmZongjiegou, "×Ü½á¹¹"));
-		items.add(new GridItem(bmFadianji, "·¢µç»ú"));
-		items.add(new GridItem(bmZhileng, "ÖÆÀäÏµÍ³"));
-		items.add(new GridItem(bmGuolu, "¹øÂ¯ÏµÍ³"));
-		items.add(new GridItem(bmShengchanyongdian, "Éú²úÓÃµç"));
+		items.add(new GridItem(bmZongjiegou, "æ€»ç»“æ„"));
+		items.add(new GridItem(bmFadianji, "å‘ç”µæœº"));
+		items.add(new GridItem(bmZhileng, "åˆ¶å†·ç³»ç»Ÿ"));
+		items.add(new GridItem(bmGuolu, "é”…ç‚‰ç³»ç»Ÿ"));
+		items.add(new GridItem(bmShengchanyongdian, "ç”Ÿäº§ç”¨ç”µ"));
 
-		// row_gridÊÇÒ»¸öxml£¬¶øAdapterÊÇÒÔÕâ¸öxmlÎª»ù´¡µÄ¡£
-		// AdapterËù×öµÄÊÂ£¬¾ÍÊÇ°ÑitemsºÍrow_grid¸øÊÊÅäÆğÀ´
+		// row_gridæ˜¯ä¸€ä¸ªxmlï¼Œè€ŒAdapteræ˜¯ä»¥è¿™ä¸ªxmlä¸ºåŸºç¡€çš„ã€‚
+		// Adapteræ‰€åšçš„äº‹ï¼Œå°±æ˜¯æŠŠitemså’Œrow_gridç»™é€‚é…èµ·æ¥
 		CustomGridViewAdapter adapter = new CustomGridViewAdapter(this, R.layout.row_grid, items);
 		gridView.setAdapter(adapter);
 

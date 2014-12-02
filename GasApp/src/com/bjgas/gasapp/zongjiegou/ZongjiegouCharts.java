@@ -22,10 +22,10 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 		setContentView(R.layout.activity_zongjiegou_charts);
 		headerChartView = (HeaderChartView) findViewById(R.id.headChartView);
 
-		// 传入需要展示的fragments
+		// 浼犲叆闇�瑕佸睍绀虹殑fragments
 		pager = (VerticalViewPager) headerChartView.findViewById(R.id.pager);
 		clearAndReplaceFragments(SearchMethod.Now);
-		// 绑定popupWindow的click事件
+		// 缁戝畾popupWindow鐨刢lick浜嬩欢
 		headerChartView.setOnPopupWindowListItemClick(new HeaderChartView.OnPopupWindowListItemClick() {
 			@Override
 			public void changeFragments() {
@@ -36,10 +36,10 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 			}
 		});
 
-		// // 初始化searchMethod
+		// // 鍒濆鍖杝earchMethod
 		// searchMethod = headerChartView.getSearchMethod();
 		//
-		// // 传入需要展示的fragments
+		// // 浼犲叆闇�瑕佸睍绀虹殑fragments
 		// pager = (VerticalViewPager) headerChartView.findViewById(R.id.pager);
 		// ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 		// fragments.add(new InputsFragment(searchMethod));
@@ -48,7 +48,7 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 		// fragments);
 		// pager.setAdapter(adapter);
 		//
-		// // 绑定popupWindow的click事件
+		// // 缁戝畾popupWindow鐨刢lick浜嬩欢
 		// headerChartView.setOnPopupWindowListItemClick(new
 		// HeaderChartView.OnPopupWindowListItemClick() {
 		// @Override
@@ -57,7 +57,7 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 		// if (searchMethod.equals(sm))
 		// return;
 		// searchMethod = sm;
-		// // 重新加载chart中的数据
+		// // 閲嶆柊鍔犺浇chart涓殑鏁版嵁
 		// clearFragments();
 		// ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 		//

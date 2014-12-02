@@ -28,9 +28,9 @@ import android.util.Log;
 public abstract class BaseFragment<T> extends Fragment implements LabelInterface {
 
 	protected final String REQUEST_WEBSITE = "http://gqqapp.sinaapp.com/ranqi.php";
-	// 4¸ö²ÎÊı
+	// 4ä¸ªå‚æ•°
 	protected final String FORMAT_URL = "%s?category=%s&module=%s&type=%s";
-	// 5¸ö²ÎÊı
+	// 5ä¸ªå‚æ•°
 	protected final String FORMAT_URL_WITHDATE = "%s?category=%s&module=%s&type=search&startMonth=%s&endMonth=%s";
 	protected final String NENTYUAN_CATEGORY = "nengyuan";
 	protected final String XIAOLV_CATEGORY = "xiaolv";
@@ -54,14 +54,14 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	protected String mJsonInfo;
 
 	/**
-	 * »ñµÃÇëÇóµÄmodule£¬Í¨¹ı»ñµÃµÄmodule½øĞĞhtmlÇëÇó<br>
-	 * ÒòÎªÕâ¸ömoduleÊÇ±ØĞëÒªÓĞµÄ£¬ËùÒÔÒ»¶¨µÃĞ´³É³éÏóº¯Êı£¬¹©×ÓÀàÊµÏÖ
+	 * è·å¾—è¯·æ±‚çš„moduleï¼Œé€šè¿‡è·å¾—çš„moduleè¿›è¡Œhtmlè¯·æ±‚<br>
+	 * å› ä¸ºè¿™ä¸ªmoduleæ˜¯å¿…é¡»è¦æœ‰çš„ï¼Œæ‰€ä»¥ä¸€å®šå¾—å†™æˆæŠ½è±¡å‡½æ•°ï¼Œä¾›å­ç±»å®ç°
 	 * 
 	 * @return
 	 */
 	protected abstract String getModule();
 
-	// ¶¨ÒåÒ»¸öHandler£¬ÓÃÓÚÏß³ÌÍ¬²½¡£
+	// å®šä¹‰ä¸€ä¸ªHandlerï¼Œç”¨äºçº¿ç¨‹åŒæ­¥ã€‚
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -80,7 +80,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	};
 
 	/**
-	 * ³õÊ¼»¯chart
+	 * åˆå§‹åŒ–chart
 	 */
 	public void initChart() {
 
@@ -101,7 +101,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 
 		// no description text
 		mChart.setDescription("");
-		mChart.setNoDataTextDescription("ÔİÊ±Ã»ÓĞÈ¡µÃÊı¾İ");
+		mChart.setNoDataTextDescription("æš‚æ—¶æ²¡æœ‰å–å¾—æ•°æ®");
 
 
 		// // enable / disable grid lines
@@ -137,7 +137,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// add data
 		// setData(45, 100);
 
-		// ÉèÖÃxÖáµÄ¶¯»­
+		// è®¾ç½®xè½´çš„åŠ¨ç”»
 		mChart.animateX(2500);
 
 		// restrain the maximum scale-out factor
@@ -157,7 +157,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// mChart.invalidate();
 
 		// create a custom MarkerView (extend MarkerView) and specify the layout
-		// to use for it£¨µã»÷ÉÏÃæ£¬»áÌáÊ¾ĞÅÏ¢£©
+		// to use for itï¼ˆç‚¹å‡»ä¸Šé¢ï¼Œä¼šæç¤ºä¿¡æ¯ï¼‰
 		GasMarkerView mv = new GasMarkerView(getActivity(), R.layout.custom_marker_view, this);
 
 		// define an offset to change the original position of the marker
@@ -167,10 +167,10 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// set the marker to the chart
 		mChart.setMarkerView(mv);
 
-		// ÉèÖÃxÖáµÄÎ»ÖÃ
+		// è®¾ç½®xè½´çš„ä½ç½®
 		mChart.getXLabels().setPosition(XLabelPosition.BOTTOM);
 
-		// ÉèÖÃÃèÊö×ÖÌå
+		// è®¾ç½®æè¿°å­—ä½“
 		Paint mDescPaint = mChart.getPaint(Chart.PAINT_DESCRIPTION);
 		mDescPaint.setColor(0xffff0000);
 		mDescPaint.setTextSize(Utils.convertDpToPixel(13f));
@@ -205,10 +205,10 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	}
 
 	/**
-	 * ¿ªÆôÒ»¸öĞÂµÄÏß³Ì£¬µ÷ÓÃ½Ó¿Ú£¬È¡µÃÊı¾İ
+	 * å¼€å¯ä¸€ä¸ªæ–°çš„çº¿ç¨‹ï¼Œè°ƒç”¨æ¥å£ï¼Œå–å¾—æ•°æ®
 	 */
 	public void getDataFromweb() {
-		// ĞÂ¿ªÆôÒ»¸öÏß³Ì£¬»ñµÃJsonÊı¾İ
+		// æ–°å¼€å¯ä¸€ä¸ªçº¿ç¨‹ï¼Œè·å¾—Jsonæ•°æ®
 		new Thread() {
 			@Override
 			public void run() {

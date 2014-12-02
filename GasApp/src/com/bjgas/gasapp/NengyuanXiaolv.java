@@ -35,9 +35,9 @@ public class NengyuanXiaolv extends BaseActivity {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_nengyuan_xiaolv);
 
-			// È¡µÃgridview¶ÔÏó
+			// å–å¾—gridviewå¯¹è±¡
 			gridView = (GridView) findViewById(R.id.gridView1);
-			// È¡µÃÍ¼Æ¬¶ÔÏó
+			// å–å¾—å›¾ç‰‡å¯¹è±¡
 			Bitmap bmZongxitongXiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongxitongxiaolv);
 			Bitmap bmfadianjixiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.fadianjixiaolv);
 			Bitmap bmdianzhilengxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.dianzhilengxiaolv);
@@ -48,18 +48,18 @@ public class NengyuanXiaolv extends BaseActivity {
 			Bitmap bmnengyuanliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.nengyuanliyonglv);
 			Bitmap bmyureliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.yureliyonglv);
 
-			items.add(new GridItem(bmZongxitongXiaolv, "×ÜÏµÍ³Ğ§ÂÊ"));
-			items.add(new GridItem(bmfadianjixiaolv, "·¢µç»úĞ§ÂÊ"));
-			items.add(new GridItem(bmdianzhilengxiaolv, "µçÖÆÀäĞ§ÂÊ"));
-			items.add(new GridItem(bmguoluxiaolv, "¹øÂ¯Ğ§ÂÊ"));
-			items.add(new GridItem(bmzhiranjixiaolv, "Ö±È¼»úĞ§ÂÊ"));
-			items.add(new GridItem(bmlengquetaxiaolv, "ÀäÈ´ËşĞ§ÂÊ"));
-			items.add(new GridItem(bmlengdongtaxiaolv, "Àä¶³ËşĞ§ÂÊ"));
-			items.add(new GridItem(bmnengyuanliyonglv, "ÄÜÔ´ÀûÓÃÂÊ"));
-			items.add(new GridItem(bmyureliyonglv, "ÓàÈÈÀûÓÃÂÊ"));
+			items.add(new GridItem(bmZongxitongXiaolv, "æ€»ç³»ç»Ÿæ•ˆç‡"));
+			items.add(new GridItem(bmfadianjixiaolv, "å‘ç”µæœºæ•ˆç‡"));
+			items.add(new GridItem(bmdianzhilengxiaolv, "ç”µåˆ¶å†·æ•ˆç‡"));
+			items.add(new GridItem(bmguoluxiaolv, "é”…ç‚‰æ•ˆç‡"));
+			items.add(new GridItem(bmzhiranjixiaolv, "ç›´ç‡ƒæœºæ•ˆç‡"));
+			items.add(new GridItem(bmlengquetaxiaolv, "å†·å´å¡”æ•ˆç‡"));
+			items.add(new GridItem(bmlengdongtaxiaolv, "å†·å†»å¡”æ•ˆç‡"));
+			items.add(new GridItem(bmnengyuanliyonglv, "èƒ½æºåˆ©ç”¨ç‡"));
+			items.add(new GridItem(bmyureliyonglv, "ä½™çƒ­åˆ©ç”¨ç‡"));
 
-			// row_gridÊÇÒ»¸öxml£¬¶øAdapterÊÇÒÔÕâ¸öxmlÎª»ù´¡µÄ¡£
-			// AdapterËù×öµÄÊÂ£¬¾ÍÊÇ°ÑitemsºÍrow_grid¸øÊÊÅäÆğÀ´
+			// row_gridæ˜¯ä¸€ä¸ªxmlï¼Œè€ŒAdapteræ˜¯ä»¥è¿™ä¸ªxmlä¸ºåŸºç¡€çš„ã€‚
+			// Adapteræ‰€åšçš„äº‹ï¼Œå°±æ˜¯æŠŠitemså’Œrow_gridç»™é€‚é…èµ·æ¥
 			CustomGridViewAdapter adapter = new CustomGridViewAdapter(this, R.layout.row_grid, items);
 			gridView.setAdapter(adapter);
 

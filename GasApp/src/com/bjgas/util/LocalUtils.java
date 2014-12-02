@@ -10,11 +10,11 @@ import com.bjgas.bean.ScreenInfo;
 public class LocalUtils {
 
 	/**
-	 * 获得屏幕的宽度和高度
+	 * 鑾峰緱灞忓箷鐨勫搴﹀拰楂樺害
 	 * 
 	 * @param activity
-	 *            所在的Activity
-	 * @return a[0]:宽度 a[1]:高度
+	 *            鎵�鍦ㄧ殑Activity
+	 * @return a[0]:瀹藉害 a[1]:楂樺害
 	 */
 	public static void getScreenWidthAndHeight(Activity activity, ScreenInfo si) {
 		DisplayMetrics mDisplayMetrics = new DisplayMetrics();

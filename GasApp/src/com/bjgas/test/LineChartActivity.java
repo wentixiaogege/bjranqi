@@ -89,7 +89,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		// set an alternative background color
 		// mChart.setBackgroundColor(Color.GRAY);
 
-		// TODO Õæ²»ÖªµÀÊÇ¸ÉÊ²Ã´µÄ(Ã÷°×ÁË£¬¾ÍÊÇÌáÊ¾µÄÄÚÈİ)
+		// TODO çœŸä¸çŸ¥é“æ˜¯å¹²ä»€ä¹ˆçš„(æ˜ç™½äº†ï¼Œå°±æ˜¯æç¤ºçš„å†…å®¹)
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it
 		// MyMarkerView mv = new MyMarkerView(this,
@@ -135,7 +135,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 	}
 
 	/**
-	 * menu²Ëµ¥È·ÈÏ
+	 * menuèœå•ç¡®è®¤
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -240,7 +240,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		// }
 		// case R.id.actionToggleFilter: {
 		//
-		// // the angle of filtering is 35Â°
+		// // the angle of filtering is 35æ³
 		// Approximator a = new Approximator(ApproximatorType.DOUGLAS_PEUCKER,
 		// 35);
 		//
@@ -284,7 +284,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 
 	private void setData(int count, float range) {
 
-		// ÉèÖÃºá×ø±êÖá
+		// è®¾ç½®æ¨ªåæ ‡è½´
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int i = 0; i < count; i++) {
 			xVals.add((i) + "h");
@@ -326,7 +326,7 @@ public class LineChartActivity extends GasBase implements OnChartGestureListener
 		// set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
 		// Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
 		
-		// Ôö¼ÓµÚ¶şÌõÏß
+		// å¢åŠ ç¬¬äºŒæ¡çº¿
 		ArrayList<Entry> yVals2 = new ArrayList<Entry>();
 		for (int i = 0; i < count; i++) {
 			float mult = (range + 1);

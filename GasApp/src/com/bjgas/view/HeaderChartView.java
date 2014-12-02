@@ -1,7 +1,9 @@
 package com.bjgas.view;
 
 import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -10,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.bjgas.adapter.PopupListArrayAdapter;
 import com.bjgas.bean.PopupItem;
 import com.bjgas.common.SearchMethod;
@@ -36,7 +40,7 @@ public class HeaderChartView extends LinearLayout {
 	ArrayList<PopupItem> popupItems;
 
 	/**
-	 * µ±item¸Ä±äÊÇ»¹µÄ»Øµ÷º¯Êı
+	 * å½“itemæ”¹å˜æ˜¯è¿˜çš„å›è°ƒå‡½æ•°
 	 */
 	OnPopupWindowListItemClick mpoPopupWindowListItemClick;
 
@@ -66,7 +70,7 @@ public class HeaderChartView extends LinearLayout {
 	}
 
 	/**
-	 * ³õÊ¼»¯Í·²¿ÏÔÊ¾£¬ÓÉÓÚËùÓĞµÄchart¶¼¾ßÓĞÏàÍ¬µÄÍ·²¿£¬ËùÒÔ¸Ã·½·¨Ğ´Èë»ùÀàÖĞ¡£
+	 * åˆå§‹åŒ–å¤´éƒ¨æ˜¾ç¤ºï¼Œç”±äºæ‰€æœ‰çš„chartéƒ½å…·æœ‰ç›¸åŒçš„å¤´éƒ¨ï¼Œæ‰€ä»¥è¯¥æ–¹æ³•å†™å…¥åŸºç±»ä¸­ã€‚
 	 */
 	@SuppressLint("InflateParams")
 	protected void initHead() {
@@ -74,7 +78,7 @@ public class HeaderChartView extends LinearLayout {
 		linearLayoutTopic = (LinearLayout) findViewById(R.id.linearLayoutTopic);
 		ivTopic = (ImageView) findViewById(R.id.imageViewTopic);
 		textViewTopic = (TextView) findViewById(R.id.textViewTopic);
-		// // »ñÈ¡×Ô¶¨Òå²¼¾ÖÎÄ¼şpop.xmlµÄÊÓÍ¼
+		// // è·å–è‡ªå®šä¹‰å¸ƒå±€æ–‡ä»¶pop.xmlçš„è§†å›¾
 		popupView = layoutInflater.inflate(R.layout.popview_list, null, false);
 		popupViewList = (ListView) popupView.findViewById(R.id.lstPopView);
 
@@ -92,7 +96,7 @@ public class HeaderChartView extends LinearLayout {
 
 		popupViewList.setAdapter(adapter);
 
-		// ÉèÖÃlistViewµÄclickÊÂ¼ş
+		// è®¾ç½®listViewçš„clickäº‹ä»¶
 		popupViewList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -106,8 +110,9 @@ public class HeaderChartView extends LinearLayout {
 					setSearchMethod(SearchMethod.Month);
 					mpoPopupWindowListItemClick.changeFragments();
 				} else if (3 == position && mpoPopupWindowListItemClick != null) {
-					setSearchMethod(SearchMethod.ExactMonth);
-					mpoPopupWindowListItemClick.changeFragments();
+					// setSearchMethod(SearchMethod.ExactMonth);
+					createDialogWithoutDateField().show();
+					// mpoPopupWindowListItemClick.changeFragments();
 				} else {
 					setSearchMethod(SearchMethod.Now);
 					mpoPopupWindowListItemClick.changeFragments();
@@ -118,7 +123,7 @@ public class HeaderChartView extends LinearLayout {
 
 		});
 
-		// ÉèÖÃlinearLayoutTopicµÄclickÊÂ¼ş
+		// è®¾ç½®linearLayoutTopicçš„clickäº‹ä»¶
 		linearLayoutTopic.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -141,8 +146,39 @@ public class HeaderChartView extends LinearLayout {
 
 	}
 
+	private DatePickerDialog createDialogWithoutDateField() {
+
+		DatePickerDialog dpd = new DatePickerDialog(this.getContext(), null, 2014, 1, 24);
+		dpd.setTitle("");
+		try {
+			java.lang.reflect.Field[] datePickerDialogFields = dpd.getClass().getDeclaredFields();
+			for (java.lang.reflect.Field datePickerDialogField : datePickerDialogFields) {
+				if (datePickerDialogField.getName().equals("mDatePicker")) {
+					datePickerDialogField.setAccessible(true);
+					DatePicker datePicker = (DatePicker) datePickerDialogField.get(dpd);
+					java.lang.reflect.Field[] datePickerFields = datePickerDialogField.getType().getDeclaredFields();
+					for (java.lang.reflect.Field datePickerField : datePickerFields) {
+						Log.i("test", datePickerField.getName());
+						if ("mDaySpinner".equals(datePickerField.getName())) {
+							datePickerField.setAccessible(true);
+							Object dayPicker = new Object();
+							dayPicker = datePickerField.get(datePicker);
+							// datePicker.getCalendarView().setVisibility(View.GONE);
+							((View) dayPicker).setVisibility(View.GONE);
+						}
+					}
+				}
+
+			}
+		} catch (Exception ex) {
+			Log.e("createDialogWithoutDateField error!", ex.getMessage());
+		}
+		return dpd;
+
+	}
+
 	/**
-	 * ĞŞ¸Ä¶¥²¿µÄ²éÑ¯Ìõ¼şÏÔÊ¾
+	 * ä¿®æ”¹é¡¶éƒ¨çš„æŸ¥è¯¢æ¡ä»¶æ˜¾ç¤º
 	 * 
 	 * @param position
 	 */
@@ -162,7 +198,7 @@ public class HeaderChartView extends LinearLayout {
 	}
 
 	/**
-	 * ÏÔÊ¾popupWindow
+	 * æ˜¾ç¤ºpopupWindow
 	 */
 	protected void showPopupWindowView() {
 		popupwindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -172,7 +208,7 @@ public class HeaderChartView extends LinearLayout {
 		popupwindow.setOutsideTouchable(true);
 		popupwindow.setTouchable(true);
 
-		// ÉèÖÃ±³¾°Îªnull£¬°´·µ»Ø¼üPopupWindow¾Í»áÒş²Ø
+		// è®¾ç½®èƒŒæ™¯ä¸ºnullï¼ŒæŒ‰è¿”å›é”®PopupWindowå°±ä¼šéšè—
 		popupwindow.setBackgroundDrawable(null);
 
 		popupView.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +220,7 @@ public class HeaderChartView extends LinearLayout {
 
 		// popupwindow.setAnimationStyle(R.style.AnimationFade);
 		popupwindow.showAsDropDown(linearLayoutTopic);
-		// ÉèÖÃ¶¯»­Ğ§¹û [R.style.AnimationFade ÊÇ×Ô¼ºÊÂÏÈ¶¨ÒåºÃµÄ]
+		// è®¾ç½®åŠ¨ç”»æ•ˆæœ [R.style.AnimationFade æ˜¯è‡ªå·±äº‹å…ˆå®šä¹‰å¥½çš„]
 	}
 
 	public SearchMethod getSearchMethod() {

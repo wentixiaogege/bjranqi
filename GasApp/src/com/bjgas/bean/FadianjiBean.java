@@ -1,13 +1,13 @@
 package com.bjgas.bean;
 
 public class FadianjiBean {
-	// ÈÕÆÚ(·µ»ØÀëÏÖÔÚ¶àÉÙÌì£¬Ç°nÈÕ)
+	// æ—¥æœŸ(è¿”å›ç¦»ç°åœ¨å¤šå°‘å¤©ï¼Œå‰næ—¥)
 	private String riqi;
-	// ºÅµê
+	// å·åº—
 	private float haodian;
-	// ·¢µç
+	// å‘ç”µ
 	private float fadian;
-	// ÓàÈÈ
+	// ä½™çƒ­
 	private float yure;
 
 	public String getRiqi() {

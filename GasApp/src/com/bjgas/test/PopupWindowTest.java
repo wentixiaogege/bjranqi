@@ -53,14 +53,14 @@ public class PopupWindowTest extends Activity implements OnClickListener {
 
 	public void initmPopupWindowView() {
 
-		// // »ñÈ¡×Ô¶¨Òå²¼¾ÖÎÄ¼şpop.xmlµÄÊÓÍ¼
+		// // è·å–è‡ªå®šä¹‰å¸ƒå±€æ–‡ä»¶pop.xmlçš„è§†å›¾
 		View customView = getLayoutInflater().inflate(R.layout.popview_item, null, false);
-		// ´´½¨PopupWindowÊµÀı,200,150·Ö±ğÊÇ¿í¶ÈºÍ¸ß¶È
+		// åˆ›å»ºPopupWindowå®ä¾‹,200,150åˆ†åˆ«æ˜¯å®½åº¦å’Œé«˜åº¦
 		popupwindow = new PopupWindow(customView, 500, 680);
 		popupwindow.showAsDropDown(button);
-		// ÉèÖÃ¶¯»­Ğ§¹û [R.style.AnimationFade ÊÇ×Ô¼ºÊÂÏÈ¶¨ÒåºÃµÄ]
+		// è®¾ç½®åŠ¨ç”»æ•ˆæœ [R.style.AnimationFade æ˜¯è‡ªå·±äº‹å…ˆå®šä¹‰å¥½çš„]
 		popupwindow.setAnimationStyle(R.style.AnimationFade);
-		// ×Ô¶¨ÒåviewÌí¼Ó´¥ÃşÊÂ¼ş
+		// è‡ªå®šä¹‰viewæ·»åŠ è§¦æ‘¸äº‹ä»¶
 		customView.setOnTouchListener(new OnTouchListener() {
 
 			@Override
@@ -74,7 +74,7 @@ public class PopupWindowTest extends Activity implements OnClickListener {
 			}
 		});
 
-		/** ÔÚÕâÀï¿ÉÒÔÊµÏÖ×Ô¶¨ÒåÊÓÍ¼µÄ¹¦ÄÜ */
+		/** åœ¨è¿™é‡Œå¯ä»¥å®ç°è‡ªå®šä¹‰è§†å›¾çš„åŠŸèƒ½ */
 		Button btton2 = (Button) customView.findViewById(R.id.button2);
 		Button btton3 = (Button) customView.findViewById(R.id.button3);
 		Button btton4 = (Button) customView.findViewById(R.id.button4);

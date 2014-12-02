@@ -17,11 +17,11 @@ public class NetUtils {
 	public static final int NETWORN_MOBILE = 2;
 
 	/**
-	 * »ñµÃhttpÇëÇó½á¹ûÊı¾İ
+	 * è·å¾—httpè¯·æ±‚ç»“æœæ•°æ®
 	 * 
 	 * @param context
 	 * @param url
-	 * @return httpÇëÇóµÄ½á¹û
+	 * @return httpè¯·æ±‚çš„ç»“æœ
 	 */
 	public static String connServerForResult(Context context, String url) {
 		HttpGet httpRequest = new HttpGet(url);
@@ -42,7 +42,7 @@ public class NetUtils {
 	}
 
 	/**
-	 * »ñµÃÍøÂçµÄ×´Ì¬
+	 * è·å¾—ç½‘ç»œçš„çŠ¶æ€
 	 * 
 	 * @param context
 	 * @return NETWORN_NONE NETWORN_WIFI NETWORN_MOBILE

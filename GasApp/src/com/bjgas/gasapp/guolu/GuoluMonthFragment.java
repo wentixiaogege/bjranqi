@@ -12,7 +12,7 @@ public class GuoluMonthFragment extends GuoluFragments {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl FadianjiFragments
+	 * è¯·æ±‚é¡µé¢çš„url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {

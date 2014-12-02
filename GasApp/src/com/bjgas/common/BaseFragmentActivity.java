@@ -50,7 +50,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Çå³ıËùÓĞµÄFragments
+	 * æ¸…é™¤æ‰€æœ‰çš„Fragments
 	 */
 	protected void clearFragments() {
 		List<Fragment> fragments = getSupportFragmentManager().getFragments();
@@ -59,7 +59,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 	}
 
 	/**
-	 * ¸ù¾İsmµÄ²»Í¬£¬°²×°²»Í¬µÄfragments
+	 * æ ¹æ®smçš„ä¸åŒï¼Œå®‰è£…ä¸åŒçš„fragments
 	 * 
 	 * @param sm
 	 * @param fragments
@@ -67,12 +67,12 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 	public abstract void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments);
 
 	/**
-	 * ¸ù¾İsmµÄ²»Í¬£¬¸üĞÂAdapter£¬¸Ä±ächartµÄÏÔÊ¾
+	 * æ ¹æ®smçš„ä¸åŒï¼Œæ›´æ–°Adapterï¼Œæ”¹å˜chartçš„æ˜¾ç¤º
 	 * 
 	 * @param sm
 	 */
 	protected void clearAndReplaceFragments(SearchMethod sm) {
-		// ÖØĞÂ¼ÓÔØchartÖĞµÄÊı¾İ
+		// é‡æ–°åŠ è½½chartä¸­çš„æ•°æ®
 		clearFragments();
 		ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 

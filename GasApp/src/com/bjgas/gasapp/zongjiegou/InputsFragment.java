@@ -42,16 +42,16 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	private double maxValue = 100.0;
 
 	/**
-	 * ³õÊ¼»¯ÊÓÍ¼
+	 * åˆå§‹åŒ–è§†å›¾
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("ÊäÈëÄÜÔ´");
+		mChart.setDescription("è¾“å…¥èƒ½æº");
 	};
 
 	/**
-	 * ´´½¨ÊÓÍ¼Ê±µÄ»Øµ÷
+	 * åˆ›å»ºè§†å›¾æ—¶çš„å›è°ƒ
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,29 +61,29 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 		getDataFromweb();
 
-		// ³õÊ¼»¯chart
+		// åˆå§‹åŒ–chart
 		initChart();
 		return v;
 	}
 
 	/**
-	 * ×ÓÏß³ÌÈ¡µÃÊı¾İºó£¬ÏÔÊ¾Í¼±í
+	 * å­çº¿ç¨‹å–å¾—æ•°æ®åï¼Œæ˜¾ç¤ºå›¾è¡¨
 	 */
 	@Override
 	protected void displayChart() {
 		try {
 			Log.d(TAG_ZONGJIEGOUCHART, String.format("get json info:%s", mJsonInfo));
-			// ÉèÖÃºá×ø±êÖá
+			// è®¾ç½®æ¨ªåæ ‡è½´
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yElecs = new ArrayList<Entry>();
 			ArrayList<Entry> yAirs = new ArrayList<Entry>();
 			ArrayList<Entry> yWaters = new ArrayList<Entry>();
 
-			// È¡µÃÅÅĞòºóµÄInputBean
+			// å–å¾—æ’åºåçš„InputBean
 			convertJsonToBean(mJsonInfo);
 			if (jsonResults.size() == 0)
 				return;
-			// ÉèÖÃx×ø±êÖáºÍyµÄÖµ
+			// è®¾ç½®xåæ ‡è½´å’Œyçš„å€¼
 			int i = 0;
 			for (AllInputBean bean : jsonResults) {
 				xTimes.add(bean.getTime() + "");
@@ -106,7 +106,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 			// create a data object with the datasets
 			LineData data = new LineData(xTimes, dataSets);
 
-			// ÔİÊ±²»Ôö¼ÓÉÏÏÂÇøÓòÏß
+			// æš‚æ—¶ä¸å¢åŠ ä¸Šä¸‹åŒºåŸŸçº¿
 			// LimitLine ll1 = new LimitLine(100f);
 			// ll1.setLineWidth(1f);
 			// ll1.enableDashedLine(10f, 10f, 0f);
@@ -124,7 +124,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// È¡µÃoutputĞÅÏ¢
+			// å–å¾—outputä¿¡æ¯
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,7 +133,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	}
 
 	/**
-	 * ½«´«ÈëµÄJson×ª»¯³ÉAllInputBeanÊı×é
+	 * å°†ä¼ å…¥çš„Jsonè½¬åŒ–æˆAllInputBeanæ•°ç»„
 	 * 
 	 * @param arrInputs
 	 * @param json
@@ -145,23 +145,23 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 			jsonResults.clear();
 
 			for (int i = 0; i < jArray.length(); i++) {
-				// ÀûÓÃÕâ¸öº¯Êı£¬½«i×ª»¯³ÉÈÕÆÚ¡£
+				// åˆ©ç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†iè½¬åŒ–æˆæ—¥æœŸã€‚
 				JSONObject jo = jArray.getJSONObject(i);
 				String key = jo.getString("name");
 				JSONArray values = jo.getJSONArray("data");
 
-				// ¸ù¾İvaluesµÄ³¤¶È£¬³õÊ¼»¯jsonResults£¬²¢³õÊ¼»¯Ê±¼ä¡£
-				// Èç¹ûÊÇµÚÒ»´ÎÑ­»·
+				// æ ¹æ®valuesçš„é•¿åº¦ï¼Œåˆå§‹åŒ–jsonResultsï¼Œå¹¶åˆå§‹åŒ–æ—¶é—´ã€‚
+				// å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡å¾ªç¯
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllInputBean bean = new AllInputBean();
-						bean.setTime("Ç°" + k + "Ìì");
+						bean.setTime("å‰" + k + "å¤©");
 						jsonResults.add(bean);
 					}
 
 				for (int j = 0; j < values.length(); j++) {
 					AllInputBean bean = jsonResults.get(j);
-					// Èç¹ûÊÇ×ÜºÄµç
+					// å¦‚æœæ˜¯æ€»è€—ç”µ
 					if (key.equals(InfoUtils.INPUT_ELEC)) {
 						bean.setElec((float) values.getDouble(j));
 					} else if (key.equals(InfoUtils.INPUT_AIR)) {
@@ -179,7 +179,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	}
 
 	/**
-	 * Èç¹ûÈ¡µÃµÄÊı¾İ±ÈÀíÂÛÉÏ×î´óÖµ´ó£¬»òÕß±ÈÀíÂÛÉÏ×îĞ¡ÖµĞ¡£¬Ôò±äÎª×î´óÖµ»ò×îĞ¡Öµ¡£
+	 * å¦‚æœå–å¾—çš„æ•°æ®æ¯”ç†è®ºä¸Šæœ€å¤§å€¼å¤§ï¼Œæˆ–è€…æ¯”ç†è®ºä¸Šæœ€å°å€¼å°ï¼Œåˆ™å˜ä¸ºæœ€å¤§å€¼æˆ–æœ€å°å€¼ã€‚
 	 * 
 	 * @param jo
 	 * @param string
@@ -210,7 +210,7 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl
+	 * è¯·æ±‚é¡µé¢çš„url
 	 */
 	@Override
 	public String getRequestUrl() {

@@ -47,7 +47,7 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	public void initChart() {
 		super.initChart();
 
-		mChart.setDescription("Êä³öÄÜÔ´");
+		mChart.setDescription("è¾“å‡ºèƒ½æº");
 
 	};
 
@@ -59,30 +59,30 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 
 		getDataFromweb();
 
-		// ³õÊ¼»¯chart
+		// åˆå§‹åŒ–chart
 		initChart();
 		return v;
 	}
 
 	/**
-	 * ×ÓÏß³ÌÈ¡µÃÊı¾İºó£¬ÏÔÊ¾Í¼±í
+	 * å­çº¿ç¨‹å–å¾—æ•°æ®åï¼Œæ˜¾ç¤ºå›¾è¡¨
 	 */
 	@Override
 	protected void displayChart() {
 		try {
 			Log.d(TAG_ZONGJIEGOUCHART, String.format("get json info:%s", mJsonInfo));
-			// ÉèÖÃºá×ø±êÖá
+			// è®¾ç½®æ¨ªåæ ‡è½´
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yElecs = new ArrayList<Entry>();
 			ArrayList<Entry> yHots = new ArrayList<Entry>();
 			ArrayList<Entry> yColds = new ArrayList<Entry>();
 
-			// È¡µÃÅÅĞòºóµÄInputBean
+			// å–å¾—æ’åºåçš„InputBean
 			convertJsonToBean(mJsonInfo);
 			if (jsonResults.size() == 0) {
 				return;
 			}
-			// ÉèÖÃx×ø±êÖáºÍyµÄÖµ
+			// è®¾ç½®xåæ ‡è½´å’Œyçš„å€¼
 			int i = 0;
 			for (AllOutPutBean bean : jsonResults) {
 				xTimes.add(bean.getTime() + "");
@@ -106,7 +106,7 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// È¡µÃoutputĞÅÏ¢
+			// å–å¾—outputä¿¡æ¯
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,7 +115,7 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	}
 
 	/**
-	 * ½«´«ÈëµÄJson×ª»¯³ÉAllInputBeanÊı×é
+	 * å°†ä¼ å…¥çš„Jsonè½¬åŒ–æˆAllInputBeanæ•°ç»„
 	 * 
 	 * @param arrInputs
 	 * @param json
@@ -127,23 +127,23 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 			jsonResults.clear();
 
 			for (int i = 0; i < jArray.length(); i++) {
-				// ÀûÓÃÕâ¸öº¯Êı£¬½«i×ª»¯³ÉÈÕÆÚ¡£
+				// åˆ©ç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†iè½¬åŒ–æˆæ—¥æœŸã€‚
 				JSONObject jo = jArray.getJSONObject(i);
 				String key = jo.getString("name");
 				JSONArray values = jo.getJSONArray("data");
 
-				// ¸ù¾İvaluesµÄ³¤¶È£¬³õÊ¼»¯jsonResults£¬²¢³õÊ¼»¯Ê±¼ä¡£
-				// Èç¹ûÊÇµÚÒ»´ÎÑ­»·
+				// æ ¹æ®valuesçš„é•¿åº¦ï¼Œåˆå§‹åŒ–jsonResultsï¼Œå¹¶åˆå§‹åŒ–æ—¶é—´ã€‚
+				// å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡å¾ªç¯
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllOutPutBean bean = new AllOutPutBean();
-						bean.setTime("Ç°" + k + "Ìì");
+						bean.setTime("å‰" + k + "å¤©");
 						jsonResults.add(bean);
 					}
 
 				for (int j = 0; j < values.length(); j++) {
 					AllOutPutBean bean = jsonResults.get(j);
-					// Èç¹ûÊÇ×ÜºÄµç
+					// å¦‚æœæ˜¯æ€»è€—ç”µ
 					if (key.equals(InfoUtils.OUTPUT_ELEC)) {
 						bean.setElec((float) values.getDouble(j));
 					} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
@@ -174,7 +174,7 @@ public class OutputsFragment extends BaseFragment<AllOutPutBean> {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl
+	 * è¯·æ±‚é¡µé¢çš„url
 	 */
 	@Override
 	public String getRequestUrl() {

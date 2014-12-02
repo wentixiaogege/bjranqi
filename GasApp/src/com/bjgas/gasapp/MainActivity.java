@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity {
 	ImageListener listener = new ImageListener();
 	public static final String IMAGE_CLICK = "ImageClick";
 
-	// ÆÁÄ»ĞÅÏ¢È¡µÃ
+	// å±å¹•ä¿¡æ¯å–å¾—
 	ScreenInfo si = new ScreenInfo();
 
 	@Override
@@ -29,16 +29,16 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// È¡³öÈı¸öÍ¼Æ¬
+		// å–å‡ºä¸‰ä¸ªå›¾ç‰‡
 		imgGaikuang = (ImageView) findViewById(R.id.imgGaikuang);
 		imgJiegou = (ImageView) findViewById(R.id.imgJiegou);
 		imgXiaolv = (ImageView) findViewById(R.id.imgXiaolv);
 
-		// ÉèÖÃ¿í¶ÈºÍ¸ß¶È¡£
+		// è®¾ç½®å®½åº¦å’Œé«˜åº¦ã€‚
 		setWidthAndHeight();
 
 
-		// °ó¶¨ÊÂ¼ş
+		// ç»‘å®šäº‹ä»¶
 		imgGaikuang.setOnClickListener(listener);
 		imgJiegou.setOnClickListener(listener);
 		imgXiaolv.setOnClickListener(listener);

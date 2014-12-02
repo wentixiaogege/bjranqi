@@ -18,7 +18,7 @@ public class DianzhilengXiaolvActivity extends XiaolvActivity {
 
 	@Override
 	public void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments) {
-		// ³õÊ¼»¯fragments
+		// åˆå§‹åŒ–fragments
 		if (sm == SearchMethod.Week)
 			fragments.add(new DianzhilengXiaolvWeekFragment());
 		else if (sm == SearchMethod.Month) {

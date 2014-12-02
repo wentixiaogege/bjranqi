@@ -29,31 +29,31 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 
 
 	/**
-	 * ³õÊ¼»¯ÊÓÍ¼
+	 * åˆå§‹åŒ–è§†å›¾
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("¹øÂ¯ÏµÍ³");
+		mChart.setDescription("é”…ç‚‰ç³»ç»Ÿ");
 	};
 
 	/**
-	 * ´´½¨ÊÓÍ¼Ê±µÄ»Øµ÷
+	 * åˆ›å»ºè§†å›¾æ—¶çš„å›è°ƒ
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_util, container, false);
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// Í¨¹ıĞÂµÄÏß³Ì»ñÈ¡Êı¾İ
+		// é€šè¿‡æ–°çš„çº¿ç¨‹è·å–æ•°æ®
 		getDataFromweb();
-		// ³õÊ¼»¯chart
+		// åˆå§‹åŒ–chart
 		initChart();
 		return v;
 	}
 
 	/**
-	 * ½«´«ÈëµÄJson×ª»¯³ÉAllInputBeanÊı×é
+	 * å°†ä¼ å…¥çš„Jsonè½¬åŒ–æˆAllInputBeanæ•°ç»„
 	 * 
 	 * @param arrInputs
 	 * @param json
@@ -65,23 +65,23 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 			jsonResults.clear();
 
 			for (int i = 0; i < jArray.length(); i++) {
-				// ÀûÓÃÕâ¸öº¯Êı£¬½«i×ª»¯³ÉÈÕÆÚ¡£
+				// åˆ©ç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†iè½¬åŒ–æˆæ—¥æœŸã€‚
 				JSONObject jo = jArray.getJSONObject(i);
 				String key = jo.getString("name");
 				JSONArray values = jo.getJSONArray("data");
 
-				// ¸ù¾İvaluesµÄ³¤¶È£¬³õÊ¼»¯jsonResults£¬²¢³õÊ¼»¯Ê±¼ä¡£
-				// Èç¹ûÊÇµÚÒ»´ÎÑ­»·
+				// æ ¹æ®valuesçš„é•¿åº¦ï¼Œåˆå§‹åŒ–jsonResultsï¼Œå¹¶åˆå§‹åŒ–æ—¶é—´ã€‚
+				// å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡å¾ªç¯
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						GuoluBean bean = new GuoluBean();
-						bean.setRiqi("Ç°" + k + "Ìì");
+						bean.setRiqi("å‰" + k + "å¤©");
 						jsonResults.add(bean);
 					}
 
 				for (int j = 0; j < values.length(); j++) {
 					GuoluBean bean = jsonResults.get(j);
-					// Èç¹ûÊÇ×ÜºÄµç
+					// å¦‚æœæ˜¯æ€»è€—ç”µ
 					if (key.equals(InfoUtils.GUOLU_HAOQI)) {
 						bean.setHaoqi((float) values.getDouble(j));
 					} else if (key.equals(InfoUtils.GUOLU_ZHIRE)) {
@@ -104,20 +104,20 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 	@Override
 	protected void displayChart() {
 		try {
-			// ÉèÖÃºá×ø±êÖá
+			// è®¾ç½®æ¨ªåæ ‡è½´
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yHaoqi = new ArrayList<Entry>();
 			ArrayList<Entry> yZhire = new ArrayList<Entry>();
 
-			// È¡µÃÅÅĞòºóµÄInputBean
+			// å–å¾—æ’åºåçš„InputBean
 			convertJsonToBean(mJsonInfo);
 
 			if (jsonResults.size() == 0)
 				return;
-			// ÉèÖÃx×ø±êÖáºÍyµÄÖµ
+			// è®¾ç½®xåæ ‡è½´å’Œyçš„å€¼
 			int i = 0;
 			for (GuoluBean bean : jsonResults) {
-				xTimes.add("Ç°" + bean.getRiqi() + "Ìì");
+				xTimes.add("å‰" + bean.getRiqi() + "å¤©");
 				yHaoqi.add(new Entry(bean.getHaoqi(), i));
 				yZhire.add(new Entry(bean.getZhire(), i));
 				++i;
@@ -136,7 +136,7 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// È¡µÃoutputĞÅÏ¢
+			// å–å¾—outputä¿¡æ¯
 
 		} catch (Exception e) {
 			e.printStackTrace();

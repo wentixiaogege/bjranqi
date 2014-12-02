@@ -1,37 +1,37 @@
 package com.bjgas.util;
 
 public class InfoUtils {
-	public static final String DISPLAY_ZONGXIAOLV = "×ÜĞ§ÂÊ";
+	public static final String DISPLAY_ZONGXIAOLV = "æ€»æ•ˆç‡";
 
-	public static final String DISPLAY_HAOQi = "ºÄÆø";
-	public static final String DISPLAY_ZHIRE = "ÖÆÈÈ";
+	public static final String DISPLAY_HAOQi = "è€—æ°”";
+	public static final String DISPLAY_ZHIRE = "åˆ¶çƒ­";
 
-	public static final String DISPLAY_HAODIAN = "ºÄµç";
-	public static final String DISPLAY_ZHILENG = "ÖÆÀä";
+	public static final String DISPLAY_HAODIAN = "è€—ç”µ";
+	public static final String DISPLAY_ZHILENG = "åˆ¶å†·";
 
-	public static final String DISPLAY_FADIAN = "·¢µç";
-	public static final String DISPLAY_HAOQI = "ºÄÆø";
-	public static final String DISPLAY_YURE = "ÓàÈÈ";
+	public static final String DISPLAY_FADIAN = "å‘ç”µ";
+	public static final String DISPLAY_HAOQI = "è€—æ°”";
+	public static final String DISPLAY_YURE = "ä½™çƒ­";
 
-	public static final String INPUT_ELEC = "×ÜºÄµç";
-	public static final String INPUT_AIR = "×ÜºÄÌìÈ»Æø";
-	public static final String INPUT_WATER = "×ÜºÄË®";
+	public static final String INPUT_ELEC = "æ€»è€—ç”µ";
+	public static final String INPUT_AIR = "æ€»è€—å¤©ç„¶æ°”";
+	public static final String INPUT_WATER = "æ€»è€—æ°´";
 
-	public static final String OUTPUT_ELEC = "¹©µç×ÜÁ¿";
-	public static final String OUTPUT_COLD = "×Ü¹©ÀäÁ¿";
-	public static final String OUTPUT_HOT = "×Ü¹©ÈÈÁ¿";
+	public static final String OUTPUT_ELEC = "ä¾›ç”µæ€»é‡";
+	public static final String OUTPUT_COLD = "æ€»ä¾›å†·é‡";
+	public static final String OUTPUT_HOT = "æ€»ä¾›çƒ­é‡";
 
-	public static final String FADIANJI_FADIAN = "¹©µçÁ¿";
-	public static final String FADIANJI_YURE = "×Ü¹©ÈÈÁ¿";
-	public static final String FADIANJI_HAOQI = "ºÄÌìÈ»Æø";
+	public static final String FADIANJI_FADIAN = "ä¾›ç”µé‡";
+	public static final String FADIANJI_YURE = "æ€»ä¾›çƒ­é‡";
+	public static final String FADIANJI_HAOQI = "è€—å¤©ç„¶æ°”";
 
-	public static final String ZHILENG_HAODIAN = "ºÄµçÁ¿";
-	public static final String ZHILENG_ZHILENG = "¹©Àä";
+	public static final String ZHILENG_HAODIAN = "è€—ç”µé‡";
+	public static final String ZHILENG_ZHILENG = "ä¾›å†·";
 
-	public static final String GUOLU_HAOQI = "ºÄÌìÈ»Æø";
-	public static final String GUOLU_ZHIRE = "¹©ÈÈ";
+	public static final String GUOLU_HAOQI = "è€—å¤©ç„¶æ°”";
+	public static final String GUOLU_ZHIRE = "ä¾›çƒ­";
 
-	// ÒÔÏÂÊÇ¸÷ÖÖhtmlÇëÇóµÄkey
+	// ä»¥ä¸‹æ˜¯å„ç§htmlè¯·æ±‚çš„key
 	public static final String ZONGJIEGOU_KEY = "zongjiegou";
 	public static final String FADIANJI_KEY = "fadianji";
 	public static final String ZHILENG_KEY = "zhileng";
