@@ -13,15 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bjgas.bean.FadianjiBean;
-import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
+public abstract class FadianjiFragments extends NengyuanFragments<FadianjiBean> {
 
 	/**
 	 * 初始化视图
@@ -100,7 +100,7 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						FadianjiBean bean = new FadianjiBean();
-						bean.setRiqi(k + 1 + "");
+						bean.setRiqi(getProperTime(k));
 						jsonResults.add(bean);
 					}
 
@@ -141,7 +141,7 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 			// 设置x坐标轴和y的值
 			int i = 0;
 			for (FadianjiBean bean : jsonResults) {
-				xTimes.add("前" + bean.getRiqi() + "天");
+				xTimes.add(bean.getRiqi());
 				yFadian.add(new Entry(bean.getFadian(), i));
 				yHaoqi.add(new Entry(bean.getHaoQi(), i));
 				yYures.add(new Entry(bean.getYure(), i));

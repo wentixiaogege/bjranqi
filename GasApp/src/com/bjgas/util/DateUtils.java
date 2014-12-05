@@ -1,11 +1,13 @@
 package com.bjgas.util;
 
+import android.annotation.SuppressLint;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+@SuppressLint("SimpleDateFormat")
 public final class DateUtils {
 
 	static Calendar now;
@@ -153,5 +155,11 @@ public final class DateUtils {
 		return df.format(today);
 	}
 
+	public static String getBeforeDay(int n, String format) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 0 - n);
+		return dateFormat.format(cal.getTime());
+	}
 
 }

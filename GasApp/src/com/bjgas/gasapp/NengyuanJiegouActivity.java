@@ -16,16 +16,22 @@ import com.bjgas.common.NewBaseFragmentActivity;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsWeekFragment;
 import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
@@ -40,7 +46,7 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nengyuan_jiegou_new);
+		setContentView(R.layout.activity_framework);
 
 		rtlParent = (RelativeLayout) findViewById(R.id.rtlParent);
 
@@ -84,6 +90,14 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 						"Now search method is " + v.getSearchMethod() + " position is " + v.getmDisplayedItem());
 				clearAndReplaceFragments(v.getSearchMethod(), v.getmDisplayedItem());
 			}
+
+			@Override
+			public void changeSearchFragments(View view, String startMonth, String endMonth) {
+				startM = startMonth;
+				endM = endMonth;
+				ListHeaderChartView v = (ListHeaderChartView) view;
+				clearAndReplaceFragments(v.getSearchMethod(), v.getmDisplayedItem());
+			}
 		});
 
 		rtlParent.addView(headerChartView);
@@ -101,6 +115,9 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Month) {
 				fragments.add(new InputsMonthFragment());
 				fragments.add(new OutputsMonthFragment());
+			} else if (sm == SearchMethod.Search) {
+				fragments.add(new InputsSearchFragment(startM, endM));
+				fragments.add(new OutputsSearchFragment(startM, endM));
 			} else {
 				fragments.add(new InputsWeekFragment());
 				fragments.add(new InputsMonthFragment());
@@ -112,6 +129,11 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				fragments.add(new FadianjiWeekFragment());
 			else if (sm == SearchMethod.Month) {
 				fragments.add(new FadianjiMonthFragment());
+				// fragments.add(new FadianjiSearchFragment("2014-10",
+				// "2014-12"));
+			} else if (sm == SearchMethod.Search) {
+				// fragments.add(new FadianjiMonthFragment());
+				fragments.add(new FadianjiSearchFragment(startM, endM));
 			} else {
 				fragments.add(new FadianjiWeekFragment());
 				fragments.add(new FadianjiMonthFragment());
@@ -123,6 +145,8 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				fragments.add(new ZhilengWeekFragment());
 			else if (sm == SearchMethod.Month) {
 				fragments.add(new ZhilengMonthFragment());
+			} else if (sm == SearchMethod.Search) {
+				fragments.add(new ZhilengSearchFragment(startM, endM));
 			} else {
 				fragments.add(new ZhilengWeekFragment());
 				fragments.add(new ZhilengMonthFragment());
@@ -134,6 +158,8 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				fragments.add(new GuoluWeekFragment());
 			else if (sm == SearchMethod.Month) {
 				fragments.add(new GuoluMonthFragment());
+			} else if (sm == SearchMethod.Search) {
+				fragments.add(new GuoluSearchFragment(startM, endM));
 			} else {
 				fragments.add(new GuoluMonthFragment());
 				fragments.add(new GuoluWeekFragment());
@@ -145,6 +171,8 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				fragments.add(new ShengchanyongdianWeekFragment());
 			else if (sm == SearchMethod.Month) {
 				fragments.add(new ShengchanyongdianMonthFragment());
+			} else if (sm == SearchMethod.Search) {
+				fragments.add(new ShengchanyongdianSearchFragment(startM, endM));
 			} else {
 				fragments.add(new ShengchanyongdianMonthFragment());
 				fragments.add(new ShengchanyongdianWeekFragment());

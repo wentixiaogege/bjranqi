@@ -1,6 +1,7 @@
 package com.bjgas.view;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -114,8 +115,19 @@ public class HeaderChartView extends LinearLayout {
 						mpoPopupWindowListItemClick.changeFragments();
 					} else if (3 == position) {
 						// setSearchMethod(SearchMethod.ExactMonth);
-						createDialogWithoutDateField().show();
+						// createDialogWithoutDateField().show();
 						// mpoPopupWindowListItemClick.changeFragments();
+						Calendar c = Calendar.getInstance();
+						// 最后一个false表示不显示日期，如果要显示日期，最后参数可以是true或者不用输入
+						new DoubleDatePickerDialog(getContext(), 0, new DoubleDatePickerDialog.OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
+									int startDayOfMonth, DatePicker endDatePicker, int endYear, int endMonthOfYear,
+									int endDayOfMonth) {
+								Log.d("DoubleDatePickerDialog", "onDateset");
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 					} else {
 						setSearchMethod(SearchMethod.Now);
 						mpoPopupWindowListItemClick.changeFragments();

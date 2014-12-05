@@ -10,8 +10,6 @@ public class OutputsWeekFragment extends OutputsFragment {
 	 */
 	@Override
 	public String getRequestUrl() {
-		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
-				SearchMethod.Week);
-		return mRequestUrl;
+		return getWeekRequestUrl();
 	}
 }

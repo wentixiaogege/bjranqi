@@ -33,6 +33,13 @@ public class InfoUtils {
 
 	public static final String SHENGCHANYONGDIAN_YONGDIAN = "生产用电";
 
+	public static final String JINGYING_SHOURU_ELEC = "电总收入";
+	public static final String JINGYING_SHOURU_HOT = "热量收入";
+	public static final String JINGYING_SHOURU_COLD = "冷量收入";
+	public static final String JINGYING_TOURU_ELEC = "电总投入";
+	public static final String JINGYING_TOURU_WATER = "水总投入";
+	public static final String JINGYING_TOURU_GAS = "天然气总投入";
+
 	// 以下是各种html请求的key
 	public static final String ZONGJIEGOU_KEY = "zongjiegou";
 	public static final String FADIANJI_KEY = "fadianji";
@@ -48,6 +55,10 @@ public class InfoUtils {
 	public static final String LENGDONGTAXIAOLV = "lengdongtaxiaolv";
 	public static final String NENGYUANLIYONGXIAOLV = "nengyuanliyongxiaolv";
 	public static final String YUREXIAOLV = "yurexiaolv";
+	// jingying
+	public static final String ZONGXITONG = "zongxitong";
+	public static final String TOURU = "touru";
+	public static final String CHANCHU = "chanchu";
 
 	// 地图坐标信息
 	public static final int STANDARD_WIDTH = 1280;

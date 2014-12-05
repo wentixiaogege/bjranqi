@@ -29,6 +29,8 @@ public abstract class NewBaseFragmentActivity extends FragmentActivity {
 	protected com.bjgas.view.ListHeaderChartView headerChartView;
 	protected com.bjgas.common.VerticalViewPager pager;
 	private SearchMethod searchMethod;
+	protected String startM;
+	protected String endM;
 
 	protected SearchMethod getSearchMethod() {
 		return searchMethod;

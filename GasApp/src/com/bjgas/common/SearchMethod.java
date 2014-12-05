@@ -1,5 +1,5 @@
 package com.bjgas.common;
 
 public enum SearchMethod {
-	Now, Week, Month, ExactMonth
+	Now, Week, Month, Search
 }

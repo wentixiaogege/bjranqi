@@ -1,6 +1,7 @@
 package com.bjgas.view;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.R.integer;
 import android.annotation.SuppressLint;
@@ -59,6 +60,8 @@ public class ListHeaderChartView extends LinearLayout {
 
 	public interface OnPopupWindowListItemClick {
 		void changeFragments(View view);
+
+		void changeSearchFragments(View view, String startMonth, String endMonth);
 	}
 
 	public interface OnNavigaterClick {
@@ -163,9 +166,22 @@ public class ListHeaderChartView extends LinearLayout {
 						setSearchMethod(SearchMethod.Month);
 						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
 					} else if (3 == position) {
-						// setSearchMethod(SearchMethod.ExactMonth);
-						createDialogWithoutDateField().show();
-						// mpoPopupWindowListItemClick.changeFragments();
+						setSearchMethod(SearchMethod.Search);
+						Calendar c = Calendar.getInstance();
+						// 最后一个false表示不显示日期，如果要显示日期，最后参数可以是true或者不用输入
+						new DoubleDatePickerDialog(getContext(), 0, new DoubleDatePickerDialog.OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
+									int startDayOfMonth, DatePicker endDatePicker, int endYear, int endMonthOfYear,
+									int endDayOfMonth) {
+								Log.d("DoubleDatePickerDialog", "onDateset");
+								String startMonth = String.format("%d-%d", startYear, (startMonthOfYear + 1));
+								String endMonth = String.format("%d-%d", endYear, (endMonthOfYear + 1));
+								mpoPopupWindowListItemClick.changeSearchFragments(ListHeaderChartView.this, startMonth,
+										endMonth);
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 					} else {
 						setSearchMethod(SearchMethod.Now);
 						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);

@@ -16,8 +16,6 @@ public class GuoluMonthFragment extends GuoluFragments {
 	 */
 	@Override
 	public String getRequestUrl() {
-		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
-				SearchMethod.Month);
-		return mRequestUrl;
+		return getMonthRequestUrl();
 	}
 }

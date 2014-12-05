@@ -22,6 +22,7 @@ import com.bjgas.common.ChartDoNothing;
 import com.bjgas.common.GasMarkerView;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.DateUtils;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
@@ -30,7 +31,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 @SuppressLint("NewApi")
-public abstract class OutputsFragment extends BaseFragment<AllOutPutBean> {
+public abstract class OutputsFragment extends NengyuanFragments<AllOutPutBean> {
 
 	private static final String TAG_ZONGJIEGOUCHART = "OutputsFragment";
 
@@ -128,7 +129,7 @@ public abstract class OutputsFragment extends BaseFragment<AllOutPutBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllOutPutBean bean = new AllOutPutBean();
-						bean.setTime("前" + k + "天");
+						bean.setTime(getProperTime(k));
 						jsonResults.add(bean);
 					}
 

@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import com.bjgas.bean.ZhilengBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
+public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 
 	/**
 	 * 初始化视图
@@ -71,7 +72,7 @@ public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						ZhilengBean bean = new ZhilengBean();
-						bean.setRiqi("前" + k + "天");
+						bean.setRiqi(getProperTime(k));
 						jsonResults.add(bean);
 					}
 

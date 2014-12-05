@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
+import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity;
 import com.bjgas.test.PopupWindowTest;
 
 public class MainActivity extends BaseActivity {
@@ -87,7 +89,7 @@ public class MainActivity extends BaseActivity {
 			switch (v.getId()) {
 			case R.id.imgFenxi:
 				Log.d(IMAGE_CLICK, "imgFenxi");
-				intent = new Intent(MainActivity.this, PopupWindowTest.class);
+				intent = new Intent(MainActivity.this, JingyingfenxiActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.imgJiegou:
@@ -97,7 +99,7 @@ public class MainActivity extends BaseActivity {
 				break;
 			case R.id.imgXiaolv:
 				Log.d(IMAGE_CLICK, "imgXiaolv");
-				intent = new Intent(MainActivity.this, NengyuanXiaolv.class);
+				intent = new Intent(MainActivity.this, NengyuanxiaolvActivity.class);
 				startActivity(intent);
 				break;
 

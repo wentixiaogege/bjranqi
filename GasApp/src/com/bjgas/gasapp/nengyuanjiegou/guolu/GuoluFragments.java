@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import com.bjgas.bean.GuoluBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
+public abstract class GuoluFragments extends NengyuanFragments<GuoluBean> {
 
 
 	/**
@@ -71,7 +72,7 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						GuoluBean bean = new GuoluBean();
-						bean.setRiqi("前" + (k + 1) + "天");
+						bean.setRiqi(getProperTime(k));
 						jsonResults.add(bean);
 					}
 

@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import com.bjgas.bean.ShengchanyongdianBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-public abstract class ShengchanyongdianFragments extends BaseFragment<ShengchanyongdianBean> {
+public abstract class ShengchanyongdianFragments extends NengyuanFragments<ShengchanyongdianBean> {
 
 
 	/**
@@ -71,7 +72,7 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						ShengchanyongdianBean bean = new ShengchanyongdianBean();
-						bean.setTime("前" + (k + 1) + "天");
+						bean.setTime(getProperTime(k));
 						jsonResults.add(bean);
 					}
 

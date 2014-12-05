@@ -1,12 +1,17 @@
 package com.bjgas.common;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.GasMarkerView.LabelInterface;
 import com.bjgas.gasapp.R;
+import com.bjgas.util.DateUtils;
 import com.bjgas.util.NetUtils;
 import com.bjgas.util.TagUtil;
 import com.github.mikephil.charting.charts.Chart;
@@ -18,6 +23,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.XLabels.XLabelPosition;
 
+import android.R.integer;
+import android.R.string;
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -33,9 +40,10 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	// 4个参数
 	protected final String FORMAT_URL = "%s?category=%s&module=%s&type=%s";
 	// 5个参数
-	protected final String FORMAT_URL_WITHDATE = "%s?category=%s&module=%s&type=search&startMonth=%s&endMonth=%s";
+	protected final String FORMAT_URL_WITHDATE = "%s?category=%s&module=%s&type=Search&startMonth=%s&endMonth=%s";
 	protected final String NENTYUAN_CATEGORY = "nengyuan";
 	protected final String XIAOLV_CATEGORY = "xiaolv";
+	protected final String JINGYING_CATEGORY = "jingying";
 	protected String act_module;
 	protected String act_type;
 
@@ -80,6 +88,32 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		}
 
 	};
+
+	/**
+	 * 接口用0.。。n传日期，这种情况下，不得不以当前日期为基础，进行转化<br>
+	 * 更加郁闷的是，如果是实时数据，index表示小时，如果是周或者月，index表示天数<br>
+	 * 如果是按月查询，竟然表示某个月。。。真是太扯淡了。
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public String getProperTime(int index) {
+		Log.d("DateTime", index + "");
+		int dis = index + 1;
+		return DateUtils.getBeforeDay(dis, "M月d日");
+	}
+
+	protected String getProperMonth(String startM, int index) {
+		String[] starts = startM.split("-");
+		int startYear = Integer.parseInt(starts[0]);
+		int startMonth = Integer.parseInt(starts[1]);
+		Log.d("getProperMonth", "startyear " + startYear + " startm " + startMonth + " index " + index);
+		GregorianCalendar cal = new GregorianCalendar(startYear, startMonth - 1, 1);
+		cal.add(Calendar.MONTH, index);
+		Date date = cal.getTime();
+		SimpleDateFormat df = new SimpleDateFormat("yy年M月");
+		return df.format(date);
+	}
 
 	/**
 	 * 初始化chart

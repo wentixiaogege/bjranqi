@@ -32,7 +32,7 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						XiaolvBean bean = new XiaolvBean();
-						bean.setTime("前" + (k + 1) + "天");
+						bean.setTime(getProperTime(k));
 						jsonResults.add(bean);
 					}
 
@@ -46,5 +46,11 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 			Log.d("Error", e.getMessage());
 		}
 
+	}
+
+	protected String getSearchRequestUrl(String startMonth, String endMonth) {
+		String mRequestUrl = String.format(FORMAT_URL_WITHDATE, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
+				startMonth, endMonth);
+		return mRequestUrl;
 	}
 }

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.bjgas.bean.AllInputBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
+import com.bjgas.gasapp.nengyuanjiegou.NengyuanFragments;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -23,7 +24,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 @SuppressLint("NewApi")
-public abstract class InputsFragment extends BaseFragment<AllInputBean> {
+public abstract class InputsFragment extends NengyuanFragments<AllInputBean> {
 
 	// private SearchMethod searchMethod;
 
@@ -161,7 +162,7 @@ public abstract class InputsFragment extends BaseFragment<AllInputBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllInputBean bean = new AllInputBean();
-						bean.setTime("前" + k + "天");
+						bean.setTime(getProperTime(k));
 						jsonResults.add(bean);
 					}
 

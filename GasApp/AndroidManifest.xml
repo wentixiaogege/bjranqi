@@ -75,9 +75,13 @@
         </activity>
         <activity android:name=".xiaolv.yurexiaolv.YureXiaolvActivity" >
         </activity>
-        <activity android:name=".DituActivity" >
+        <activity android:name=".JingyingfenxiActivity" >
+        </activity>
+        <activity android:name=".NengyuanxiaolvActivity" >
         </activity>
         <activity android:name=".NengyuanJiegouActivity" >
+        </activity>
+        <activity android:name=".DituActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
