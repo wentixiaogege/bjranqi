@@ -31,20 +31,14 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.bjgas.test.LineChartActivity" >
         </activity>
-
-        <uses-library android:name="android.test.runner" />
-
         <activity android:name=".NengyuanJiegou" >
         </activity>
         <activity android:name=".zongjiegou.ZongjiegouCharts" >
@@ -59,25 +53,35 @@
         </activity>
         <activity android:name=".guolu.GuoluActivity" >
         </activity>
+        <activity android:name=".shengchanyongdian.ShengchanyongdianActivity" >
+        </activity>
         <activity android:name=".NengyuanXiaolv" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvActivity" >
+        <activity android:name=".xiaolv.zongxiaolv.ZongxiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvActivity" >
+        <activity android:name=".xiaolv.fadianjixiaolv.FadianjiXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvActivity" >
+        <activity android:name=".xiaolv.dianzhilengxiaolv.DianzhilengXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvActivity" >
+        <activity android:name=".xiaolv.guoluxiaolv.GuoluXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity" >
+        <activity android:name=".xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvActivity" >
+        <activity android:name=".xiaolv.lengquetaxiaolv.LengquetaXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvActivity" >
+        <activity android:name=".xiaolv.lengdongtaxiaolv.LengdongtaXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity" >
+        <activity android:name=".xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity" >
         </activity>
-        <activity android:name="com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvActivity" >
+        <activity android:name=".xiaolv.yurexiaolv.YureXiaolvActivity" >
+        </activity>
+        <activity android:name=".DituActivity" >
+        </activity>
+        <activity android:name=".NengyuanJiegouActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -32,7 +32,7 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						XiaolvBean bean = new XiaolvBean();
-						bean.setTime("前" + k + "天");
+						bean.setTime("前" + (k + 1) + "天");
 						jsonResults.add(bean);
 					}
 

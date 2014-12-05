@@ -3,6 +3,7 @@ package com.bjgas.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -83,6 +84,17 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 		PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), fragments);
 		pager.removeAllViews();
 		pager.setAdapter(adapter);
+	}
+
+	@Override
+	protected void onResume() {
+		/**
+		 * 设置为横屏
+		 */
+		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		super.onResume();
 	}
 
 }

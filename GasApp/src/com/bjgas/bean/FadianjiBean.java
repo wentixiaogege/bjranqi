@@ -4,7 +4,7 @@ public class FadianjiBean {
 	// 日期(返回离现在多少天，前n日)
 	private String riqi;
 	// 号店
-	private float haodian;
+	private float haoqi;
 	// 发电
 	private float fadian;
 	// 余热
@@ -18,12 +18,12 @@ public class FadianjiBean {
 		this.riqi = riqi;
 	}
 
-	public float getHaodian() {
-		return haodian;
+	public float getHaoQi() {
+		return haoqi;
 	}
 
-	public void setHaodian(float haodian) {
-		this.haodian = haodian;
+	public void setHaoQi(float haodian) {
+		this.haoqi = haodian;
 	}
 
 	public float getFadian() {

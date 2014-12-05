@@ -100,7 +100,7 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						FadianjiBean bean = new FadianjiBean();
-						bean.setRiqi("前" + k + "天");
+						bean.setRiqi(k + 1 + "");
 						jsonResults.add(bean);
 					}
 
@@ -112,7 +112,7 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 					} else if (key.equals(InfoUtils.FADIANJI_YURE)) {
 						bean.setYure((float) values.getDouble(j));
 					} else if (key.equals(InfoUtils.FADIANJI_HAOQI)) {
-						bean.setYure((float) values.getDouble(j));
+						bean.setHaoQi((float) values.getDouble(j));
 					}
 				}
 			}
@@ -143,15 +143,15 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 			for (FadianjiBean bean : jsonResults) {
 				xTimes.add("前" + bean.getRiqi() + "天");
 				yFadian.add(new Entry(bean.getFadian(), i));
-				yHaoqi.add(new Entry(bean.getHaodian(), i));
+				yHaoqi.add(new Entry(bean.getHaoQi(), i));
 				yYures.add(new Entry(bean.getYure(), i));
 				++i;
 			}
 
-			LineDataSet setFadian = getDefaultDataset(yFadian, InfoUtils.DISPLAY_FADIAN, 1);
+			LineDataSet setFadian = getDefaultDataset(yFadian, InfoUtils.FADIANJI_FADIAN, 1);
 
-			LineDataSet setHaoqi = getDefaultDataset(yHaoqi, InfoUtils.DISPLAY_HAOQI, 2);
-			LineDataSet setYure = getDefaultDataset(yYures, InfoUtils.DISPLAY_YURE, 3);
+			LineDataSet setHaoqi = getDefaultDataset(yHaoqi, InfoUtils.FADIANJI_HAOQI, 2);
+			LineDataSet setYure = getDefaultDataset(yYures, InfoUtils.FADIANJI_YURE, 3);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setFadian); // add the datasets
@@ -180,11 +180,11 @@ public abstract class FadianjiFragments extends BaseFragment<FadianjiBean> {
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.DISPLAY_FADIAN;
+			return InfoUtils.FADIANJI_FADIAN;
 		case 1:
-			return InfoUtils.DISPLAY_HAOQI;
+			return InfoUtils.FADIANJI_HAOQI;
 		case 2:
-			return InfoUtils.DISPLAY_YURE;
+			return InfoUtils.FADIANJI_YURE;
 		default:
 			return null;
 		}

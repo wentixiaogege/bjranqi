@@ -30,25 +30,25 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 
 
 	/**
-	 * ³õÊ¼»¯ÊÓÍ¼
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("ÖÆÀäÏµÍ³");
+		mChart.setDescription("å†·å´å¡”æ•ˆçŽ‡");
 	};
 
 	/**
-	 * ´´½¨ÊÓÍ¼Ê±µÄ»Øµ÷
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Ê±ï¿½Ä»Øµï¿½
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_util, container, false);
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// Í¨¹ýÐÂµÄÏß³Ì»ñÈ¡Êý¾Ý
+		// Í¨ï¿½ï¿½ï¿½Âµï¿½ï¿½ß³Ì»ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 		getDataFromweb();
-		// ³õÊ¼»¯chart
+		// ï¿½ï¿½Ê¼ï¿½ï¿½chart
 		initChart();
 		return v;
 	}
@@ -62,19 +62,19 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 	@Override
 	protected void displayChart() {
 		try {
-			// ÉèÖÃºá×ø±êÖá
+			// ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yHaodian = new ArrayList<Entry>();
 
-			// È¡µÃÅÅÐòºóµÄInputBean
+			// È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½InputBean
 			convertJsonToBean(mJsonInfo);
 
 			if (jsonResults.size() == 0)
 				return;
-			// ÉèÖÃx×ø±êÖáºÍyµÄÖµ
+			// ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½Öµ
 			int i = 0;
 			for (XiaolvBean bean : jsonResults) {
-				xTimes.add("Ç°" + bean.getTime() + "Ìì");
+				xTimes.add(bean.getTime());
 				yHaodian.add(new Entry(bean.getXiaolv(), i));
 				++i;
 			}
@@ -89,7 +89,7 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// È¡µÃoutputÐÅÏ¢
+			// È¡ï¿½ï¿½outputï¿½ï¿½Ï¢
 
 		} catch (Exception e) {
 			e.printStackTrace();

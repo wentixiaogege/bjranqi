@@ -29,25 +29,25 @@ import com.github.mikephil.charting.data.LineDataSet;
 public abstract class FadianjiXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 
 	/**
-	 * ³õÊ¼»¯ÊÓÍ¼
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("·¢µç»úĞ§ÂÊ");
+		mChart.setDescription("å‘ç”µæœºç³»ç»Ÿæ•ˆç‡");
 	};
 
 	/**
-	 * ´´½¨ÊÓÍ¼Ê±µÄ»Øµ÷
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Ê±ï¿½Ä»Øµï¿½
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_util, container, false);
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// Í¨¹ıĞÂµÄÏß³Ì»ñÈ¡Êı¾İ
+		// Í¨ï¿½ï¿½ï¿½Âµï¿½ï¿½ß³Ì»ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 		getDataFromweb();
-		// ³õÊ¼»¯chart
+		// ï¿½ï¿½Ê¼ï¿½ï¿½chart
 		initChart();
 		return v;
 	}
@@ -60,19 +60,16 @@ public abstract class FadianjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 	@Override
 	protected void displayChart() {
 		try {
-			// ÉèÖÃºá×ø±êÖá
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yHaodian = new ArrayList<Entry>();
 
-			// È¡µÃÅÅĞòºóµÄInputBean
 			convertJsonToBean(mJsonInfo);
 
 			if (jsonResults.size() == 0)
 				return;
-			// ÉèÖÃx×ø±êÖáºÍyµÄÖµ
 			int i = 0;
 			for (XiaolvBean bean : jsonResults) {
-				xTimes.add("Ç°" + bean.getTime() + "Ìì");
+				xTimes.add(bean.getTime());
 				yHaodian.add(new Entry(bean.getXiaolv(), i));
 				++i;
 			}
@@ -87,7 +84,6 @@ public abstract class FadianjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// È¡µÃoutputĞÅÏ¢
 
 		} catch (Exception e) {
 			e.printStackTrace();

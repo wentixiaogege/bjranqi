@@ -12,7 +12,7 @@ public class LengquetaXiaolvMonthFragment extends LengquetaXiaolvFragments {
 	}
 
 	/**
-	 * ����ҳ���url FadianjiFragments
+	 * 请求页面的url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {

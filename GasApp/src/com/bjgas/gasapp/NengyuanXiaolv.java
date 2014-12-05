@@ -20,6 +20,7 @@ import com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvActivity;
+import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvActivity;
@@ -106,7 +107,7 @@ public class NengyuanXiaolv extends BaseActivity {
 						break;
 					case 7:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, NengyuanXiaolv.class);
+						intent = new Intent(NengyuanXiaolv.this, NengyuanliyongXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 8:

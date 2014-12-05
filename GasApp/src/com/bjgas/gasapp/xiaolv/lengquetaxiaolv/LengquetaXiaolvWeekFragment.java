@@ -12,7 +12,7 @@ public class LengquetaXiaolvWeekFragment extends LengquetaXiaolvFragments {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl FadianjiFragments
+	 * è¯·æ±‚é¡µé¢çš„url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {

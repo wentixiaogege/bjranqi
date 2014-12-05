@@ -20,5 +20,6 @@
     <string name="title_activity_guolu">GuoluActivity</string>
     <string name="title_activity_nengyuan_xiaolv">NengyuanXiaolv</string>
     <string name="title_activity_zong_xiaolv">ZongXiaolvActivity</string>
+    <string name="title_activity_ditu">DituActivity</string>
 
 </resources>

@@ -17,7 +17,7 @@ public class FadianjiWeekFragment extends FadianjiFragments {
 	@Override
 	public String getRequestUrl() {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
-				SearchMethod.Month);
+				SearchMethod.Week);
 		return mRequestUrl;
 	}
 }

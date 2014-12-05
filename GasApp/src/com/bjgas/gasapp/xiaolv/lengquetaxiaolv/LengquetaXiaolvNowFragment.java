@@ -12,12 +12,11 @@ public class LengquetaXiaolvNowFragment extends LengquetaXiaolvFragments {
 	}
 
 	/**
-	 * «Î«Û“≥√Êµƒurl FadianjiFragments
+	 * ËØ∑Ê±ÇÈ°µÈù¢ÁöÑurl FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {
-		String mRequestUrl = String
-.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(), SearchMethod.Now);
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(), SearchMethod.Now);
 		return mRequestUrl;
 	}
 }

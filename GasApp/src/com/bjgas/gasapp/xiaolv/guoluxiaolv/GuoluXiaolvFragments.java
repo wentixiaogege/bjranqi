@@ -31,25 +31,25 @@ public abstract class GuoluXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 
 
 	/**
-	 * 初始化视图
+	 * 锟斤拷始锟斤拷锟斤拷图
 	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("制冷系统");
+		mChart.setDescription("閿呯倝鏁堢巼");
 	};
 
 	/**
-	 * 创建视图时的回调
+	 * 锟斤拷锟斤拷锟斤拷图时锟侥回碉拷
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_util, container, false);
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// 通过新的线程获取数据
+		// 通锟斤拷锟铰碉拷锟竭程伙拷取锟斤拷锟斤拷
 		getDataFromweb();
-		// 初始化chart
+		// 锟斤拷始锟斤拷chart
 		initChart();
 		return v;
 	}
@@ -63,19 +63,19 @@ public abstract class GuoluXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 	@Override
 	protected void displayChart() {
 		try {
-			// 设置横坐标轴
+			// 锟斤拷锟矫猴拷锟斤拷锟斤拷锟斤拷
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yHaodian = new ArrayList<Entry>();
 
-			// 取得排序后的InputBean
+			// 取锟斤拷锟斤拷锟斤拷锟斤拷InputBean
 			convertJsonToBean(mJsonInfo);
 
 			if (jsonResults.size() == 0)
 				return;
-			// 设置x坐标轴和y的值
+			// 锟斤拷锟斤拷x锟斤拷锟斤拷锟斤拷锟統锟斤拷值
 			int i = 0;
 			for (XiaolvBean bean : jsonResults) {
-				xTimes.add("前" + bean.getTime() + "天");
+				xTimes.add(bean.getTime());
 				yHaodian.add(new Entry(bean.getXiaolv(), i));
 				++i;
 			}
@@ -90,7 +90,7 @@ public abstract class GuoluXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 
 			mChart.setData(data);
 			mChart.invalidate();
-			// 取得output信息
+			// 取锟斤拷output锟斤拷息
 
 		} catch (Exception e) {
 			e.printStackTrace();

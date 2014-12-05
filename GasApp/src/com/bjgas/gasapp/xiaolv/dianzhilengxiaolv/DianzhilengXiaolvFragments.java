@@ -67,7 +67,7 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 			// 设置x坐标轴和y的值
 			int i = 0;
 			for (XiaolvBean bean : jsonResults) {
-				xTimes.add("前" + bean.getTime() + "天");
+				xTimes.add(bean.getTime());
 				yHaodian.add(new Entry(bean.getXiaolv(), i));
 				++i;
 			}

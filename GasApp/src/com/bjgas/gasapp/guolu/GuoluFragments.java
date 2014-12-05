@@ -75,7 +75,7 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						GuoluBean bean = new GuoluBean();
-						bean.setRiqi("前" + k + "天");
+						bean.setRiqi("前" + (k + 1) + "天");
 						jsonResults.add(bean);
 					}
 
@@ -117,15 +117,15 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 			// 设置x坐标轴和y的值
 			int i = 0;
 			for (GuoluBean bean : jsonResults) {
-				xTimes.add("前" + bean.getRiqi() + "天");
+				xTimes.add(bean.getRiqi());
 				yHaoqi.add(new Entry(bean.getHaoqi(), i));
 				yZhire.add(new Entry(bean.getZhire(), i));
 				++i;
 			}
 
-			LineDataSet setHaoqi = getDefaultDataset(yHaoqi, InfoUtils.DISPLAY_HAOQi, 1);
+			LineDataSet setHaoqi = getDefaultDataset(yHaoqi, InfoUtils.GUOLU_HAOQI, 1);
 
-			LineDataSet setZhire = getDefaultDataset(yZhire, InfoUtils.DISPLAY_ZHIRE, 2);
+			LineDataSet setZhire = getDefaultDataset(yZhire, InfoUtils.GUOLU_ZHIRE, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setHaoqi); // add the datasets
@@ -153,9 +153,9 @@ public abstract class GuoluFragments extends BaseFragment<GuoluBean> {
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.DISPLAY_HAOQi;
+			return InfoUtils.GUOLU_HAOQI;
 		case 1:
-			return InfoUtils.DISPLAY_ZHIRE;
+			return InfoUtils.GUOLU_ZHIRE;
 		default:
 			return null;
 		}
