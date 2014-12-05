@@ -1,14 +1,14 @@
-package com.bjgas.gasapp.guolu;
+package com.bjgas.gasapp.nengyuanjiegou.zhileng;
 
 import android.support.v4.app.Fragment;
 
 import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
-public class GuoluMonthFragment extends GuoluFragments {
+public class ZhilengWeekFragment extends ZhilengFragments {
 
 	public static Fragment newInstance() {
-		return new GuoluMonthFragment();
+		return new ZhilengWeekFragment();
 	}
 
 	/**
@@ -17,7 +17,7 @@ public class GuoluMonthFragment extends GuoluFragments {
 	@Override
 	public String getRequestUrl() {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
-				SearchMethod.Month);
+				SearchMethod.Week);
 		return mRequestUrl;
 	}
 }

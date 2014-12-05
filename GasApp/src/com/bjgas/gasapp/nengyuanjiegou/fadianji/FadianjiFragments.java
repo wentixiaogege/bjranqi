@@ -1,4 +1,4 @@
-package com.bjgas.gasapp.fadianji;
+package com.bjgas.gasapp.nengyuanjiegou.fadianji;
 
 import java.util.ArrayList;
 

@@ -1,24 +1,20 @@
-package com.bjgas.gasapp.guolu;
+package com.bjgas.gasapp.nengyuanjiegou.guolu;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bjgas.bean.FadianjiBean;
 import com.bjgas.bean.GuoluBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
-import com.bjgas.gasapp.zongjiegou.InputsFragment;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;

@@ -41,19 +41,19 @@
         </activity>
         <activity android:name=".NengyuanJiegou" >
         </activity>
-        <activity android:name=".zongjiegou.ZongjiegouCharts" >
+        <activity android:name=".nengyuanjiegou.zongjiegou.ZongjiegouCharts" >
         </activity>
         <activity android:name="com.bjgas.test.PopupWindowTest" >
         </activity>
-        <activity android:name=".fadianji.FadianjiActivity" >
+        <activity android:name=".nengyuanjiegou.fadianji.FadianjiActivity" >
         </activity>
         <activity android:name="com.bjgas.test.TestHeaderChartViewActivity" >
         </activity>
-        <activity android:name=".zhileng.ZhilengActivity" >
+        <activity android:name=".nengyuanjiegou.zhileng.ZhilengActivity" >
         </activity>
-        <activity android:name=".guolu.GuoluActivity" >
+        <activity android:name=".nengyuanjiegou.guolu.GuoluActivity" >
         </activity>
-        <activity android:name=".shengchanyongdian.ShengchanyongdianActivity" >
+        <activity android:name=".nengyuanjiegou.shengchanyongdian.ShengchanyongdianActivity" >
         </activity>
         <activity android:name=".NengyuanXiaolv" >
         </activity>
@@ -80,7 +80,8 @@
         <activity android:name=".NengyuanJiegouActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

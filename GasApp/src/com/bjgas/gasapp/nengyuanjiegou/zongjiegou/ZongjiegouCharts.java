@@ -1,4 +1,4 @@
-package com.bjgas.gasapp.zongjiegou;
+package com.bjgas.gasapp.nengyuanjiegou.zongjiegou;
 
 import java.util.ArrayList;
 
@@ -74,8 +74,18 @@ public class ZongjiegouCharts extends BaseFragmentActivity {
 
 	@Override
 	public void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments) {
-		fragments.add(new InputsFragment(sm));
-		fragments.add(new OutputsFragment(sm));
-	}
+		// InputsFragment ifFragment = new InputsFragment();
+		// ifFragment.setSearchMethod(sm);
+		// fragments.add(ifFragment);
+		if (sm == SearchMethod.Week) {
+			fragments.add(new InputsWeekFragment());
+		} else if (sm == SearchMethod.Month) {
+			fragments.add(new InputsMonthFragment());
+		} else {
+			fragments.add(new InputsWeekFragment());
+			fragments.add(new InputsMonthFragment());
 
+		}
+		// fragments.add(new OutputsFragment(sm));
+	}
 }

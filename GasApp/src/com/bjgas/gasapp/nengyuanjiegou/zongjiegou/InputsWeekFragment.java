@@ -1,15 +1,9 @@
-package com.bjgas.gasapp.fadianji;
+package com.bjgas.gasapp.nengyuanjiegou.zongjiegou;
 
 import com.bjgas.common.SearchMethod;
-import com.bjgas.util.DateUtils;
 
-import android.support.v4.app.Fragment;
+public class InputsWeekFragment extends InputsFragment {
 
-public class FadianjiWeekFragment extends FadianjiFragments {
-
-	public static Fragment newInstance() {
-		return new FadianjiWeekFragment();
-	}
 
 	/**
 	 * 请求页面的url FadianjiFragments

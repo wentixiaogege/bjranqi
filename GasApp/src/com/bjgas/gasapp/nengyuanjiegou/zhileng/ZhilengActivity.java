@@ -1,26 +1,25 @@
-package com.bjgas.gasapp.fadianji;
+package com.bjgas.gasapp.nengyuanjiegou.zhileng;
 
 import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
-import com.bjgas.adapter.PageAdapter;
 import com.bjgas.common.BaseFragmentActivity;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.R;
-import com.bjgas.gasapp.guolu.GuoluMonthFragment;
-import com.bjgas.gasapp.guolu.GuoluWeekFragment;
 import com.bjgas.view.HeaderChartView;
 
-public class FadianjiActivity extends BaseFragmentActivity {
+public class ZhilengActivity extends BaseFragmentActivity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("ZhilengActivity", "oncreate");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fadianji_charts);
+		setContentView(R.layout.activity_zhileng_charts);
 		headerChartView = (HeaderChartView) findViewById(R.id.headChartView);
-
 		// 传入需要展示的fragments
 		pager = (VerticalViewPager) headerChartView.findViewById(R.id.pager);
 		clearAndReplaceFragments(SearchMethod.Now);
@@ -40,12 +39,12 @@ public class FadianjiActivity extends BaseFragmentActivity {
 	public void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments) {
 		// 初始化fragments
 		if (sm == SearchMethod.Week)
-			fragments.add(new FadianjiWeekFragment());
+			fragments.add(new ZhilengWeekFragment());
 		else if (sm == SearchMethod.Month) {
-			fragments.add(new FadianjiMonthFragment());
+			fragments.add(new ZhilengMonthFragment());
 		} else {
-			fragments.add(new FadianjiWeekFragment());
-			fragments.add(new FadianjiMonthFragment());
+			fragments.add(new ZhilengWeekFragment());
+			fragments.add(new ZhilengMonthFragment());
 		}
 	}
 

@@ -1,14 +1,14 @@
-package com.bjgas.gasapp.guolu;
+package com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian;
 
 import android.support.v4.app.Fragment;
 
 import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
-public class GuoluWeekFragment extends GuoluFragments {
+public class ShengchanyongdianWeekFragment extends ShengchanyongdianFragments {
 
 	public static Fragment newInstance() {
-		return new GuoluWeekFragment();
+		return new ShengchanyongdianWeekFragment();
 	}
 
 	/**

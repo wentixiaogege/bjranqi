@@ -1,14 +1,14 @@
-package com.bjgas.gasapp.shengchanyongdian;
+package com.bjgas.gasapp.nengyuanjiegou.guolu;
 
 import android.support.v4.app.Fragment;
 
 import com.bjgas.common.SearchMethod;
 import com.bjgas.util.DateUtils;
 
-public class ShengchanyongdianMonthFragment extends ShengchanyongdianFragments {
+public class GuoluWeekFragment extends GuoluFragments {
 
 	public static Fragment newInstance() {
-		return new ShengchanyongdianMonthFragment();
+		return new GuoluWeekFragment();
 	}
 
 	/**
@@ -17,7 +17,7 @@ public class ShengchanyongdianMonthFragment extends ShengchanyongdianFragments {
 	@Override
 	public String getRequestUrl() {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
-				SearchMethod.Month);
+				SearchMethod.Week);
 		return mRequestUrl;
 	}
 }

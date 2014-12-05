@@ -1,6 +1,7 @@
-package com.bjgas.gasapp.zongjiegou;
+package com.bjgas.gasapp.nengyuanjiegou.zongjiegou;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,15 +9,20 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bjgas.bean.AllInputBean;
+import com.bjgas.bean.AllOutPutBean;
 import com.bjgas.common.BaseFragment;
+import com.bjgas.common.ChartDoNothing;
+import com.bjgas.common.GasMarkerView;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.gasapp.R;
+import com.bjgas.util.DateUtils;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -24,38 +30,21 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 @SuppressLint("NewApi")
-public class InputsFragment extends BaseFragment<AllInputBean> {
+public abstract class OutputsFragment extends BaseFragment<AllOutPutBean> {
 
-	private SearchMethod searchMethod;
+	private static final String TAG_ZONGJIEGOUCHART = "OutputsFragment";
 
-	public InputsFragment(SearchMethod sm) {
-		this.searchMethod = sm;
-	}
-
-	public static InputsFragment Instance(SearchMethod sm) {
-		return new InputsFragment(sm);
-	}
-
-	private static final String TAG_ZONGJIEGOUCHART = "InputsFragment";
-
-	private double minValue = 0.0;
-	private double maxValue = 100.0;
-
-	/**
-	 * 初始化视图
-	 */
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("输入能源");
+
+		mChart.setDescription("输出能源");
+
 	};
 
-	/**
-	 * 创建视图时的回调
-	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
+		View v = inflater.inflate(R.layout.outputs_fragment, container, false);
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 
@@ -76,51 +65,35 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 			// 设置横坐标轴
 			ArrayList<String> xTimes = new ArrayList<String>();
 			ArrayList<Entry> yElecs = new ArrayList<Entry>();
-			ArrayList<Entry> yAirs = new ArrayList<Entry>();
-			ArrayList<Entry> yWaters = new ArrayList<Entry>();
+			ArrayList<Entry> yHots = new ArrayList<Entry>();
+			ArrayList<Entry> yColds = new ArrayList<Entry>();
 
 			// 取得排序后的InputBean
 			convertJsonToBean(mJsonInfo);
-			if (jsonResults.size() == 0)
+			if (jsonResults.size() == 0) {
 				return;
+			}
 			// 设置x坐标轴和y的值
 			int i = 0;
-			for (AllInputBean bean : jsonResults) {
+			for (AllOutPutBean bean : jsonResults) {
 				xTimes.add(bean.getTime() + "");
 				yElecs.add(new Entry(bean.getElec(), i));
-				yAirs.add(new Entry(bean.getAir(), i));
-				yWaters.add(new Entry(bean.getWater(), i));
+				yHots.add(new Entry(bean.getHot(), i));
+				yColds.add(new Entry(bean.getCold(), i));
 				++i;
 			}
 
-			LineDataSet setElecs = getDefaultDataset(yElecs, InfoUtils.INPUT_ELEC, 1);
-
-			LineDataSet setAirs = getDefaultDataset(yAirs, InfoUtils.INPUT_AIR, 2);
-			LineDataSet setWaters = getDefaultDataset(yWaters, InfoUtils.INPUT_WATER, 3);
+			LineDataSet setElecs = getDefaultDataset(yElecs, InfoUtils.OUTPUT_ELEC, 1);
+			LineDataSet setHots = getDefaultDataset(yHots, InfoUtils.OUTPUT_HOT, 3);
+			LineDataSet setColds = getDefaultDataset(yColds, InfoUtils.OUTPUT_COLD, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setElecs); // add the datasets
-			dataSets.add(setAirs);
-			dataSets.add(setWaters);
+			dataSets.add(setColds);
+			dataSets.add(setHots);
 
 			// create a data object with the datasets
 			LineData data = new LineData(xTimes, dataSets);
-
-			// 暂时不增加上下区域线
-			// LimitLine ll1 = new LimitLine(100f);
-			// ll1.setLineWidth(1f);
-			// ll1.enableDashedLine(10f, 10f, 0f);
-			// ll1.setDrawValue(false);
-			// ll1.setLabelPosition(LimitLabelPosition.RIGHT);
-			//
-			// LimitLine ll2 = new LimitLine(0f);
-			// ll2.setLineWidth(1f);
-			// ll2.enableDashedLine(10f, 10f, 0f);
-			// ll2.setDrawValue(false);
-			// ll2.setLabelPosition(LimitLabelPosition.RIGHT);
-			//
-			// data.addLimitLine(ll1);
-			// data.addLimitLine(ll2);
 
 			mChart.setData(data);
 			mChart.invalidate();
@@ -154,20 +127,20 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 				// 如果是第一次循环
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
-						AllInputBean bean = new AllInputBean();
+						AllOutPutBean bean = new AllOutPutBean();
 						bean.setTime("前" + k + "天");
 						jsonResults.add(bean);
 					}
 
 				for (int j = 0; j < values.length(); j++) {
-					AllInputBean bean = jsonResults.get(j);
+					AllOutPutBean bean = jsonResults.get(j);
 					// 如果是总耗电
-					if (key.equals(InfoUtils.INPUT_ELEC)) {
+					if (key.equals(InfoUtils.OUTPUT_ELEC)) {
 						bean.setElec((float) values.getDouble(j));
-					} else if (key.equals(InfoUtils.INPUT_AIR)) {
-						bean.setAir((float) values.getDouble(j));
-					} else if (key.equals(InfoUtils.INPUT_WATER)) {
-						bean.setWater((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+						bean.setCold((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+						bean.setHot((float) values.getDouble(j));
 					}
 				}
 			}
@@ -178,24 +151,6 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 	}
 
-	/**
-	 * 如果取得的数据比理论上最大值大，或者比理论上最小值小，则变为最大值或最小值。
-	 * 
-	 * @param jo
-	 * @param string
-	 * @return
-	 * @throws JSONException
-	 */
-	private float getProperData(JSONObject jo, String string) throws JSONException {
-		double value = jo.getDouble(string);
-		if (value < minValue) {
-			value = minValue;
-		} else if (value > maxValue) {
-			value = maxValue;
-		}
-		return (float) value;
-	}
-
 	@Override
 	protected void displayErr() {
 		// TODO Auto-generated method stub
@@ -204,25 +159,26 @@ public class InputsFragment extends BaseFragment<AllInputBean> {
 
 	@Override
 	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? InfoUtils.INPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.INPUT_AIR
-				: InfoUtils.INPUT_WATER);
+		String label = dataSetIndex == 0 ? InfoUtils.OUTPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.OUTPUT_COLD
+				: InfoUtils.OUTPUT_HOT);
 		return label;
 	}
 
-	/**
-	 * 请求页面的url
-	 */
-	@Override
-	public String getRequestUrl() {
-		String searchFilter = SearchMethod.Now.toString();
-		if (searchMethod.equals(SearchMethod.Week))
-			searchFilter = SearchMethod.Week.toString();
-		else if (searchMethod.equals(SearchMethod.Month)) {
-			searchFilter = SearchMethod.Month.toString();
-		}
-		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, "zongjiegou", searchFilter);
-		return mRequestUrl;
-	}
+	// /**
+	// * 请求页面的url
+	// */
+	// @Override
+	// public String getRequestUrl() {
+	// String searchFilter = SearchMethod.Now.toString();
+	// if (searchMethod.equals(SearchMethod.Week))
+	// searchFilter = SearchMethod.Week.toString();
+	// else if (searchMethod.equals(SearchMethod.Month)) {
+	// searchFilter = SearchMethod.Month.toString();
+	// }
+	// String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE,
+	// NENTYUAN_CATEGORY, "zongjiegou", searchFilter);
+	// return mRequestUrl;
+	// }
 
 	@Override
 	protected String getModule() {

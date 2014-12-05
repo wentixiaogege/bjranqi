@@ -2,7 +2,6 @@ package com.bjgas.gasapp;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,19 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import com.bjgas.adapter.CustomGridViewAdapter;
 import com.bjgas.bean.GridItem;
-import com.bjgas.bean.GuoluBean;
 import com.bjgas.common.BaseActivity;
-import com.bjgas.common.SearchMethod;
-import com.bjgas.gasapp.fadianji.FadianjiActivity;
-import com.bjgas.gasapp.guolu.GuoluActivity;
-import com.bjgas.gasapp.shengchanyongdian.ShengchanyongdianActivity;
-import com.bjgas.gasapp.zhileng.ZhilengActivity;
-import com.bjgas.gasapp.zongjiegou.ZongjiegouCharts;
+import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiActivity;
+import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluActivity;
+import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianActivity;
+import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengActivity;
+import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.ZongjiegouCharts;
 
 public class NengyuanJiegou extends BaseActivity {
 

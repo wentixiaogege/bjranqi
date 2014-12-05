@@ -1,33 +1,27 @@
-package com.bjgas.gasapp.shengchanyongdian;
+package com.bjgas.gasapp.nengyuanjiegou.zhileng;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bjgas.bean.FadianjiBean;
-import com.bjgas.bean.GuoluBean;
-import com.bjgas.bean.ShengchanyongdianBean;
+import com.bjgas.bean.ZhilengBean;
 import com.bjgas.common.BaseFragment;
 import com.bjgas.gasapp.R;
-import com.bjgas.gasapp.zongjiegou.InputsFragment;
 import com.bjgas.util.InfoUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-public abstract class ShengchanyongdianFragments extends BaseFragment<ShengchanyongdianBean> {
-
+public abstract class ZhilengFragments extends BaseFragment<ZhilengBean> {
 
 	/**
 	 * 初始化视图
@@ -35,7 +29,7 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("锅炉系统");
+		mChart.setDescription("制冷系统");
 	};
 
 	/**
@@ -52,6 +46,7 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 		initChart();
 		return v;
 	}
+
 
 	/**
 	 * 将传入的Json转化成AllInputBean数组
@@ -75,16 +70,18 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 				// 如果是第一次循环
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
-						ShengchanyongdianBean bean = new ShengchanyongdianBean();
-						bean.setTime("前" + (k + 1) + "天");
+						ZhilengBean bean = new ZhilengBean();
+						bean.setRiqi("前" + k + "天");
 						jsonResults.add(bean);
 					}
 
 				for (int j = 0; j < values.length(); j++) {
-					ShengchanyongdianBean bean = jsonResults.get(j);
+					ZhilengBean bean = jsonResults.get(j);
 					// 如果是总耗电
-					if (key.equals(InfoUtils.SHENGCHANYONGDIAN_YONGDIAN)) {
-						bean.setShengchanyongdian((float) values.getDouble(j));
+					if (key.equals(InfoUtils.ZHILENG_HAODIAN)) {
+						bean.setHaodian((float) values.getDouble(j));
+					} else if (key.equals(InfoUtils.ZHILENG_ZHILENG)) {
+						bean.setZhileng((float) values.getDouble(j));
 					}
 				}
 			}
@@ -97,7 +94,7 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 
 	@Override
 	protected String getModule() {
-		return InfoUtils.SHENGCHANYONGDIAN_KEY;
+		return InfoUtils.ZHILENG_KEY;
 	}
 
 	@Override
@@ -105,8 +102,8 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 		try {
 			// 设置横坐标轴
 			ArrayList<String> xTimes = new ArrayList<String>();
-			ArrayList<Entry> yHaoqi = new ArrayList<Entry>();
-			ArrayList<Entry> yZhire = new ArrayList<Entry>();
+			ArrayList<Entry> yHaodian = new ArrayList<Entry>();
+			ArrayList<Entry> yZhileng = new ArrayList<Entry>();
 
 			// 取得排序后的InputBean
 			convertJsonToBean(mJsonInfo);
@@ -115,17 +112,20 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 				return;
 			// 设置x坐标轴和y的值
 			int i = 0;
-			for (ShengchanyongdianBean bean : jsonResults) {
-				xTimes.add(bean.getTime());
-				yHaoqi.add(new Entry(bean.getShengchanyongdian(), i));
+			for (ZhilengBean bean : jsonResults) {
+				xTimes.add(bean.getRiqi());
+				yHaodian.add(new Entry(bean.getHaodian(), i));
+				yZhileng.add(new Entry(bean.getZhileng(), i));
 				++i;
 			}
 
-			LineDataSet setShengchanyongdian = getDefaultDataset(yHaoqi, InfoUtils.SHENGCHANYONGDIAN_YONGDIAN, 1);
+			LineDataSet setHaodian = getDefaultDataset(yHaodian, InfoUtils.DISPLAY_HAODIAN, 1);
 
+			LineDataSet setZhileng = getDefaultDataset(yZhileng, InfoUtils.DISPLAY_ZHILENG, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
-			dataSets.add(setShengchanyongdian); // add the datasets
+			dataSets.add(setHaodian); // add the datasets
+			dataSets.add(setZhileng);
 
 			// create a data object with the datasets
 			LineData data = new LineData(xTimes, dataSets);
@@ -149,9 +149,9 @@ public abstract class ShengchanyongdianFragments extends BaseFragment<Shengchany
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.GUOLU_HAOQI;
+			return InfoUtils.DISPLAY_HAODIAN;
 		case 1:
-			return InfoUtils.GUOLU_ZHIRE;
+			return InfoUtils.DISPLAY_ZHILENG;
 		default:
 			return null;
 		}

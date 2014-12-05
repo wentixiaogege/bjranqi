@@ -2,11 +2,10 @@ package com.bjgas.view;
 
 import java.util.ArrayList;
 
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,12 +25,14 @@ import com.bjgas.adapter.PopupListArrayAdapter;
 import com.bjgas.bean.GridItem;
 import com.bjgas.bean.PopupItem;
 import com.bjgas.common.SearchMethod;
+import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.R;
 
-public class HeaderChartViewNew extends LinearLayout {
+public class ListHeaderChartView extends LinearLayout {
 
 	View view;
 	LinearLayout linearLayoutTopic;
+	VerticalViewPager pager;
 	View popupView;
 	ListView popupViewList;
 	ListView lstNevigate;
@@ -46,29 +47,43 @@ public class HeaderChartViewNew extends LinearLayout {
 	ArrayList<PopupItem> popupItems;
 
 	/**
+	 * 显示哪一个子项目
+	 */
+	private int mDisplayedItem;
+
+	/**
 	 * 当item改变是还的回调函数
 	 */
 	OnPopupWindowListItemClick mpoPopupWindowListItemClick;
+	OnNavigaterClick mOnNavigaterClick;
 
 	public interface OnPopupWindowListItemClick {
-		void changeFragments();
+		void changeFragments(View view);
+	}
+
+	public interface OnNavigaterClick {
+		void addNewFragments(View view, int position, long id);
+	}
+
+	public void setOnNavigaterClick(OnNavigaterClick n) {
+		this.mOnNavigaterClick = n;
 	}
 
 	public void setOnPopupWindowListItemClick(OnPopupWindowListItemClick k) {
 		this.mpoPopupWindowListItemClick = k;
 	}
 
-	public HeaderChartViewNew(Context context) {
+	public ListHeaderChartView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public HeaderChartViewNew(Context context, AttributeSet attrs) {
+	public ListHeaderChartView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public HeaderChartViewNew(Context context, ArrayList<GridItem> items) {
+	public ListHeaderChartView(Context context, ArrayList<GridItem> items) {
 		super(context);
 		this.items = items;
 		initView(context);
@@ -78,6 +93,10 @@ public class HeaderChartViewNew extends LinearLayout {
 		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = layoutInflater.inflate(R.layout.header_chart_new, this);
 		lstNevigate = (ListView) findViewById(R.id.lstNevigate);
+		pager = (VerticalViewPager) findViewById(R.id.pager);
+		// 首先显示第0条
+		mDisplayedItem = 0;
+		// 首先显示当前状态
 		setSearchMethod(SearchMethod.Now);
 		initHead();
 		if (items != null)
@@ -90,6 +109,16 @@ public class HeaderChartViewNew extends LinearLayout {
 	private void updateListView() {
 		ListNavigateAdapter adapter = new ListNavigateAdapter(getContext(), R.layout.row_navigate, items);
 		lstNevigate.setAdapter(adapter);
+		lstNevigate.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				if (null != mOnNavigaterClick) {
+					setmDisplayedItem(position);
+					mOnNavigaterClick.addNewFragments(ListHeaderChartView.this, position, id);
+				}
+			}
+		});
 	}
 
 	/**
@@ -127,19 +156,19 @@ public class HeaderChartViewNew extends LinearLayout {
 				Log.d("parent_class", parent.getClass().getSimpleName());
 				Log.d("view_class", view.getClass().getSimpleName());
 				if (null != mpoPopupWindowListItemClick) {
-					if (1 == position ) {
+					if (1 == position) {
 						setSearchMethod(SearchMethod.Week);
-						mpoPopupWindowListItemClick.changeFragments();
-					} else if (2 == position ) {
+						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
+					} else if (2 == position) {
 						setSearchMethod(SearchMethod.Month);
-						mpoPopupWindowListItemClick.changeFragments();
+						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
 					} else if (3 == position) {
 						// setSearchMethod(SearchMethod.ExactMonth);
 						createDialogWithoutDateField().show();
 						// mpoPopupWindowListItemClick.changeFragments();
 					} else {
 						setSearchMethod(SearchMethod.Now);
-						mpoPopupWindowListItemClick.changeFragments();
+						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
 					}
 				}
 				changeTopicLabel(position);
@@ -257,4 +286,15 @@ public class HeaderChartViewNew extends LinearLayout {
 		this.searchMethod = searchMethod;
 	}
 
+	public VerticalViewPager getPager() {
+		return this.pager;
+	}
+
+	public int getmDisplayedItem() {
+		return mDisplayedItem;
+	}
+
+	private void setmDisplayedItem(int mDisplayedItem) {
+		this.mDisplayedItem = mDisplayedItem;
+	}
 }

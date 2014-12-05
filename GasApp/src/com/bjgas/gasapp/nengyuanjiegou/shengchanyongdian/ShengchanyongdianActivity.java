@@ -1,4 +1,4 @@
-package com.bjgas.gasapp.guolu;
+package com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.R;
 import com.bjgas.view.HeaderChartView;
 
-public class GuoluActivity extends BaseFragmentActivity {
+public class ShengchanyongdianActivity extends BaseFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,12 @@ public class GuoluActivity extends BaseFragmentActivity {
 	public void addNewFragments(SearchMethod sm, ArrayList<Fragment> fragments) {
 		// 初始化fragments
 		if (sm == SearchMethod.Week)
-			fragments.add(new GuoluWeekFragment());
+			fragments.add(new ShengchanyongdianWeekFragment());
 		else if (sm == SearchMethod.Month) {
-			fragments.add(new GuoluMonthFragment());
+			fragments.add(new ShengchanyongdianMonthFragment());
 		} else {
-			fragments.add(new GuoluMonthFragment());
-			fragments.add(new GuoluWeekFragment());
+			fragments.add(new ShengchanyongdianMonthFragment());
+			fragments.add(new ShengchanyongdianWeekFragment());
 		}
 	}
 
