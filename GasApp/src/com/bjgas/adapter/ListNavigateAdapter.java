@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 	int resource;
 	ArrayList<GridItem> items = new ArrayList<GridItem>();
 	LinearLayout layout;
+
+	public int curSelected = 0;
 
 	public ListNavigateAdapter(Context context, int resource, ArrayList<GridItem> items) {
 		// 一定要把数据传到super中去！！！不然什么都显示不出来
@@ -54,6 +57,12 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 		GridItem item = items.get(position);
 		holder.imgView.setImageBitmap(item.getImage());
 		holder.tvView.setText(item.getTitle());
+		holder.tvView.setBackgroundColor(R.drawable.fontcolor);
+		// row.setBackgroundColor(0xffff0000);
+		row.setBackgroundColor((position == curSelected) ? Color.argb(0x80, 0x20, 0xa0, 0x40) : Color.argb(0,
+				0, 0, 0));
+		// ((TextView) convertView).setText((String) getItem(position));
+
 
 		return row;
 	}

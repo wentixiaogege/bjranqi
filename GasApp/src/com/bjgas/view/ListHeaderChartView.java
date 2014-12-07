@@ -109,19 +109,60 @@ public class ListHeaderChartView extends LinearLayout {
 	/**
 	 * 更新左侧的导航栏
 	 */
+	ListNavigateAdapter adapter;
 	private void updateListView() {
-		ListNavigateAdapter adapter = new ListNavigateAdapter(getContext(), R.layout.row_navigate, items);
+		adapter = new ListNavigateAdapter(getContext(), R.layout.row_navigate, items);
 		lstNevigate.setAdapter(adapter);
+		lstNevigate.setFocusable(true);
 		lstNevigate.setOnItemClickListener(new OnItemClickListener() {
+
+			int save = 0 - 1;
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				ListView lv = (ListView) parent;
+				// lv.getChildAt(0).setBackgroundColor(0xff0000ff);
+				// lv.setSelected(true);
+				// lv.setSelection(position);
+				// // lstNevigate.getchil
+				// // lv.getch
+				//
+				// getViewByPosition(position,
+				// lv).setBackgroundColor(0xff0000ff);
+				//
+				// if (save != -1 && save != position) {
+				// getViewByPosition(position,
+				// lv).setBackgroundColor(0xffffffff);
+				// }
+				//
+				// save = position;
+				// ListNavigateAdapter adapter = ((ListNavigateAdapter)
+				// lv.getAdapter());
+				adapter.curSelected = position;
+				lv.setAdapter(adapter);
+				// adapter.getView(position, null, lv);
+				lv.invalidate();
+				lv.setSelection(position);
 				if (null != mOnNavigaterClick) {
 					setmDisplayedItem(position);
+
 					mOnNavigaterClick.addNewFragments(ListHeaderChartView.this, position, id);
 				}
 			}
 		});
+	}
+
+	public View getViewByPosition(int pos, ListView listView) {
+		final int firstListItemPosition = listView.getFirstVisiblePosition();
+		final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+		if (pos < firstListItemPosition || pos > lastListItemPosition) {
+			return listView.getAdapter().getView(pos, null, listView);
+		} else {
+			final int childIndex = pos - firstListItemPosition;
+			return listView.getChildAt(childIndex);
+		}
 	}
 
 	/**
