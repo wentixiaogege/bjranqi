@@ -27,20 +27,6 @@ public abstract class FadianjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 		mChart.setDescription("发电机系统效率");
 	};
 
-	/**
-	 * ������ͼʱ�Ļص�
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_util, container, false);
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		// ͨ���µ��̻߳�ȡ����
-		getDataFromweb();
-		// ��ʼ��chart
-		initChart();
-		return v;
-	}
 
 	@Override
 	protected String getModule() {

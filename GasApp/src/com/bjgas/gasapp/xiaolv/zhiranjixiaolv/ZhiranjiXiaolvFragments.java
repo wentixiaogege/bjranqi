@@ -28,20 +28,7 @@ public abstract class ZhiranjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 		mChart.setDescription("����ϵͳ");
 	};
 
-	/**
-	 * ������ͼʱ�Ļص�
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_util, container, false);
-		mChart = (LineChart) v.findViewById(R.id.chart1);
 
-		// ͨ���µ��̻߳�ȡ����
-		getDataFromweb();
-		// ��ʼ��chart
-		initChart();
-		return v;
-	}
 
 
 	@Override

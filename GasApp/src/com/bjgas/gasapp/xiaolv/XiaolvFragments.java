@@ -4,10 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.bjgas.bean.XiaolvBean;
 import com.bjgas.common.BaseFragment;
+import com.bjgas.gasapp.R;
+import com.github.mikephil.charting.charts.LineChart;
 
 public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment<XiaolvBean> {
 	/**
@@ -46,6 +52,19 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 			Log.d("Error", e.getMessage());
 		}
 
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.chart_fragment, container, false);
+
+		mChart = (LineChart) v.findViewById(R.id.chart1);
+
+		getDataFromweb();
+
+		// 初始化chart
+		initChart();
+		return v;
 	}
 
 	protected String getSearchRequestUrl(String startMonth, String endMonth) {

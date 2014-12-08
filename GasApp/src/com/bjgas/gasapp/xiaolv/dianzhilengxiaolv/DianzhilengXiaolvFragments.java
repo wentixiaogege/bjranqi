@@ -32,20 +32,6 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 		mChart.setDescription("电制冷效率");
 	};
 
-	/**
-	 * 创建视图时的回调
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_util, container, false);
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		// 通过新的线程获取数据
-		getDataFromweb();
-		// 初始化chart
-		initChart();
-		return v;
-	}
 
 	@Override
 	protected String getModule() {

@@ -34,20 +34,21 @@ public abstract class GuoluFragments extends NengyuanFragments<GuoluBean> {
 		mChart.setDescription("锅炉系统");
 	};
 
-	/**
-	 * 创建视图时的回调
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_util, container, false);
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		// 通过新的线程获取数据
-		getDataFromweb();
-		// 初始化chart
-		initChart();
-		return v;
-	}
+	// /**
+	// * 创建视图时的回调
+	// */
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View v = inflater.inflate(R.layout.fragment_util, container, false);
+	// mChart = (LineChart) v.findViewById(R.id.chart1);
+	//
+	// // 通过新的线程获取数据
+	// getDataFromweb();
+	// // 初始化chart
+	// initChart();
+	// return v;
+	// }
 
 	/**
 	 * 将传入的Json转化成AllInputBean数组

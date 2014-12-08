@@ -38,22 +38,23 @@ public abstract class FadianjiFragments extends NengyuanFragments<FadianjiBean> 
 		return InfoUtils.FADIANJI_KEY;
 	}
 
-	/**
-	 * 创建视图时的回调
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
-
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		// 通过新的线程获取数据
-		getDataFromweb();
-
-		// 初始化chart
-		initChart();
-		return v;
-	}
+	// /**
+	// * 创建视图时的回调
+	// */
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View v = inflater.inflate(R.layout.inputs_fragment, container, false);
+	//
+	// mChart = (LineChart) v.findViewById(R.id.chart1);
+	//
+	// // 通过新的线程获取数据
+	// getDataFromweb();
+	//
+	// // 初始化chart
+	// initChart();
+	// return v;
+	// }
 
 	// @Override
 	// public void convertJsonToBean(String json) {

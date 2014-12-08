@@ -1,23 +1,29 @@
 package com.bjgas.gasapp.nengyuanjiegou;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.bjgas.common.BaseFragment;
 import com.bjgas.common.SearchMethod;
+import com.bjgas.gasapp.R;
+import com.github.mikephil.charting.charts.LineChart;
 
 public abstract class NengyuanFragments<T> extends BaseFragment<T> {
 
-	// @Override
-	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	// Bundle savedInstanceState) {
-	// View v = inflater.inflate(R.layout.jingying_fragment, container, false);
-	//
-	// mChart = (LineChart) v.findViewById(R.id.chart1);
-	//
-	// getDataFromweb();
-	//
-	// // 初始化chart
-	// initChart();
-	// return v;
-	// }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.chart_fragment, container, false);
+
+		mChart = (LineChart) v.findViewById(R.id.chart1);
+
+		getDataFromweb();
+
+		// 初始化chart
+		initChart();
+		return v;
+	}
 
 	protected String getWeekRequestUrl() {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),

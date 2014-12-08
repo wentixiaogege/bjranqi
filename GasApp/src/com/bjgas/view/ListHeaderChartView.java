@@ -116,32 +116,13 @@ public class ListHeaderChartView extends LinearLayout {
 		lstNevigate.setFocusable(true);
 		lstNevigate.setOnItemClickListener(new OnItemClickListener() {
 
-			int save = 0 - 1;
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 				ListView lv = (ListView) parent;
-				// lv.getChildAt(0).setBackgroundColor(0xff0000ff);
-				// lv.setSelected(true);
-				// lv.setSelection(position);
-				// // lstNevigate.getchil
-				// // lv.getch
-				//
-				// getViewByPosition(position,
-				// lv).setBackgroundColor(0xff0000ff);
-				//
-				// if (save != -1 && save != position) {
-				// getViewByPosition(position,
-				// lv).setBackgroundColor(0xffffffff);
-				// }
-				//
-				// save = position;
-				// ListNavigateAdapter adapter = ((ListNavigateAdapter)
-				// lv.getAdapter());
+
 				adapter.curSelected = position;
 				lv.setAdapter(adapter);
-				// adapter.getView(position, null, lv);
 				lv.invalidate();
 				lv.setSelection(position);
 				if (null != mOnNavigaterClick) {

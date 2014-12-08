@@ -33,20 +33,21 @@ public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 		mChart.setDescription("制冷系统");
 	};
 
-	/**
-	 * 创建视图时的回调
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_util, container, false);
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		// 通过新的线程获取数据
-		getDataFromweb();
-		// 初始化chart
-		initChart();
-		return v;
-	}
+	// /**
+	// * 创建视图时的回调
+	// */
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View v = inflater.inflate(R.layout.fragment_util, container, false);
+	// mChart = (LineChart) v.findViewById(R.id.chart1);
+	//
+	// // 通过新的线程获取数据
+	// getDataFromweb();
+	// // 初始化chart
+	// initChart();
+	// return v;
+	// }
 
 
 	/**

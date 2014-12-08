@@ -14,7 +14,7 @@ public abstract class JingyingFragments<T> extends BaseFragment<T> {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.jingying_fragment, container, false);
+		View v = inflater.inflate(R.layout.chart_fragment, container, false);
 
 		mChart = (LineChart) v.findViewById(R.id.chart1);
 

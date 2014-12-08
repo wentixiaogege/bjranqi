@@ -36,7 +36,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 
 	// protected final String REQUEST_WEBSITE =
 	// "http://gqqapp.sinaapp.com/ranqi.php";
-	protected final String REQUEST_WEBSITE = "http://192.168.2.101:8090/Interface/AppAdapter.aspx";
+	public static String REQUEST_WEBSITE = "http://192.168.2.101:8090/Interface/AppAdapter.aspx";
 	// 4个参数
 	protected final String FORMAT_URL = "%s?category=%s&module=%s&type=%s";
 	// 5个参数

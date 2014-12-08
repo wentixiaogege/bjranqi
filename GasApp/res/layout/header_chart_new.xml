@@ -10,13 +10,16 @@
         layout="@layout/header" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/detail_bg" >
 
         <ListView
             android:id="@+id/lstNevigate"
-            android:layout_width="130dp"
-            android:layout_height="match_parent" >
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dip"
+            android:layout_marginRight="5dp" >
         </ListView>
 
         <com.bjgas.common.VerticalViewPager

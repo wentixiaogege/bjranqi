@@ -23,7 +23,7 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 	ArrayList<GridItem> items = new ArrayList<GridItem>();
 	LinearLayout layout;
 
-	public int curSelected = 0;
+	public int curSelected = -1;
 
 	public ListNavigateAdapter(Context context, int resource, ArrayList<GridItem> items) {
 		// 一定要把数据传到super中去！！！不然什么都显示不出来

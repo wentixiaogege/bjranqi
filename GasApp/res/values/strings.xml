@@ -21,5 +21,11 @@
     <string name="title_activity_nengyuan_xiaolv">NengyuanXiaolv</string>
     <string name="title_activity_zong_xiaolv">ZongXiaolvActivity</string>
     <string name="title_activity_ditu">DituActivity</string>
+    <string name="title_activity_config">ConfigActivity</string>
+    <string name="ip_address">ip地址</string>
+    <string name="port">端口</string>
+    <string name="config_xml_name">config</string>
+    <string name="interface_website">interface_website</string>
+    <string name="interface_port">interface_port</string>
 
 </resources>

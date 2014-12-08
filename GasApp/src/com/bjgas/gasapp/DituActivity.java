@@ -1,27 +1,38 @@
 package com.bjgas.gasapp;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
-import android.util.Log;
-import android.view.MotionEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
+import com.bjgas.common.BaseFragment;
+import com.bjgas.gasapp.config.ConfigActivity;
 import com.bjgas.util.InfoUtils;
+import com.bjgas.util.NetUtils;
+import com.bjgas.util.T;
 
 public class DituActivity extends BaseActivity {
 
+	private static final int CONFIG_REQUEST_CODE = 0;
 	private RelativeLayout rtlDitu;
 	ScreenInfo si = new ScreenInfo();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ditu);
 		rtlDitu = (RelativeLayout) findViewById(R.id.rtlDitu);
+
+		// 读取文件，配置网络
+		NetUtils.configWebsite(this);
 
 		rtlDitu.setBackgroundResource(R.drawable.ditu);
 		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this, si);
@@ -51,6 +62,41 @@ public class DituActivity extends BaseActivity {
 
 	}
 
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	};
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
+		switch (item.getItemId()) {
+		case R.id.config:
+			intent = new Intent(this, ConfigActivity.class);
+			// startActivity(intent);
+			startActivityForResult(intent, CONFIG_REQUEST_CODE);
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == CONFIG_REQUEST_CODE && resultCode == ConfigActivity.CONFIG_SUCCESS) {
+			NetUtils.configWebsite(this);
+			T.showLong(this, "新的网站设置完成");
+		} else if (requestCode == CONFIG_REQUEST_CODE && resultCode == ConfigActivity.CONFIG_CANCEL) {
+			T.showLong(this, "新的网站设置被取消");
+		}
+	}
+
 	/**
 	 * 添加一张新的图片
 	 * 
@@ -74,7 +120,7 @@ public class DituActivity extends BaseActivity {
 			iv.setOnClickListener(mClicklistener);
 	}
 
-	private int getX(ScreenInfo si,int x) {
+	private int getX(ScreenInfo si, int x) {
 		double d = (double) si.getWidth() / (double) InfoUtils.STANDARD_WIDTH * (double) x;
 		return (int) d;
 	}

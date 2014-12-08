@@ -43,18 +43,19 @@ public abstract class OutputsFragment extends NengyuanFragments<AllOutPutBean> {
 
 	};
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.outputs_fragment, container, false);
-
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		getDataFromweb();
-
-		// 初始化chart
-		initChart();
-		return v;
-	}
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View v = inflater.inflate(R.layout.outputs_fragment, container, false);
+	//
+	// mChart = (LineChart) v.findViewById(R.id.chart1);
+	//
+	// getDataFromweb();
+	//
+	// // 初始化chart
+	// initChart();
+	// return v;
+	// }
 
 	/**
 	 * 子线程取得数据后，显示图表

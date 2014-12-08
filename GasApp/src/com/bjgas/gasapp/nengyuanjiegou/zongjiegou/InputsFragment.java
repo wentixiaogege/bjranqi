@@ -57,21 +57,22 @@ public abstract class InputsFragment extends NengyuanFragments<AllInputBean> {
 		mChart.setDescription("输入能源");
 	};
 
-	/**
-	 * 创建视图时的回调
-	 */
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.inputs_fragment, container, false);
-
-		mChart = (LineChart) v.findViewById(R.id.chart1);
-
-		getDataFromweb();
-
-		// 初始化chart
-		initChart();
-		return v;
-	}
+	// /**
+	// * 创建视图时的回调
+	// */
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View v = inflater.inflate(R.layout.inputs_fragment, container, false);
+	//
+	// mChart = (LineChart) v.findViewById(R.id.chart1);
+	//
+	// getDataFromweb();
+	//
+	// // 初始化chart
+	// initChart();
+	// return v;
+	// }
 
 	/**
 	 * 子线程取得数据后，显示图表
