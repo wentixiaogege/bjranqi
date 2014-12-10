@@ -46,8 +46,12 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	protected final String JINGYING_CATEGORY = "jingying";
 	protected String act_module;
 	protected String act_type;
+	NewBaseFragmentActivity activity;
 
-
+	// NewBaseFragmentActivity
+	public BaseFragment() {
+		activity = (NewBaseFragmentActivity) getActivity();
+	}
 
 	protected static final int GET_JSON_SUCCESSFUL = 1;
 	protected static final int GET_JSON_ERROR = 9;
@@ -77,9 +81,12 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case GET_JSON_SUCCESSFUL:
+				stopRotateIcon();
+
 				displayChart();
 				break;
 			case GET_JSON_ERROR:
+				stopRotateIcon();
 				displayErr();
 				break;
 			default:
@@ -87,8 +94,21 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 			}
 		}
 
+
 	};
 
+	private void stopRotateIcon() {
+		// TODO Auto-generated method stub
+		NewBaseFragmentActivity activity1 = (NewBaseFragmentActivity) getActivity();
+		activity1.getHeaderChartView().stopRotateIcon();
+	}
+
+	private void rotateIcon() {
+		// TODO Auto-generated method stub
+		NewBaseFragmentActivity activity1 = (NewBaseFragmentActivity) getActivity();
+		activity1.getHeaderChartView().rotateIcon();
+	}
+	
 	/**
 	 * 接口用0.。。n传日期，这种情况下，不得不以当前日期为基础，进行转化<br>
 	 * 更加郁闷的是，如果是实时数据，index表示小时，如果是周或者月，index表示天数<br>
@@ -144,7 +164,6 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// no description text
 		mChart.setDescription("");
 		mChart.setNoDataTextDescription("暂时没有取得数据");
-
 
 		// // enable / disable grid lines
 		// mChart.setDrawVerticalGrid(false);
@@ -254,6 +273,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		new Thread() {
 			@Override
 			public void run() {
+
 				String mRequestUrl = getRequestUrl();
 				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("request url:%s", mRequestUrl));
 				mJsonInfo = NetUtils.connServerForResult(getActivity(), mRequestUrl);
@@ -266,6 +286,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 			}
 
 		}.start();
+		rotateIcon();
 	}
 
 	public abstract String getRequestUrl();

@@ -3,7 +3,6 @@ package com.bjgas.view;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -12,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.DatePicker;
@@ -34,6 +35,7 @@ public class ListHeaderChartView extends LinearLayout {
 	View view;
 	LinearLayout linearLayoutTopic;
 	VerticalViewPager pager;
+	ImageView imgRefresh;
 	View popupView;
 	ListView popupViewList;
 	ListView lstNevigate;
@@ -42,6 +44,10 @@ public class ListHeaderChartView extends LinearLayout {
 	private TextView textViewTopic;
 	private SearchMethod searchMethod;
 	ArrayList<GridItem> items;
+	Animation operatingAnim;
+
+	private String startMonth;
+	private String endMonth;
 
 	LayoutInflater layoutInflater;
 
@@ -97,6 +103,8 @@ public class ListHeaderChartView extends LinearLayout {
 		view = layoutInflater.inflate(R.layout.header_chart_new, this);
 		lstNevigate = (ListView) findViewById(R.id.lstNevigate);
 		pager = (VerticalViewPager) findViewById(R.id.pager);
+		imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
+		operatingAnim = AnimationUtils.loadAnimation(getContext(), R.anim.refresh);
 		// 首先显示第0条
 		mDisplayedItem = 0;
 		// 首先显示当前状态
@@ -104,12 +112,50 @@ public class ListHeaderChartView extends LinearLayout {
 		initHead();
 		if (items != null)
 			updateListView();
+
+		// 刷新按钮
+		imgRefresh.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (mpoPopupWindowListItemClick != null)
+					if (searchMethod == SearchMethod.Now || searchMethod == SearchMethod.Week
+							|| searchMethod == SearchMethod.Month) {
+						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
+					} else if (searchMethod == SearchMethod.Search) {
+						mpoPopupWindowListItemClick.changeSearchFragments(ListHeaderChartView.this, startMonth,
+								endMonth);
+					}
+
+			}
+		});
+	}
+
+	public void rotateIcon() {
+		// 旋转更新按钮
+		if (operatingAnim != null) {
+			// findViewById(R.id.footer).setVisibility(View.VISIBLE);
+			// mUpdate.setImageResource(R.drawable.base_loading_large_icon);
+			imgRefresh.startAnimation(operatingAnim);
+		}
+
+	}
+
+	/**
+	 * 恢复，转圈停止，rooter消失
+	 */
+	public void stopRotateIcon() {
+		// mUpdate.setImageResource(R.drawable.title_update);
+		// findViewById(R.id.footer).setVisibility(View.GONE);
+		// mUpdate.clearAnimation();
+		imgRefresh.clearAnimation();
 	}
 
 	/**
 	 * 更新左侧的导航栏
 	 */
 	ListNavigateAdapter adapter;
+
 	private void updateListView() {
 		adapter = new ListNavigateAdapter(getContext(), R.layout.row_navigate, items);
 		lstNevigate.setAdapter(adapter);
@@ -198,8 +244,8 @@ public class ListHeaderChartView extends LinearLayout {
 									int startDayOfMonth, DatePicker endDatePicker, int endYear, int endMonthOfYear,
 									int endDayOfMonth) {
 								Log.d("DoubleDatePickerDialog", "onDateset");
-								String startMonth = String.format("%d-%d", startYear, (startMonthOfYear + 1));
-								String endMonth = String.format("%d-%d", endYear, (endMonthOfYear + 1));
+								startMonth = String.format("%d-%d", startYear, (startMonthOfYear + 1));
+								endMonth = String.format("%d-%d", endYear, (endMonthOfYear + 1));
 								mpoPopupWindowListItemClick.changeSearchFragments(ListHeaderChartView.this, startMonth,
 										endMonth);
 							}

@@ -2,6 +2,8 @@ package com.bjgas.adapter;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -46,7 +48,7 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 			// 申请一个new holder，将取得的内容放在holder中
 			holder = new Holder();
 			holder.imgView = (ImageView) row.findViewById(R.id.item_image);
-			holder.tvView = (TextView) row.findViewById(R.id.item_text);
+			// holder.tvView = (TextView) row.findViewById(R.id.item_text);
 
 			row.setTag(holder);
 		} else {
@@ -56,8 +58,9 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 		// 将内容放入到holder中
 		GridItem item = items.get(position);
 		holder.imgView.setImageBitmap(item.getImage());
-		holder.tvView.setText(item.getTitle());
-		holder.tvView.setBackgroundColor(R.drawable.fontcolor);
+		// holder.tvView.setText(item.getTitle());
+		// holder.tvView.setText(StringUtils.EMPTY);
+		// holder.tvView.setBackgroundColor(R.drawable.fontcolor);
 		// row.setBackgroundColor(0xffff0000);
 		row.setBackgroundColor((position == curSelected) ? Color.argb(0x80, 0x20, 0xa0, 0x40) : Color.argb(0,
 				0, 0, 0));
@@ -76,6 +79,6 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 	 */
 	static class Holder {
 		ImageView imgView;
-		TextView tvView;
+		// TextView tvView;
 	}
 }

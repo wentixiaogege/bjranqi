@@ -1,17 +1,26 @@
 package com.bjgas.util;
 
 public class InfoUtils {
-	public static final String DISPLAY_ZONGXIAOLV = "总效率";
-
-	public static final String DISPLAY_HAOQi = "耗气";
-	public static final String DISPLAY_ZHIRE = "制热";
-
-	public static final String DISPLAY_HAODIAN = "耗电";
-	public static final String DISPLAY_ZHILENG = "制冷";
+	// public static final String DISPLAY_ZONGXIAOLV = "总效率";
+	//
+	// public static final String DISPLAY_HAOQi = "耗气";
+	// public static final String DISPLAY_ZHIRE = "制热";
+	//
+	// public static final String DISPLAY_HAODIAN = "耗电";
+	// public static final String DISPLAY_ZHILENG = "制冷";
 
 	// public static final String DISPLAY_FADIAN = "发电";
 	// public static final String DISPLAY_HAOQI = "耗气";
 	// public static final String DISPLAY_YURE = "余热";
+	public static final String ZONGXITONG_XIAOLV = "总系统效率";
+	public static final String FADIANJI_XIAOLV = "发电机系统效率";
+	public static final String DIANZHILENG_XIAOLV = "电制冷系统效率";
+	public static final String GUOLU_XIAOLV = "锅炉系统效率";
+	public static final String ZHIRANJI_XIAOLV = "直燃机效率";
+	public static final String LENGQUETA_XIAOLV = "冷却塔效率";
+	public static final String SHUIBENG_XIAOLV = "水泵效率";
+	public static final String YICINENGYUAN_XIAOLV = "一次能源利用率";
+	public static final String YURE_XIAOLV = "余热系统利用率";
 
 	public static final String INPUT_ELEC = "总耗电";
 	public static final String INPUT_AIR = "总耗天然气";

@@ -121,9 +121,9 @@ public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 				++i;
 			}
 
-			LineDataSet setHaodian = getDefaultDataset(yHaodian, InfoUtils.DISPLAY_HAODIAN, 1);
+			LineDataSet setHaodian = getDefaultDataset(yHaodian, InfoUtils.ZHILENG_HAODIAN, 1);
 
-			LineDataSet setZhileng = getDefaultDataset(yZhileng, InfoUtils.DISPLAY_ZHILENG, 2);
+			LineDataSet setZhileng = getDefaultDataset(yZhileng, InfoUtils.ZHILENG_ZHILENG, 2);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setHaodian); // add the datasets
@@ -151,9 +151,9 @@ public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.DISPLAY_HAODIAN;
+			return InfoUtils.ZHILENG_HAODIAN;
 		case 1:
-			return InfoUtils.DISPLAY_ZHILENG;
+			return InfoUtils.ZHILENG_ZHILENG;
 		default:
 			return null;
 		}

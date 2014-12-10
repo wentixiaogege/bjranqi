@@ -27,6 +27,11 @@ import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvWeekFragment;
 public abstract class NewBaseFragmentActivity extends FragmentActivity {
 
 	protected com.bjgas.view.ListHeaderChartView headerChartView;
+
+	public com.bjgas.view.ListHeaderChartView getHeaderChartView() {
+		return headerChartView;
+	}
+
 	protected com.bjgas.common.VerticalViewPager pager;
 	private SearchMethod searchMethod;
 	protected String startM;

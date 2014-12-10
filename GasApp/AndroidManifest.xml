@@ -55,7 +55,7 @@
         </activity>
         <activity android:name=".nengyuanjiegou.shengchanyongdian.ShengchanyongdianActivity" >
         </activity>
-        <activity android:name=".NengyuanXiaolv" >
+        <activity android:name=".XitongXiaolv" >
         </activity>
         <activity android:name=".xiaolv.zongxiaolv.ZongxiaolvActivity" >
         </activity>
@@ -77,7 +77,7 @@
         </activity>
         <activity android:name=".JingyingfenxiActivity" >
         </activity>
-        <activity android:name=".NengyuanxiaolvActivity" >
+        <activity android:name=".XitongxiaolvActivity" >
         </activity>
         <activity android:name=".NengyuanJiegouActivity" >
         </activity>

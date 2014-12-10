@@ -12,14 +12,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/detail_bg" >
+        android:background="@drawable/qinghe_mohu_bg" >
 
         <ListView
             android:id="@+id/lstNevigate"
-            android:layout_width="107dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dip"
-            android:layout_marginRight="5dp" >
+            android:layout_marginLeft="10dp" >
         </ListView>
 
         <com.bjgas.common.VerticalViewPager

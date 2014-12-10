@@ -25,7 +25,7 @@ import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvActivity;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvActivity;
 
-public class NengyuanXiaolv extends BaseActivity {
+public class XitongXiaolv extends BaseActivity {
 
 	private GridView gridView;
 	private ArrayList<GridItem> items = new ArrayList<GridItem>();
@@ -45,7 +45,7 @@ public class NengyuanXiaolv extends BaseActivity {
 			Bitmap bmguoluxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.guoluxiaolv);
 			Bitmap bmzhiranjixiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.zhiranjixiaolv);
 			Bitmap bmlengquetaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.lengquetaxiaolv);
-			Bitmap bmlengdongtaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.lengdongtaxiaolv);
+			Bitmap bmlengdongtaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.shuibeng);
 			Bitmap bmnengyuanliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.nengyuanliyonglv);
 			Bitmap bmyureliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.yureliyonglv);
 
@@ -72,47 +72,47 @@ public class NengyuanXiaolv extends BaseActivity {
 					switch (position) {
 					case 0:
 						Log.d("Click", "0");
-						intent = new Intent(NengyuanXiaolv.this, ZongxiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, ZongxiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 1:
 						Log.d("Click", "1");
-						intent = new Intent(NengyuanXiaolv.this, FadianjiXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, FadianjiXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 2:
 						Log.d("Click", "2");
-						intent = new Intent(NengyuanXiaolv.this, DianzhilengXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, DianzhilengXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 3:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, GuoluXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, GuoluXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 4:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, ZhiranjiXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, ZhiranjiXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 5:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, LengquetaXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, LengquetaXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 6:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, LengdongtaXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, LengdongtaXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 7:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, NengyuanliyongXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, NengyuanliyongXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					case 8:
 						Log.d("Click", "3");
-						intent = new Intent(NengyuanXiaolv.this, YureXiaolvActivity.class);
+						intent = new Intent(XitongXiaolv.this, YureXiaolvActivity.class);
 						startActivity(intent);
 						break;
 					default:

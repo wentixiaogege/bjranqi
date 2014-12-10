@@ -38,10 +38,15 @@ public class NetUtils {
 				HttpResponse httpResponse = httpClient.execute(httpRequest);
 				if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 					strResult = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
+				} else {
+					T.showLong(context, "网络请求返回值错误，错误代码为" + httpResponse.getStatusLine().getStatusCode());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				T.showLong(context, "网络不给力啊，请配置网络！");
 			}
+		} else {
+			T.showLong(context, "网络不给力啊，请配置网络！");
 		}
 		return strResult;
 	}
@@ -62,9 +67,9 @@ public class NetUtils {
 			BaseFragment.REQUEST_WEBSITE = String.format("http://%s:%s/Interface/AppAdapter.aspx", website, port);
 		}
 	}
-	
+
 	public static String[] getWebConfigInfos(Context context) {
-		String[] strs={StringUtils.EMPTY,StringUtils.EMPTY};
+		String[] strs = { StringUtils.EMPTY, StringUtils.EMPTY };
 		String config_xml_name = context.getResources().getString(R.string.config_xml_name);
 		String interface_website = context.getResources().getString(R.string.interface_website);
 		String interface_port = context.getResources().getString(R.string.interface_port);

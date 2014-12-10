@@ -1,9 +1,16 @@
 package com.bjgas.gasapp;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -12,12 +19,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 
+import com.bjgas.bean.AllInputBean;
+import com.bjgas.bean.AllOutPutBean;
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
-import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity;
-import com.bjgas.test.PopupWindowTest;
+import com.bjgas.common.BaseFragment;
+import com.bjgas.gasapp.R.string;
 import com.bjgas.util.InfoUtils;
+import com.bjgas.util.NetUtils;
+import com.bjgas.util.T;
+import com.bjgas.util.TagUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,15 +41,178 @@ public class MainActivity extends BaseActivity {
 	private LinearLayout llyImage;
 	private RelativeLayout rtlParent;
 	public static final String IMAGE_CLICK = "ImageClick";
+	protected static final int GET_NENGYUAN_SUCCESSFUL = 1;
+	protected static final int GET_XIAOLV_SUCCESSFUL = 2;
+	protected static final int GET_FENXI_SUCCESSFUL = 3;
+
+	String nengyuanWeb;
+	String xiaolvWeb1;
+	String xiaolvWeb2;
+	String fenxiWeb;
+	Thread threadNengyuan;
+	Thread threadXiaolv;
+	Thread threadFenxi;
+
+	String nengyuanRes;
+	String xiaolvRes1;
+	String xiaolvRes2;
+	String fenxiRes;
+
+	TextView tvNengyuanxiaohao;
+	TextView tvNengyuanchansheng;
+	TextView tvZongxiaolv;
+	TextView tvNengyuanliyonglv;
+	TextView tvTouru;
+	TextView tvChanchu;
 
 	// 屏幕信息取得
 	ScreenInfo si = new ScreenInfo();
+
+	// 定义一个Handler，用于线程同步。
+	@SuppressLint("HandlerLeak")
+	private Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_NENGYUAN_SUCCESSFUL:
+				displayNengyuan();
+				break;
+			case GET_XIAOLV_SUCCESSFUL:
+				displayXiaolv();
+				break;
+			case GET_FENXI_SUCCESSFUL:
+				displayFenxi();
+				break;
+			default:
+				break;
+			}
+		}
+
+		private void displayFenxi() {
+			try {
+				JSONArray jArray = new JSONArray(fenxiRes);
+				// jsonResults.clear();
+				AllInputBean beanIn = new AllInputBean();
+				AllOutPutBean beanOut = new AllOutPutBean();
+
+				int index = 0;
+				for (int i = 0; i < jArray.length(); i++) {
+					// 利用这个函数，将i转化成日期。
+					JSONObject jo = jArray.getJSONObject(i);
+					String key = jo.getString("name");
+					JSONArray values = jo.getJSONArray("data");
+
+					if (key.equals(InfoUtils.JINGYING_TOURU_ELEC)) {
+						beanIn.setElec((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.JINGYING_TOURU_GAS)) {
+						beanIn.setAir((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.JINGYING_TOURU_WATER)) {
+						beanIn.setWater((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.JINGYING_SHOURU_ELEC)) {
+						beanOut.setElec((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.JINGYING_SHOURU_COLD)) {
+						beanOut.setCold((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.JINGYING_SHOURU_HOT)) {
+						beanOut.setHot((float) values.getDouble(index));
+					}
+
+					// if (key.equals(InfoUtils.INPUT_ELEC)) {
+					// beanIn.setElec((float) values.getDouble(index));
+					// } else if (key.equals(InfoUtils.INPUT_AIR)) {
+					// beanIn.setAir((float) values.getDouble(index));
+					// } else if (key.equals(InfoUtils.INPUT_WATER)) {
+					// beanIn.setWater((float) values.getDouble(index));
+					// } else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
+					// beanOut.setElec((float) values.getDouble(index));
+					// } else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+					// beanOut.setCold((float) values.getDouble(index));
+					// } else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+					// beanOut.setHot((float) values.getDouble(index));
+					// }
+				}
+
+				tvTouru.setText(String.format("投入:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(),
+						beanIn.getElec(), beanIn.getAir()));
+				tvChanchu.setText(String.format("产出:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(),
+						beanOut.getCold(), beanOut.getHot()));
+
+			} catch (JSONException e) {
+				Log.d("Error", e.getMessage());
+			}
+
+		}
+
+		private void displayXiaolv() {
+			double zongxiaolv;
+			double nengyuanliyonglv;
+			try {
+				// 总效率
+				JSONArray jaZongxiaolv = new JSONArray(xiaolvRes1);
+				// 能源利用率
+				JSONArray jaNengyuanliyongXiaolv = new JSONArray(xiaolvRes2);
+
+				int index = 0;
+				zongxiaolv = jaZongxiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
+				nengyuanliyonglv = jaNengyuanliyongXiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
+
+				tvZongxiaolv.setText(String.format("总效率： %.2f", zongxiaolv));
+				tvNengyuanliyonglv.setText(String.format("能源利用效率： %.2f", nengyuanliyonglv));
+
+			} catch (JSONException e) {
+				Log.d("Error", e.getMessage());
+			}
+		}
+
+		private void displayNengyuan() {
+			try {
+				JSONArray jArray = new JSONArray(nengyuanRes);
+				// jsonResults.clear();
+				AllInputBean beanIn = new AllInputBean();
+				AllOutPutBean beanOut = new AllOutPutBean();
+
+				int index = 0;
+				for (int i = 0; i < jArray.length(); i++) {
+					// 利用这个函数，将i转化成日期。
+					JSONObject jo = jArray.getJSONObject(i);
+					String key = jo.getString("name");
+					JSONArray values = jo.getJSONArray("data");
+
+					if (key.equals(InfoUtils.INPUT_ELEC)) {
+						beanIn.setElec((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.INPUT_AIR)) {
+						beanIn.setAir((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.INPUT_WATER)) {
+						beanIn.setWater((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
+						beanOut.setElec((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+						beanOut.setCold((float) values.getDouble(index));
+					} else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+						beanOut.setHot((float) values.getDouble(index));
+					}
+				}
+
+				tvNengyuanxiaohao.setText(String.format("耗:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(),
+						beanIn.getElec(), beanIn.getAir()));
+				tvNengyuanchansheng.setText(String.format("产:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(),
+						beanOut.getCold(), beanOut.getHot()));
+
+			} catch (JSONException e) {
+				Log.d("Error", e.getMessage());
+			}
+		}
+
+	};
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		nengyuanWeb = String.format("%s?category=nengyuan&module=zongjiegou&type=Week", BaseFragment.REQUEST_WEBSITE);
+		xiaolvWeb1 = String.format("%s?category=xiaolv&module=zongxiaolv&type=Week", BaseFragment.REQUEST_WEBSITE);
+		xiaolvWeb2 = String.format("%s?category=xiaolv&module=yurexiaolv&type=Week", BaseFragment.REQUEST_WEBSITE);
+		fenxiWeb = String.format("%s?category=jingying&module=zongxitong&type=Week", BaseFragment.REQUEST_WEBSITE);
 
 		// 获得屏幕信息
 		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this, si);
@@ -47,6 +223,13 @@ public class MainActivity extends BaseActivity {
 		imgFenxi = (ImageView) findViewById(R.id.imgFenxi);
 		imgJiegou = (ImageView) findViewById(R.id.imgJiegou);
 		imgXiaolv = (ImageView) findViewById(R.id.imgXiaolv);
+
+		tvNengyuanxiaohao = (TextView) findViewById(R.id.tvNengyuanxiaohao);
+		tvNengyuanchansheng = (TextView) findViewById(R.id.tvNengyuanchansheng);
+		tvZongxiaolv = (TextView) findViewById(R.id.tvZongxiaolv);
+		tvNengyuanliyonglv = (TextView) findViewById(R.id.tvNengyuanliyonglv);
+		tvTouru = (TextView) findViewById(R.id.tvTouru);
+		tvChanchu = (TextView) findViewById(R.id.tvChanchu);
 
 		// 设置宽度和高度。
 		// setWidthAndHeight();
@@ -122,6 +305,67 @@ public class MainActivity extends BaseActivity {
 			break;
 		}
 
+		getDataFromweb();
+
+	}
+
+	/**
+	 * 开启一个新的线程，调用接口，取得数据
+	 */
+	public void getDataFromweb() {
+		// 新开启一个线程，获得Json数据
+		threadNengyuan = new Thread() {
+			@Override
+			public void run() {
+				String mRequestUrl = nengyuanWeb;
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadNengyuan request url:%s", mRequestUrl));
+				nengyuanRes = NetUtils.connServerForResult(MainActivity.this, mRequestUrl);
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadNengyuan get json info:%s", nengyuanRes));
+				if (StringUtils.isNotEmpty(nengyuanRes))
+					mHandler.sendEmptyMessage(GET_NENGYUAN_SUCCESSFUL);
+				else {
+					T.showLong(MainActivity.this, "能源获取失败");
+				}
+			}
+
+		};
+		// 新开启一个线程，获得Json数据
+		threadXiaolv = new Thread() {
+			@Override
+			public void run() {
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadXiaolv request url1:%s", xiaolvWeb1));
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadXiaolv request url2:%s", xiaolvWeb2));
+				xiaolvRes1 = NetUtils.connServerForResult(MainActivity.this, xiaolvWeb1);
+				xiaolvRes2 = NetUtils.connServerForResult(MainActivity.this, xiaolvWeb2);
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadXiaolv get json info1:%s", xiaolvRes1));
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadXiaolv get json info2:%s", xiaolvRes2));
+				if (StringUtils.isNotEmpty(xiaolvRes1) && StringUtils.isNotEmpty(xiaolvRes2))
+					mHandler.sendEmptyMessage(GET_XIAOLV_SUCCESSFUL);
+				else {
+					T.showLong(MainActivity.this, "效率获取失败");
+				}
+			}
+
+		};
+
+		threadFenxi = new Thread() {
+			@Override
+			public void run() {
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadFenxi request url1:%s", fenxiWeb));
+				fenxiRes = NetUtils.connServerForResult(MainActivity.this, fenxiWeb);
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("threadFenxi get json info:%s", fenxiRes));
+				if (StringUtils.isNotEmpty(fenxiRes))
+					mHandler.sendEmptyMessage(GET_FENXI_SUCCESSFUL);
+				else {
+					T.showLong(MainActivity.this, "经营分析获取失败");
+				}
+			}
+
+		};
+
+		threadNengyuan.start();
+		threadFenxi.start();
+		threadXiaolv.start();
 	}
 
 	class ImageListener implements View.OnClickListener {
@@ -141,7 +385,7 @@ public class MainActivity extends BaseActivity {
 				break;
 			case R.id.imgXiaolv:
 				Log.d(IMAGE_CLICK, "imgXiaolv");
-				intent = new Intent(MainActivity.this, NengyuanxiaolvActivity.class);
+				intent = new Intent(MainActivity.this, XitongxiaolvActivity.class);
 				startActivity(intent);
 				break;
 

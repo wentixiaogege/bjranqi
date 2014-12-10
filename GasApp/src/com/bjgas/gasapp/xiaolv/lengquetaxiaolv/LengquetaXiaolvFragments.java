@@ -25,7 +25,7 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("冷却塔效率");
+		mChart.setDescription(InfoUtils.LENGQUETA_XIAOLV);
 	};
 
 
@@ -56,7 +56,7 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 				++i;
 			}
 
-			LineDataSet setXiaolv = getDefaultDataset(yHaodian, InfoUtils.DISPLAY_ZONGXIAOLV, 1);
+			LineDataSet setXiaolv = getDefaultDataset(yHaodian, InfoUtils.LENGQUETA_XIAOLV, 1);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setXiaolv); // add the datasets
@@ -83,9 +83,9 @@ public abstract class LengquetaXiaolvFragments extends XiaolvFragments<XiaolvBea
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.DISPLAY_ZONGXIAOLV;
+			return InfoUtils.LENGQUETA_XIAOLV;
 		case 1:
-			return InfoUtils.DISPLAY_ZHILENG;
+			return InfoUtils.LENGQUETA_XIAOLV;
 		default:
 			return null;
 		}

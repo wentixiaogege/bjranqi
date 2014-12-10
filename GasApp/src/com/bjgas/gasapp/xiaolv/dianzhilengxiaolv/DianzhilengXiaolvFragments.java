@@ -29,7 +29,7 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("电制冷效率");
+		mChart.setDescription(InfoUtils.DIANZHILENG_XIAOLV);
 	};
 
 
@@ -58,7 +58,7 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 				++i;
 			}
 
-			LineDataSet setXiaolv = getDefaultDataset(yHaodian, InfoUtils.DISPLAY_ZONGXIAOLV, 1);
+			LineDataSet setXiaolv = getDefaultDataset(yHaodian, InfoUtils.DIANZHILENG_XIAOLV, 1);
 
 			ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 			dataSets.add(setXiaolv); // add the datasets
@@ -85,9 +85,9 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.DISPLAY_ZONGXIAOLV;
+			return InfoUtils.DIANZHILENG_XIAOLV;
 		case 1:
-			return InfoUtils.DISPLAY_ZHILENG;
+			return InfoUtils.DIANZHILENG_XIAOLV;
 		default:
 			return null;
 		}

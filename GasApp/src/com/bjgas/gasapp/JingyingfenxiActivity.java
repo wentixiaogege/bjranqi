@@ -49,9 +49,9 @@ public class JingyingfenxiActivity extends NewBaseFragmentActivity {
 		rtlParent = (RelativeLayout) findViewById(R.id.rtlParent);
 
 		// 取得图片对象
-		Bitmap bmZongxitong = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongjiegou);
-		Bitmap bmTouru = BitmapFactory.decodeResource(this.getResources(), R.drawable.fadianji);
-		Bitmap bmChanchu = BitmapFactory.decodeResource(this.getResources(), R.drawable.zhileng);
+		Bitmap bmZongxitong = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongxitongfenxi);
+		Bitmap bmTouru = BitmapFactory.decodeResource(this.getResources(), R.drawable.tourufenxi);
+		Bitmap bmChanchu = BitmapFactory.decodeResource(this.getResources(), R.drawable.chanchufenxi);
 		// Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(),
 		// R.drawable.guolu);
 		// Bitmap bmShengchanyongdian =

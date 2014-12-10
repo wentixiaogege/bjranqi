@@ -55,7 +55,7 @@ import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
 import com.bjgas.view.ListHeaderChartView.OnPopupWindowListItemClick;
 
-public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
+public class XitongxiaolvActivity extends NewBaseFragmentActivity {
 
 	ListView lstView;
 	private ArrayList<GridItem> items = new ArrayList<GridItem>();
@@ -75,7 +75,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 		Bitmap bmguoluxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.guoluxiaolv);
 		Bitmap bmzhiranjixiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.zhiranjixiaolv);
 		Bitmap bmlengquetaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.lengquetaxiaolv);
-		Bitmap bmlengdongtaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.lengdongtaxiaolv);
+		Bitmap bmlengdongtaxiaolv = BitmapFactory.decodeResource(this.getResources(), R.drawable.shuibeng);
 		Bitmap bmnengyuanliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.nengyuanliyonglv);
 		Bitmap bmyureliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.yureliyonglv);
 

@@ -14,29 +14,104 @@
         android:orientation="vertical"
         android:padding="2dp" >
 
-        <ImageView
-            android:id="@+id/imgJiegou"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="0dp"
-            android:padding="5dp"
-            android:src="@drawable/nengyuanjiegou" />
+            android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imgXiaolv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="0dp"
-            android:padding="5dp"
-            android:src="@drawable/nengyuanxiaolv" />
+            <ImageView
+                android:id="@+id/imgJiegou"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:padding="5dp"
+                android:src="@drawable/nengyuanjiegou" />
 
-        <ImageView
-            android:id="@+id/imgFenxi"
+            <TextView
+                android:id="@+id/tvNengyuanxiaohao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="20dip"
+                android:text="耗:水 25, 电 58， 气 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+
+            <TextView
+                android:id="@+id/tvNengyuanchansheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="40dip"
+                android:text="产:电 25,冷 58,热 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="0dp"
-            android:padding="5dp"
-            android:src="@drawable/jingyingfenxi" />
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/imgXiaolv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:padding="5dp"
+                android:src="@drawable/xitongxiaolv" />
+
+            <TextView
+                android:id="@+id/tvZongxiaolv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="20dip"
+                android:text="耗:水 25, 电 58，气 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+
+            <TextView
+                android:id="@+id/tvNengyuanliyonglv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="40dip"
+                android:text="产:电 25,冷 58,热 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/imgFenxi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:padding="5dp"
+                android:src="@drawable/jingyingfenxi" />
+
+            <TextView
+                android:id="@+id/tvTouru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="20dip"
+                android:text="投入:水 25, 电 58，气 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+
+            <TextView
+                android:id="@+id/tvChanchu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="40dip"
+                android:text="产出:电 25,冷 58,热 36"
+                android:textColor="@color/White"
+                android:textSize="8dp" />
+        </FrameLayout>
     </LinearLayout>
 
 </RelativeLayout>
