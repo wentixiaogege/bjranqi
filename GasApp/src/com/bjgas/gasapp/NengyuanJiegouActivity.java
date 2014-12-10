@@ -16,21 +16,27 @@ import com.bjgas.common.NewBaseFragmentActivity;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.guolu.GuoluWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.shengchanyongdian.ShengchanyongdianWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zhileng.ZhilengWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.InputsWeekFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsMonthFragment;
+import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsWeekFragment;
 import com.bjgas.view.ListHeaderChartView;
@@ -119,8 +125,8 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				fragments.add(new InputsSearchFragment(startM, endM));
 				fragments.add(new OutputsSearchFragment(startM, endM));
 			} else {
-				fragments.add(new InputsWeekFragment());
-				fragments.add(new InputsMonthFragment());
+				fragments.add(new InputsNowFragment());
+				fragments.add(new OutputsNowFragment());
 			}
 			break;
 		case 1:
@@ -135,8 +141,7 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 				// fragments.add(new FadianjiMonthFragment());
 				fragments.add(new FadianjiSearchFragment(startM, endM));
 			} else {
-				fragments.add(new FadianjiWeekFragment());
-				fragments.add(new FadianjiMonthFragment());
+				fragments.add(new FadianjiNowFragment());
 			}
 			break;
 		case 2:
@@ -148,8 +153,7 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new ZhilengSearchFragment(startM, endM));
 			} else {
-				fragments.add(new ZhilengWeekFragment());
-				fragments.add(new ZhilengMonthFragment());
+				fragments.add(new ZhilengNowFragment());
 			}
 			break;
 		case 3:
@@ -161,8 +165,7 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new GuoluSearchFragment(startM, endM));
 			} else {
-				fragments.add(new GuoluMonthFragment());
-				fragments.add(new GuoluWeekFragment());
+				fragments.add(new GuoluNowFragment());
 			}
 			break;
 		case 4:
@@ -174,8 +177,7 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new ShengchanyongdianSearchFragment(startM, endM));
 			} else {
-				fragments.add(new ShengchanyongdianMonthFragment());
-				fragments.add(new ShengchanyongdianWeekFragment());
+				fragments.add(new ShengchanyongdianNowFragment());
 			}
 			break;
 		default:

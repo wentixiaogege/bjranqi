@@ -16,15 +16,19 @@ import com.bjgas.common.NewBaseFragmentActivity;
 import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.jingyingfenxi.chanchu.ChanchuMonthFragment;
+import com.bjgas.gasapp.jingyingfenxi.chanchu.ChanchuNowFragment;
 import com.bjgas.gasapp.jingyingfenxi.chanchu.ChanchuSearchFragment;
 import com.bjgas.gasapp.jingyingfenxi.chanchu.ChanchuWeekFragment;
 import com.bjgas.gasapp.jingyingfenxi.touru.TouruDetailMonthFragment;
 import com.bjgas.gasapp.jingyingfenxi.touru.TouruDetailSearchFragment;
 import com.bjgas.gasapp.jingyingfenxi.touru.TouruDetailWeekFragment;
+import com.bjgas.gasapp.jingyingfenxi.touru.TouruDetailNowFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.ShouruMonthFragment;
+import com.bjgas.gasapp.jingyingfenxi.zongxitong.ShouruNowFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.ShouruSearchFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.ShouruWeekFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruMonthFragment;
+import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruNowFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruSearchFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruWeekFragment;
 import com.bjgas.view.ListHeaderChartView;
@@ -116,8 +120,8 @@ public class JingyingfenxiActivity extends NewBaseFragmentActivity {
 				fragments.add(new TouruSearchFragment(startM, endM));
 				fragments.add(new ShouruSearchFragment(startM, endM));
 			} else {
-				fragments.add(new TouruMonthFragment());
-				fragments.add(new ShouruMonthFragment());
+				fragments.add(new TouruNowFragment());
+				fragments.add(new ShouruNowFragment());
 			}
 			break;
 		case 1:
@@ -129,9 +133,8 @@ public class JingyingfenxiActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new TouruDetailSearchFragment(startM, endM));
 			} else {
-				fragments.add(new TouruDetailMonthFragment());
+				fragments.add(new TouruDetailNowFragment());
 
-				fragments.add(new TouruDetailWeekFragment());
 			}
 			break;
 		case 2:
@@ -143,8 +146,7 @@ public class JingyingfenxiActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new ChanchuSearchFragment(startM, endM));
 			} else {
-				fragments.add(new ChanchuWeekFragment());
-				fragments.add(new ChanchuMonthFragment());
+				fragments.add(new ChanchuNowFragment());
 			}
 			break;
 

@@ -17,30 +17,39 @@ import com.bjgas.common.SearchMethod;
 import com.bjgas.common.VerticalViewPager;
 import com.bjgas.gasapp.nengyuanjiegou.fadianji.FadianjiSearchFragment;
 import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.dianzhilengxiaolv.DianzhilengXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.fadianjixiaolv.FadianjiXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.guoluxiaolv.GuoluXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.lengdongtaxiaolv.LengdongtaXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.lengquetaxiaolv.LengquetaXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.yurexiaolv.YureXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.zhiranjixiaolv.ZhiranjiXiaolvWeekFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvMonthFragment;
+import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvWeekFragment;
 import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
@@ -134,8 +143,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new ZongXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new ZongxiaolvWeekFragment());
-				fragments.add(new ZongxiaolvMonthFragment());
+				fragments.add(new ZongxiaolvNowFragment());
 			}
 			break;
 		case 1:
@@ -146,8 +154,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new FadianjiSearchFragment(startM, endM));
 			} else {
-				fragments.add(new FadianjiXiaolvWeekFragment());
-				fragments.add(new FadianjiXiaolvMonthFragment());
+				fragments.add(new FadianjiXiaolvNowFragment());
 			}
 			break;
 		case 2:
@@ -158,8 +165,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new DianzhilengXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new DianzhilengXiaolvWeekFragment());
-				fragments.add(new DianzhilengXiaolvMonthFragment());
+				fragments.add(new DianzhilengXiaolvNowFragment());
 			}
 			break;
 		case 3:
@@ -170,8 +176,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new GuoluXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new GuoluXiaolvWeekFragment());
-				fragments.add(new GuoluXiaolvMonthFragment());
+				fragments.add(new GuoluXiaolvNowFragment());
 			}
 			break;
 		case 4:
@@ -182,8 +187,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new ZhiranjiXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new ZhiranjiXiaolvWeekFragment());
-				fragments.add(new ZhiranjiXiaolvMonthFragment());
+				fragments.add(new ZhiranjiXiaolvNowFragment());
 			}
 			break;
 		case 5:
@@ -194,8 +198,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new LengquetaXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new LengquetaXiaolvWeekFragment());
-				fragments.add(new LengquetaXiaolvMonthFragment());
+				fragments.add(new LengquetaXiaolvNowFragment());
 			}
 			break;
 		case 6:
@@ -206,8 +209,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new LengdongtaXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new LengdongtaXiaolvWeekFragment());
-				fragments.add(new LengdongtaXiaolvMonthFragment());
+				fragments.add(new LengdongtaXiaolvNowFragment());
 			}
 			break;
 		case 7:
@@ -218,8 +220,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new NengyuanliyongXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new NengyuanliyongXiaolvWeekFragment());
-				fragments.add(new NengyuanliyongXiaolvMonthFragment());
+				fragments.add(new NengyuanliyongXiaolvNowFragment());
 			}
 			break;
 		case 8:
@@ -230,8 +231,7 @@ public class NengyuanxiaolvActivity extends NewBaseFragmentActivity {
 			} else if (sm == SearchMethod.Search) {
 				fragments.add(new YureXiaolvSearchFragment(startM, endM));
 			} else {
-				fragments.add(new YureXiaolvWeekFragment());
-				fragments.add(new YureXiaolvMonthFragment());
+				fragments.add(new YureXiaolvNowFragment());
 			}
 			break;
 		default:

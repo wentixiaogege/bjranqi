@@ -26,7 +26,7 @@ public abstract class LengdongtaXiaolvFragments extends XiaolvFragments<XiaolvBe
 	@Override
 	public void initChart() {
 		super.initChart();
-		mChart.setDescription("冷冻塔效率");
+		mChart.setDescription("水泵效率");
 	};
 
 

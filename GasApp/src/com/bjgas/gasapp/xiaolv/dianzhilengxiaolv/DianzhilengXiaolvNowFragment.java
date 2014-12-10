@@ -19,4 +19,12 @@ public class DianzhilengXiaolvNowFragment extends DianzhilengXiaolvFragments {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(), SearchMethod.Now);
 		return mRequestUrl;
 	}
+
+	/**
+	 * 搜索的时候，index表示月份。。。
+	 */
+	@Override
+	public String getProperTime(int index) {
+		return getProperDay(index);
+	}
 }

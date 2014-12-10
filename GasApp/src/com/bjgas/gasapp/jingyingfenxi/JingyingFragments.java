@@ -25,6 +25,12 @@ public abstract class JingyingFragments<T> extends BaseFragment<T> {
 		return v;
 	}
 
+	protected String getNowRequestUrl() {
+		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, JINGYING_CATEGORY, getModule(),
+				SearchMethod.Now);
+		return mRequestUrl;
+	}
+
 	protected String getWeekRequestUrl() {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, JINGYING_CATEGORY, getModule(),
 				SearchMethod.Week);

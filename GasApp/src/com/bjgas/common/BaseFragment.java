@@ -103,6 +103,12 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		return DateUtils.getBeforeDay(dis, "M月d日");
 	}
 
+	public String getProperDay(int index) {
+		Log.d("DateTime", index + "");
+		int dis = index + 1;
+		return dis + "时";
+	}
+
 	protected String getProperMonth(String startM, int index) {
 		String[] starts = startM.split("-");
 		int startYear = Integer.parseInt(starts[0]);

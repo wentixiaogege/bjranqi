@@ -40,25 +40,27 @@ public class DituActivity extends BaseActivity {
 		// 清河医院
 		addNewView(R.drawable.tb_qingheyiyuan, InfoUtils.X_QINGHE, InfoUtils.Y_QINGHE, new Qinghe());
 		// 金雁饭店
-		addNewView(R.drawable.tb_jinyan, InfoUtils.JINGYANFANDIAN_X, InfoUtils.JINGYANFANDIAN_Y, null);
+		addNewView(R.drawable.tb_jinyan, InfoUtils.JINGYANFANDIAN_X, InfoUtils.JINGYANFANDIAN_Y, new Jinyan());
 		// 北七家园
-		addNewView(R.drawable.tb_beiqijiayuan, InfoUtils.BEIQIJIAYUAN_X, InfoUtils.BEIQIJIAYUAN_Y, null);
+		addNewView(R.drawable.tb_beiqijiayuan, InfoUtils.BEIQIJIAYUAN_X, InfoUtils.BEIQIJIAYUAN_Y, new Beiqi());
 		// 中石油创新基地
-		addNewView(R.drawable.tb_zhongshiyou, InfoUtils.ZHONGSHIYOU_X, InfoUtils.ZHONGSHIYOU_Y, null);
+		addNewView(R.drawable.tb_zhongshiyou, InfoUtils.ZHONGSHIYOU_X, InfoUtils.ZHONGSHIYOU_Y, new Zhongshiyou());
 		// 中关村一号
-		addNewView(R.drawable.tb_zhongguancunyihao, InfoUtils.ZHONGGUANCUNYIHAO_X, InfoUtils.ZHONGGUANCUNYIHAO_Y, null);
+		addNewView(R.drawable.tb_zhongguancunyihao, InfoUtils.ZHONGGUANCUNYIHAO_X, InfoUtils.ZHONGGUANCUNYIHAO_Y,
+				new Zhongguancunyihao());
 		// 中关村软件园
 		addNewView(R.drawable.tb_zhongguancunruanjianyuan, InfoUtils.ZHONGGUANCUNRUANJIANYUAN_X,
-				InfoUtils.ZHONGGUANCUNRUANJIANYUAN_Y, null);
+				InfoUtils.ZHONGGUANCUNRUANJIANYUAN_Y, new ZhongguancunRuanjian());
 		// 海淀医院
-		addNewView(R.drawable.tb_haidianyiyuan, InfoUtils.HAIDIANYIYUAN_X, InfoUtils.HAIDIANYIYUAN_Y, null);
+		addNewView(R.drawable.tb_haidianyiyuan, InfoUtils.HAIDIANYIYUAN_X, InfoUtils.HAIDIANYIYUAN_Y,
+				new Haidianyiyuan());
 		// 焦化厂
-		addNewView(R.drawable.tb_jiaohuachang, InfoUtils.JIAOHUACHANG_X, InfoUtils.JIAOHUACHANG_Y, null);
+		addNewView(R.drawable.tb_jiaohuachang, InfoUtils.JIAOHUACHANG_X, InfoUtils.JIAOHUACHANG_Y, new Jiaohuachang());
 		// 通州中医院
 		addNewView(R.drawable.tb_tongzhouzhongyiyuan, InfoUtils.TONGZHOUZHONGYIYUAN_X, InfoUtils.TONGZHOUZHONGYIYUAN_Y,
-				null);
+				new TongzhouZhongyiyuan());
 		// 国润新通酒店
-		addNewView(R.drawable.tb_guorunxintong, InfoUtils.GUORUNXINTONG_X, InfoUtils.GUORUNXINTONG_Y, null);
+		addNewView(R.drawable.tb_guorunxintong, InfoUtils.GUORUNXINTONG_X, InfoUtils.GUORUNXINTONG_Y, new Guorun());
 
 	}
 
@@ -135,24 +137,100 @@ public class DituActivity extends BaseActivity {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.QINGHEYIYUAN);
 			startActivity(intent);
 		}
 	}
 
-	// class Qingheyiyuan implements View.OnTouchListener {
-	//
-	// @Override
-	// public boolean onTouch(View v, MotionEvent event) {
-	// ImageView iView = (ImageView) v;
-	// if (event.getAction() == MotionEvent.ACTION_DOWN) {
-	// iView.setImageResource(R.drawable.tb_qingheyiyuan_down);
-	// } else if (event.getAction() == MotionEvent.ACTION_UP) {
-	// iView.setImageResource(R.drawable.tb_qingheyiyuan);
-	// Intent intent = new Intent(DituActivity.this, MainActivity.class);
-	// startActivity(intent);
-	// }
-	// return false;
-	// }
-	//
-	// }
+	class Guorun implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.GUORUNXINTONG);
+			startActivity(intent);
+		}
+	}
+
+	class Zhongshiyou implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGSHIYOU);
+			startActivity(intent);
+		}
+	}
+
+	class Jinyan implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.JINYAN);
+			startActivity(intent);
+		}
+	}
+
+	class ZhongguancunRuanjian implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGGUANCUNRUANJIANYUAN);
+			startActivity(intent);
+		}
+	}
+
+	class TongzhouZhongyiyuan implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.TONGZHOUZHONGYIYUAN);
+			startActivity(intent);
+		}
+	}
+
+	class Haidianyiyuan implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.HAIDIANYIYUAN);
+			startActivity(intent);
+		}
+	}
+
+	class Jiaohuachang implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.JIAOHUACHANG);
+			startActivity(intent);
+		}
+	}
+
+	class Beiqi implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.BEIQI);
+			startActivity(intent);
+		}
+	}
+
+	class Zhongguancunyihao implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGGUANCUNYIHAO);
+			startActivity(intent);
+		}
+	}
+
+
 }

@@ -93,4 +93,17 @@ public class InfoUtils {
 	// 国润新通酒店
 	public static final int GUORUNXINTONG_X = 726;
 	public static final int GUORUNXINTONG_Y = 569;
+
+	public static final String ADDRESS = "address";
+	public static final String GUORUNXINTONG = "guorunxintong";
+	public static final String ZHONGSHIYOU = "zhongshiyou";
+	public static final String JINYAN = "jinyan";
+	public static final String ZHONGGUANCUNRUANJIANYUAN = "zhongguancunruanjianyuan";
+	public static final String TONGZHOUZHONGYIYUAN = "tongzhouzhongyiyuan";
+	public static final String HAIDIANYIYUAN = "haidianyiyuan";
+	public static final String JIAOHUACHANG = "jiaohuachang";
+	public static final String BEIQI = "beiqi";
+	public static final String ZHONGGUANCUNYIHAO = "zhongguancunyihao";
+	public static final String QINGHEYIYUAN = "qingheyiyuan";
+
 }

@@ -17,6 +17,7 @@ import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.gasapp.xiaolv.nengyuanliyongxiaolv.NengyuanliyongXiaolvActivity;
 import com.bjgas.test.PopupWindowTest;
+import com.bjgas.util.InfoUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -25,11 +26,13 @@ public class MainActivity extends BaseActivity {
 	ImageView imgXiaolv;
 	ImageListener listener = new ImageListener();
 	private LinearLayout llyImage;
+	private RelativeLayout rtlParent;
 	public static final String IMAGE_CLICK = "ImageClick";
 
 	// 屏幕信息取得
 	ScreenInfo si = new ScreenInfo();
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +40,7 @@ public class MainActivity extends BaseActivity {
 
 		// 获得屏幕信息
 		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this, si);
+		rtlParent = (RelativeLayout) findViewById(R.id.rtlParent);
 		llyImage = (LinearLayout) findViewById(R.id.llyImage);
 
 		// 取出三个图片
@@ -76,10 +80,48 @@ public class MainActivity extends BaseActivity {
 			}
 		});
 
-		// 绑定事件
-		imgFenxi.setOnClickListener(listener);
-		imgJiegou.setOnClickListener(listener);
-		imgXiaolv.setOnClickListener(listener);
+		Intent intent = getIntent();
+		String address = intent.getExtras().getString(InfoUtils.ADDRESS);
+		switch (address) {
+		case InfoUtils.GUORUNXINTONG:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_guorunxintong));
+			break;
+		case InfoUtils.ZHONGSHIYOU:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_zhongshiyou));
+			break;
+		case InfoUtils.JINYAN:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_jinyan));
+			break;
+		case InfoUtils.ZHONGGUANCUNRUANJIANYUAN:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_zhongguancunruanjianyuan));
+			break;
+		case InfoUtils.TONGZHOUZHONGYIYUAN:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_tongzhouzhongyiyuan));
+			break;
+		case InfoUtils.HAIDIANYIYUAN:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_haidianyiyuan));
+			break;
+		case InfoUtils.JIAOHUACHANG:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_jiaohuachang));
+			break;
+		case InfoUtils.BEIQI:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_beiqi));
+			break;
+		case InfoUtils.ZHONGGUANCUNYIHAO:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_zhonguancunyihao));
+			break;
+		case InfoUtils.QINGHEYIYUAN:
+			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_qingheyiyuan));
+			// 绑定事件
+			imgFenxi.setOnClickListener(listener);
+			imgJiegou.setOnClickListener(listener);
+			imgXiaolv.setOnClickListener(listener);
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 	class ImageListener implements View.OnClickListener {
