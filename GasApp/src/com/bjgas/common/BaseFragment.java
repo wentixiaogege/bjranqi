@@ -118,13 +118,13 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	 * @return
 	 */
 	public String getProperTime(int index) {
-		Log.d("DateTime", index + "");
+		// Log.d("DateTime", index + "");
 		int dis = index + 1;
 		return DateUtils.getBeforeDay(dis, "M月d日");
 	}
 
 	public String getProperDay(int index) {
-		Log.d("DateTime", index + "");
+		// Log.d("DateTime", index + "");
 		int dis = index + 1;
 		return dis + "时";
 	}
@@ -133,7 +133,8 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		String[] starts = startM.split("-");
 		int startYear = Integer.parseInt(starts[0]);
 		int startMonth = Integer.parseInt(starts[1]);
-		Log.d("getProperMonth", "startyear " + startYear + " startm " + startMonth + " index " + index);
+		// Log.d("getProperMonth", "startyear " + startYear + " startm " +
+		// startMonth + " index " + index);
 		GregorianCalendar cal = new GregorianCalendar(startYear, startMonth - 1, 1);
 		cal.add(Calendar.MONTH, index);
 		Date date = cal.getTime();

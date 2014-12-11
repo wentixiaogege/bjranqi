@@ -62,7 +62,7 @@ public class ListNavigateAdapter extends ArrayAdapter<GridItem> {
 		// holder.tvView.setText(StringUtils.EMPTY);
 		// holder.tvView.setBackgroundColor(R.drawable.fontcolor);
 		// row.setBackgroundColor(0xffff0000);
-		row.setBackgroundColor((position == curSelected) ? Color.argb(0x80, 0x20, 0xa0, 0x40) : Color.argb(0,
+		row.setBackgroundColor((position == curSelected) ? Color.argb(0xff, 0xd5, 0xeb, 0xe1) : Color.argb(0,
 				0, 0, 0));
 		// ((TextView) convertView).setText((String) getItem(position));
 

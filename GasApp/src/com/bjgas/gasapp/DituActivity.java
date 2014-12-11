@@ -37,7 +37,7 @@ public class DituActivity extends BaseActivity {
 		rtlDitu.setBackgroundResource(R.drawable.ditu);
 		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this, si);
 
-		// 清河医院
+		// 清河医院"DateTime"
 		addNewView(R.drawable.tb_qingheyiyuan, InfoUtils.X_QINGHE, InfoUtils.Y_QINGHE, new Qinghe());
 		// 金雁饭店
 		addNewView(R.drawable.tb_jinyan, InfoUtils.JINGYANFANDIAN_X, InfoUtils.JINGYANFANDIAN_Y, new Jinyan());
