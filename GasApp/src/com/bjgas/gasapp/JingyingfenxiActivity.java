@@ -31,6 +31,7 @@ import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruMonthFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruNowFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruSearchFragment;
 import com.bjgas.gasapp.jingyingfenxi.zongxitong.TouruWeekFragment;
+import com.bjgas.util.InfoUtils;
 import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
 import com.bjgas.view.ListHeaderChartView.OnPopupWindowListItemClick;
@@ -52,17 +53,10 @@ public class JingyingfenxiActivity extends NewBaseFragmentActivity {
 		Bitmap bmZongxitong = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongxitongfenxi);
 		Bitmap bmTouru = BitmapFactory.decodeResource(this.getResources(), R.drawable.tourufenxi);
 		Bitmap bmChanchu = BitmapFactory.decodeResource(this.getResources(), R.drawable.chanchufenxi);
-		// Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(),
-		// R.drawable.guolu);
-		// Bitmap bmShengchanyongdian =
-		// BitmapFactory.decodeResource(this.getResources(),
-		// R.drawable.shengchanyongdian);
 
-		items.add(new GridItem(bmZongxitong, "总系统经营分析"));
-		items.add(new GridItem(bmTouru, "投入分析"));
-		items.add(new GridItem(bmChanchu, "产出分析"));
-		// items.add(new GridItem(bmGuolu, "锅炉系统"));
-		// items.add(new GridItem(bmShengchanyongdian, "生产用电"));
+		items.add(new GridItem(bmZongxitong, InfoUtils.TIT_ZONGXITONGJINGYING));
+		items.add(new GridItem(bmTouru, InfoUtils.TIT_TOURUFENXI));
+		items.add(new GridItem(bmChanchu, InfoUtils.TIT_CHANCHUFENXI));
 
 		// 新建一个headchartview
 		headerChartView = new ListHeaderChartView(this, items);

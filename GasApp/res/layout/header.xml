@@ -35,6 +35,15 @@
                 android:src="@drawable/ic_menu_trangle_down" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvChartName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="总结构"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/White" />
+
         <ImageView
             android:id="@+id/imgRefresh"
             android:layout_width="wrap_content"

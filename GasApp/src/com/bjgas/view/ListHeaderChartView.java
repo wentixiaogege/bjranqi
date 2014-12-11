@@ -48,6 +48,7 @@ public class ListHeaderChartView extends LinearLayout {
 
 	private String startMonth;
 	private String endMonth;
+	TextView tvChartName;
 
 	LayoutInflater layoutInflater;
 
@@ -104,6 +105,7 @@ public class ListHeaderChartView extends LinearLayout {
 		lstNevigate = (ListView) findViewById(R.id.lstNevigate);
 		pager = (VerticalViewPager) findViewById(R.id.pager);
 		imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
+		tvChartName = (TextView) findViewById(R.id.tvChartName);
 		operatingAnim = AnimationUtils.loadAnimation(getContext(), R.anim.refresh);
 		// 首先显示第0条
 		mDisplayedItem = 0;
@@ -167,6 +169,8 @@ public class ListHeaderChartView extends LinearLayout {
 
 				ListView lv = (ListView) parent;
 
+				// 更新标题
+				tvChartName.setText(items.get(position).getTitle());
 				adapter.curSelected = position;
 				lv.setAdapter(adapter);
 				lv.invalidate();

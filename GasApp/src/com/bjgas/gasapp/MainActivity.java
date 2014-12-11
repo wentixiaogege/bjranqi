@@ -1,5 +1,7 @@
 package com.bjgas.gasapp;
 
+import java.util.HashMap;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -26,7 +29,6 @@ import com.bjgas.bean.AllOutPutBean;
 import com.bjgas.bean.ScreenInfo;
 import com.bjgas.common.BaseActivity;
 import com.bjgas.common.BaseFragment;
-import com.bjgas.gasapp.R.string;
 import com.bjgas.util.InfoUtils;
 import com.bjgas.util.NetUtils;
 import com.bjgas.util.T;
@@ -39,16 +41,20 @@ public class MainActivity extends BaseActivity {
 	ImageView imgXiaolv;
 	ImageListener listener = new ImageListener();
 	private LinearLayout llyImage;
+	private LinearLayout llyWeather;
+	// llyWeather
 	private RelativeLayout rtlParent;
 	public static final String IMAGE_CLICK = "ImageClick";
 	protected static final int GET_NENGYUAN_SUCCESSFUL = 1;
 	protected static final int GET_XIAOLV_SUCCESSFUL = 2;
 	protected static final int GET_FENXI_SUCCESSFUL = 3;
+	protected static final int GET_WEATHER_SUCCESSFUL = 4;
 
 	String nengyuanWeb;
 	String xiaolvWeb1;
 	String xiaolvWeb2;
 	String fenxiWeb;
+	String weatherWeb;
 	Thread threadNengyuan;
 	Thread threadXiaolv;
 	Thread threadFenxi;
@@ -57,6 +63,7 @@ public class MainActivity extends BaseActivity {
 	String xiaolvRes1;
 	String xiaolvRes2;
 	String fenxiRes;
+	String weatherRes;
 
 	TextView tvNengyuanxiaohao;
 	TextView tvNengyuanchansheng;
@@ -64,6 +71,16 @@ public class MainActivity extends BaseActivity {
 	TextView tvNengyuanliyonglv;
 	TextView tvTouru;
 	TextView tvChanchu;
+
+	ImageView ivWeather;
+	TextView tvWeather;
+	TextView tvDay;
+	TextView tvUpdateTime;
+	TextView tvWeek;
+	TextView tvAdress;
+	String address;
+
+	String WEATHER_TEMPLATE_URL = "http://www.weather.com.cn/data/cityinfo/%s.html";
 
 	// 屏幕信息取得
 	ScreenInfo si = new ScreenInfo();
@@ -82,124 +99,15 @@ public class MainActivity extends BaseActivity {
 			case GET_FENXI_SUCCESSFUL:
 				displayFenxi();
 				break;
+			case GET_WEATHER_SUCCESSFUL:
+				displayWeather();
+				break;
 			default:
 				break;
 			}
 		}
 
-		private void displayFenxi() {
-			try {
-				JSONArray jArray = new JSONArray(fenxiRes);
-				// jsonResults.clear();
-				AllInputBean beanIn = new AllInputBean();
-				AllOutPutBean beanOut = new AllOutPutBean();
 
-				int index = 0;
-				for (int i = 0; i < jArray.length(); i++) {
-					// 利用这个函数，将i转化成日期。
-					JSONObject jo = jArray.getJSONObject(i);
-					String key = jo.getString("name");
-					JSONArray values = jo.getJSONArray("data");
-
-					if (key.equals(InfoUtils.JINGYING_TOURU_ELEC)) {
-						beanIn.setElec((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.JINGYING_TOURU_GAS)) {
-						beanIn.setAir((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.JINGYING_TOURU_WATER)) {
-						beanIn.setWater((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.JINGYING_SHOURU_ELEC)) {
-						beanOut.setElec((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.JINGYING_SHOURU_COLD)) {
-						beanOut.setCold((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.JINGYING_SHOURU_HOT)) {
-						beanOut.setHot((float) values.getDouble(index));
-					}
-
-					// if (key.equals(InfoUtils.INPUT_ELEC)) {
-					// beanIn.setElec((float) values.getDouble(index));
-					// } else if (key.equals(InfoUtils.INPUT_AIR)) {
-					// beanIn.setAir((float) values.getDouble(index));
-					// } else if (key.equals(InfoUtils.INPUT_WATER)) {
-					// beanIn.setWater((float) values.getDouble(index));
-					// } else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
-					// beanOut.setElec((float) values.getDouble(index));
-					// } else if (key.equals(InfoUtils.OUTPUT_COLD)) {
-					// beanOut.setCold((float) values.getDouble(index));
-					// } else if (key.equals(InfoUtils.OUTPUT_HOT)) {
-					// beanOut.setHot((float) values.getDouble(index));
-					// }
-				}
-
-				tvTouru.setText(String.format("投入:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(),
-						beanIn.getElec(), beanIn.getAir()));
-				tvChanchu.setText(String.format("产出:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(),
-						beanOut.getCold(), beanOut.getHot()));
-
-			} catch (JSONException e) {
-				Log.d("Error", e.getMessage());
-			}
-
-		}
-
-		private void displayXiaolv() {
-			double zongxiaolv;
-			double nengyuanliyonglv;
-			try {
-				// 总效率
-				JSONArray jaZongxiaolv = new JSONArray(xiaolvRes1);
-				// 能源利用率
-				JSONArray jaNengyuanliyongXiaolv = new JSONArray(xiaolvRes2);
-
-				int index = 0;
-				zongxiaolv = jaZongxiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
-				nengyuanliyonglv = jaNengyuanliyongXiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
-
-				tvZongxiaolv.setText(String.format("总效率： %.2f", zongxiaolv));
-				tvNengyuanliyonglv.setText(String.format("能源利用效率： %.2f", nengyuanliyonglv));
-
-			} catch (JSONException e) {
-				Log.d("Error", e.getMessage());
-			}
-		}
-
-		private void displayNengyuan() {
-			try {
-				JSONArray jArray = new JSONArray(nengyuanRes);
-				// jsonResults.clear();
-				AllInputBean beanIn = new AllInputBean();
-				AllOutPutBean beanOut = new AllOutPutBean();
-
-				int index = 0;
-				for (int i = 0; i < jArray.length(); i++) {
-					// 利用这个函数，将i转化成日期。
-					JSONObject jo = jArray.getJSONObject(i);
-					String key = jo.getString("name");
-					JSONArray values = jo.getJSONArray("data");
-
-					if (key.equals(InfoUtils.INPUT_ELEC)) {
-						beanIn.setElec((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.INPUT_AIR)) {
-						beanIn.setAir((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.INPUT_WATER)) {
-						beanIn.setWater((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
-						beanOut.setElec((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
-						beanOut.setCold((float) values.getDouble(index));
-					} else if (key.equals(InfoUtils.OUTPUT_HOT)) {
-						beanOut.setHot((float) values.getDouble(index));
-					}
-				}
-
-				tvNengyuanxiaohao.setText(String.format("耗:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(),
-						beanIn.getElec(), beanIn.getAir()));
-				tvNengyuanchansheng.setText(String.format("产:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(),
-						beanOut.getCold(), beanOut.getHot()));
-
-			} catch (JSONException e) {
-				Log.d("Error", e.getMessage());
-			}
-		}
 
 	};
 
@@ -214,11 +122,12 @@ public class MainActivity extends BaseActivity {
 		xiaolvWeb2 = String.format("%s?category=xiaolv&module=yurexiaolv&type=Week", BaseFragment.REQUEST_WEBSITE);
 		fenxiWeb = String.format("%s?category=jingying&module=zongxitong&type=Week", BaseFragment.REQUEST_WEBSITE);
 
+		initWidgetWeather();
 		// 获得屏幕信息
 		com.bjgas.util.LocalUtils.getScreenWidthAndHeight(this, si);
 		rtlParent = (RelativeLayout) findViewById(R.id.rtlParent);
 		llyImage = (LinearLayout) findViewById(R.id.llyImage);
-
+		llyWeather = (LinearLayout) findViewById(R.id.llyWeather);
 		// 取出三个图片
 		imgFenxi = (ImageView) findViewById(R.id.imgFenxi);
 		imgJiegou = (ImageView) findViewById(R.id.imgJiegou);
@@ -230,6 +139,12 @@ public class MainActivity extends BaseActivity {
 		tvNengyuanliyonglv = (TextView) findViewById(R.id.tvNengyuanliyonglv);
 		tvTouru = (TextView) findViewById(R.id.tvTouru);
 		tvChanchu = (TextView) findViewById(R.id.tvChanchu);
+		tvWeather = (TextView) findViewById(R.id.tvWeather);
+		tvDay = (TextView) findViewById(R.id.tvDay);
+		tvUpdateTime = (TextView) findViewById(R.id.tvUpdateTime);
+		tvWeek = (TextView) findViewById(R.id.tvWeek);
+		tvAdress = (TextView) findViewById(R.id.tvAdress);
+		ivWeather = (ImageView) findViewById(R.id.ivWeather);
 
 		// 设置宽度和高度。
 		// setWidthAndHeight();
@@ -264,7 +179,8 @@ public class MainActivity extends BaseActivity {
 		});
 
 		Intent intent = getIntent();
-		String address = intent.getExtras().getString(InfoUtils.ADDRESS);
+		address = intent.getExtras().getString(InfoUtils.ADDRESS);
+		// String address = InfoUtils.QINGHEYIYUAN;
 		switch (address) {
 		case InfoUtils.GUORUNXINTONG:
 			rtlParent.setBackground(getResources().getDrawable(R.drawable.bg_guorunxintong));
@@ -299,13 +215,218 @@ public class MainActivity extends BaseActivity {
 			imgFenxi.setOnClickListener(listener);
 			imgJiegou.setOnClickListener(listener);
 			imgXiaolv.setOnClickListener(listener);
+			weatherWeb = String.format(WEATHER_TEMPLATE_URL, "101090914");
+			getDataFromweb();
 			break;
 
 		default:
 			break;
 		}
 
-		getDataFromweb();
+		llyWeather.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				getWeather();
+			}
+		});
+
+
+		getWeather();
+		displayInfos();
+	}
+
+	private void displayInfos() {
+		// tvDay;
+		tvDay.setText(com.bjgas.util.DateUtils.getNowString("MM / d"));
+		// tvUpdateTim
+		tvUpdateTime.setText("更新:" + com.bjgas.util.DateUtils.getNowString("MM月dd日 HH时"));
+		// tvWeek;
+		tvWeek.setText(com.bjgas.util.DateUtils.getWeek());
+		// tvAdress;
+		tvAdress.setText(address);
+	}
+
+	@SuppressLint("NewApi")
+	private void displayWeather() {
+		try {
+			JSONObject jo = new JSONObject(weatherRes);
+			JSONObject joWeatherInfo = jo.getJSONObject("weatherinfo");
+			String info = joWeatherInfo.getString("weather");
+			String temp = joWeatherInfo.getString("temp1");
+			Integer id = mWidgetWeatherIcon.get(info);
+			if (null == id)
+				id = R.drawable.wth_sunny;
+			ivWeather.setBackground(getResources().getDrawable(id));
+			tvWeather.setText(info + " " + temp);
+		} catch (JSONException e) {
+			Log.d("Weather", e.getMessage());
+		}
+	}
+
+	private HashMap<String, Integer> mWidgetWeatherIcon;
+
+	private HashMap<String, Integer> initWidgetWeather() {
+		if (mWidgetWeatherIcon != null && !mWidgetWeatherIcon.isEmpty())
+			return mWidgetWeatherIcon;
+		mWidgetWeatherIcon = new HashMap<String, Integer>();
+		mWidgetWeatherIcon.put("暴雪", R.drawable.wth_heavy_snow);
+		mWidgetWeatherIcon.put("暴雨", R.drawable.wth_heavy_rain);
+		mWidgetWeatherIcon.put("大暴雨", R.drawable.wth_heavy_rain);
+		mWidgetWeatherIcon.put("大雪", R.drawable.wth_heavy_snow);
+		mWidgetWeatherIcon.put("大雨", R.drawable.wth_heavy_rain);
+
+		mWidgetWeatherIcon.put("多云", R.drawable.wth_cloudy);
+		mWidgetWeatherIcon.put("雷阵雨", R.drawable.wth_thundershowers_sunny);
+		mWidgetWeatherIcon.put("雷阵雨冰雹", R.drawable.wth_thunderstorm);
+		mWidgetWeatherIcon.put("晴", R.drawable.wth_sunny);
+		mWidgetWeatherIcon.put("沙尘暴", R.drawable.wth_wind);
+
+		mWidgetWeatherIcon.put("特大暴雨", R.drawable.wth_heavy_rain);
+		mWidgetWeatherIcon.put("雾", R.drawable.wth_fog);
+		mWidgetWeatherIcon.put("小雪", R.drawable.wth_snow);
+		mWidgetWeatherIcon.put("小雨", R.drawable.wth_rain);
+		mWidgetWeatherIcon.put("阴", R.drawable.wth_cloudy_day);
+
+		mWidgetWeatherIcon.put("雨夹雪", R.drawable.wth_rain_snow);
+		mWidgetWeatherIcon.put("阵雪", R.drawable.wth_snow);
+		mWidgetWeatherIcon.put("阵雨", R.drawable.wth_rain);
+		mWidgetWeatherIcon.put("中雪", R.drawable.wth_snow);
+		mWidgetWeatherIcon.put("中雨", R.drawable.wth_rain);
+		return mWidgetWeatherIcon;
+	}
+
+	private void displayFenxi() {
+		try {
+			JSONArray jArray = new JSONArray(fenxiRes);
+			// jsonResults.clear();
+			AllInputBean beanIn = new AllInputBean();
+			AllOutPutBean beanOut = new AllOutPutBean();
+
+			int index = 0;
+			for (int i = 0; i < jArray.length(); i++) {
+				// 利用这个函数，将i转化成日期。
+				JSONObject jo = jArray.getJSONObject(i);
+				String key = jo.getString("name");
+				JSONArray values = jo.getJSONArray("data");
+
+				if (key.equals(InfoUtils.JINGYING_TOURU_ELEC)) {
+					beanIn.setElec((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.JINGYING_TOURU_GAS)) {
+					beanIn.setAir((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.JINGYING_TOURU_WATER)) {
+					beanIn.setWater((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.JINGYING_SHOURU_ELEC)) {
+					beanOut.setElec((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.JINGYING_SHOURU_COLD)) {
+					beanOut.setCold((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.JINGYING_SHOURU_HOT)) {
+					beanOut.setHot((float) values.getDouble(index));
+				}
+
+				// if (key.equals(InfoUtils.INPUT_ELEC)) {
+				// beanIn.setElec((float) values.getDouble(index));
+				// } else if (key.equals(InfoUtils.INPUT_AIR)) {
+				// beanIn.setAir((float) values.getDouble(index));
+				// } else if (key.equals(InfoUtils.INPUT_WATER)) {
+				// beanIn.setWater((float) values.getDouble(index));
+				// } else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
+				// beanOut.setElec((float) values.getDouble(index));
+				// } else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+				// beanOut.setCold((float) values.getDouble(index));
+				// } else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+				// beanOut.setHot((float) values.getDouble(index));
+				// }
+			}
+
+			tvTouru.setText(String.format("投入:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(), beanIn.getElec(),
+					beanIn.getAir()));
+			tvChanchu.setText(String.format("产出:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(), beanOut.getCold(),
+					beanOut.getHot()));
+
+		} catch (JSONException e) {
+			Log.d("Error", e.getMessage());
+		}
+
+	}
+
+	private void displayXiaolv() {
+		double zongxiaolv;
+		double nengyuanliyonglv;
+		try {
+			// 总效率
+			JSONArray jaZongxiaolv = new JSONArray(xiaolvRes1);
+			// 能源利用率
+			JSONArray jaNengyuanliyongXiaolv = new JSONArray(xiaolvRes2);
+
+			int index = 0;
+			zongxiaolv = jaZongxiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
+			nengyuanliyonglv = jaNengyuanliyongXiaolv.getJSONObject(0).getJSONArray("data").getDouble(index);
+
+			tvZongxiaolv.setText(String.format("总效率： %.2f", zongxiaolv));
+			tvNengyuanliyonglv.setText(String.format("能源利用效率： %.2f", nengyuanliyonglv));
+
+		} catch (JSONException e) {
+			Log.d("Error", e.getMessage());
+		}
+	}
+
+	private void displayNengyuan() {
+		try {
+			JSONArray jArray = new JSONArray(nengyuanRes);
+			// jsonResults.clear();
+			AllInputBean beanIn = new AllInputBean();
+			AllOutPutBean beanOut = new AllOutPutBean();
+
+			int index = 0;
+			for (int i = 0; i < jArray.length(); i++) {
+				// 利用这个函数，将i转化成日期。
+				JSONObject jo = jArray.getJSONObject(i);
+				String key = jo.getString("name");
+				JSONArray values = jo.getJSONArray("data");
+
+				if (key.equals(InfoUtils.INPUT_ELEC)) {
+					beanIn.setElec((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.INPUT_AIR)) {
+					beanIn.setAir((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.INPUT_WATER)) {
+					beanIn.setWater((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.OUTPUT_ELEC)) {
+					beanOut.setElec((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.OUTPUT_COLD)) {
+					beanOut.setCold((float) values.getDouble(index));
+				} else if (key.equals(InfoUtils.OUTPUT_HOT)) {
+					beanOut.setHot((float) values.getDouble(index));
+				}
+			}
+
+			tvNengyuanxiaohao.setText(String.format("耗:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(), beanIn.getElec(),
+					beanIn.getAir()));
+			tvNengyuanchansheng.setText(String.format("产:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(), beanOut.getCold(),
+					beanOut.getHot()));
+
+		} catch (JSONException e) {
+			Log.d("Error", e.getMessage());
+		}
+	}
+
+	private void getWeather() {
+		if (StringUtils.isEmpty(weatherWeb))
+			weatherWeb = String.format(WEATHER_TEMPLATE_URL, "101010100");
+
+		new Thread() {
+			@Override
+			public void run() {
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("weather url:%s", weatherWeb));
+				weatherRes = NetUtils.connServerForResult(MainActivity.this, weatherWeb);
+				Log.i(TagUtil.TAG_BJGAS_SYSTEM, String.format("weatherRes:%s", weatherRes));
+				if (StringUtils.isNotEmpty(weatherRes))
+					mHandler.sendEmptyMessage(GET_WEATHER_SUCCESSFUL);
+				else {
+					T.showLong(MainActivity.this, "天气获取失败");
+				}
+			};
+		}.start();
 
 	}
 

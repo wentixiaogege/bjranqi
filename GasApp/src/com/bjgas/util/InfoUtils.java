@@ -104,15 +104,34 @@ public class InfoUtils {
 	public static final int GUORUNXINTONG_Y = 569;
 
 	public static final String ADDRESS = "address";
-	public static final String GUORUNXINTONG = "guorunxintong";
-	public static final String ZHONGSHIYOU = "zhongshiyou";
-	public static final String JINYAN = "jinyan";
-	public static final String ZHONGGUANCUNRUANJIANYUAN = "zhongguancunruanjianyuan";
-	public static final String TONGZHOUZHONGYIYUAN = "tongzhouzhongyiyuan";
-	public static final String HAIDIANYIYUAN = "haidianyiyuan";
-	public static final String JIAOHUACHANG = "jiaohuachang";
-	public static final String BEIQI = "beiqi";
-	public static final String ZHONGGUANCUNYIHAO = "zhongguancunyihao";
-	public static final String QINGHEYIYUAN = "qingheyiyuan";
+	public static final String GUORUNXINTONG = "国润新通酒店";
+	public static final String ZHONGSHIYOU = "中石油创新基地";
+	public static final String JINYAN = "金雁饭店";
+	public static final String ZHONGGUANCUNRUANJIANYUAN = "中关村软件园";
+	public static final String TONGZHOUZHONGYIYUAN = "通州中医院";
+	public static final String HAIDIANYIYUAN = "海淀医院";
+	public static final String JIAOHUACHANG = "焦化厂";
+	public static final String BEIQI = "北七家园区";
+	public static final String ZHONGGUANCUNYIHAO = "中关村壹号";
+	public static final String QINGHEYIYUAN = "清河医院";
+
+	// 大标题
+	public static final String TIT_ZONGJIEGOU = "总结构";
+	public static final String TIT_FADIANJIXITONG = "发电机系统";
+	public static final String TIT_ZHILENGXITONG = "制冷系统";
+	public static final String TIT_GUOLUXITONG = "锅炉系统";
+	public static final String TIT_SHENGCHANYONGDIAN = "生产用电";
+	public static final String TIT_ZONGXITONGXIAOLV = "总系统效率";
+	public static final String TIT_FADIANJIXITONGXIAOLV = "发电机系统效率";
+	public static final String TIT_DIANZHILENGXITONGXIAOLV = "电制冷系统效率";
+	public static final String TIT_GUOLUXITONGXIAOLV = "锅炉系统效率";
+	public static final String TIT_ZHIRANJIXIAOLV = "直燃机效率";
+	public static final String TIT_LENGQUETAXIAOLV = "冷却塔效率";
+	public static final String TIT_SHUIBENGXIAOLV = "水泵效率";
+	public static final String TIT_YICINENGYUANLIYONGXIAOLV = "一次能源利用率";
+	public static final String TIT_YUREXITONGLIYONGLV = "余热系统利用率";
+	public static final String TIT_ZONGXITONGJINGYING = "总系统经营分析";
+	public static final String TIT_TOURUFENXI = "投入分析";
+	public static final String TIT_CHANCHUFENXI = "产出分析";
 
 }

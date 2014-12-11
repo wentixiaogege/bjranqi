@@ -51,6 +51,7 @@ import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongXiaolvSearchFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvMonthFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvNowFragment;
 import com.bjgas.gasapp.xiaolv.zongxiaolv.ZongxiaolvWeekFragment;
+import com.bjgas.util.InfoUtils;
 import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
 import com.bjgas.view.ListHeaderChartView.OnPopupWindowListItemClick;
@@ -79,15 +80,15 @@ public class XitongxiaolvActivity extends NewBaseFragmentActivity {
 		Bitmap bmnengyuanliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.nengyuanliyonglv);
 		Bitmap bmyureliyonglv = BitmapFactory.decodeResource(this.getResources(), R.drawable.yureliyonglv);
 
-		items.add(new GridItem(bmZongxitongXiaolv, "总系统效率"));
-		items.add(new GridItem(bmfadianjixiaolv, "发电机效率"));
-		items.add(new GridItem(bmdianzhilengxiaolv, "电制冷效率"));
-		items.add(new GridItem(bmguoluxiaolv, "锅炉效率"));
-		items.add(new GridItem(bmzhiranjixiaolv, "直燃机效率"));
-		items.add(new GridItem(bmlengquetaxiaolv, "冷却塔效率"));
-		items.add(new GridItem(bmlengdongtaxiaolv, "冷冻塔效率"));
-		items.add(new GridItem(bmnengyuanliyonglv, "能源利用率"));
-		items.add(new GridItem(bmyureliyonglv, "余热利用率"));
+		items.add(new GridItem(bmZongxitongXiaolv, InfoUtils.TIT_ZONGXITONGXIAOLV));
+		items.add(new GridItem(bmfadianjixiaolv, InfoUtils.TIT_FADIANJIXITONGXIAOLV));
+		items.add(new GridItem(bmdianzhilengxiaolv, InfoUtils.TIT_DIANZHILENGXITONGXIAOLV));
+		items.add(new GridItem(bmguoluxiaolv, InfoUtils.TIT_GUOLUXITONGXIAOLV));
+		items.add(new GridItem(bmzhiranjixiaolv, InfoUtils.TIT_ZHIRANJIXIAOLV));
+		items.add(new GridItem(bmlengquetaxiaolv, InfoUtils.TIT_LENGQUETAXIAOLV));
+		items.add(new GridItem(bmlengdongtaxiaolv, InfoUtils.TIT_SHUIBENGXIAOLV));
+		items.add(new GridItem(bmnengyuanliyonglv, InfoUtils.TIT_YICINENGYUANLIYONGXIAOLV));
+		items.add(new GridItem(bmyureliyonglv, InfoUtils.TIT_YUREXITONGLIYONGLV));
 
 		// 新建一个headchartview
 		headerChartView = new ListHeaderChartView(this, items);

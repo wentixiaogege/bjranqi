@@ -45,6 +45,15 @@ public final class DateUtils {
 		return dt.getTime() / 1000;
 	}
 
+	public static String getWeek() {
+		final String dayNames[] = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
+
+		int dayOfWeek = now.get(Calendar.DAY_OF_WEEK) - 1;
+		if (dayOfWeek < 0)
+			dayOfWeek = 0;
+		return dayNames[dayOfWeek];
+	}
+
 	/**
 	 * 变为Unix时间戳
 	 * 
@@ -159,6 +168,12 @@ public final class DateUtils {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, 0 - n);
+		return dateFormat.format(cal.getTime());
+	}
+
+	public static String getNowString(String format) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+		Calendar cal = Calendar.getInstance();
 		return dateFormat.format(cal.getTime());
 	}
 

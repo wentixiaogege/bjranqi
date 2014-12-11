@@ -39,6 +39,7 @@ import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsMonthFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsNowFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsSearchFragment;
 import com.bjgas.gasapp.nengyuanjiegou.zongjiegou.OutputsWeekFragment;
+import com.bjgas.util.InfoUtils;
 import com.bjgas.view.ListHeaderChartView;
 import com.bjgas.view.ListHeaderChartView.OnNavigaterClick;
 import com.bjgas.view.ListHeaderChartView.OnPopupWindowListItemClick;
@@ -63,11 +64,11 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 		Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(), R.drawable.guolu);
 		Bitmap bmShengchanyongdian = BitmapFactory.decodeResource(this.getResources(), R.drawable.shengchanyongdian);
 
-		items.add(new GridItem(bmZongjiegou, "总结构"));
-		items.add(new GridItem(bmFadianji, "发电机"));
-		items.add(new GridItem(bmZhileng, "制冷系统"));
-		items.add(new GridItem(bmGuolu, "锅炉系统"));
-		items.add(new GridItem(bmShengchanyongdian, "生产用电"));
+		items.add(new GridItem(bmZongjiegou, InfoUtils.TIT_ZONGJIEGOU));
+		items.add(new GridItem(bmFadianji, InfoUtils.TIT_FADIANJIXITONG));
+		items.add(new GridItem(bmZhileng, InfoUtils.TIT_ZHILENGXITONG));
+		items.add(new GridItem(bmGuolu, InfoUtils.TIT_GUOLUXITONG));
+		items.add(new GridItem(bmShengchanyongdian, InfoUtils.TIT_SHENGCHANYONGDIAN));
 
 		// 新建一个headchartview
 		headerChartView = new ListHeaderChartView(this, items);
