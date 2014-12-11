@@ -146,9 +146,7 @@ public abstract class ShengchanyongdianFragments extends NengyuanFragments<Sheng
 	public String getMarkViewDesc(int dataSetIndex) {
 		switch (dataSetIndex) {
 		case 0:
-			return InfoUtils.GUOLU_HAOQI;
-		case 1:
-			return InfoUtils.GUOLU_ZHIRE;
+			return "电";
 		default:
 			return null;
 		}

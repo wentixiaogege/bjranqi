@@ -34,8 +34,6 @@ import android.util.Log;
 
 public abstract class BaseFragment<T> extends Fragment implements LabelInterface {
 
-	// protected final String REQUEST_WEBSITE =
-	// "http://gqqapp.sinaapp.com/ranqi.php";
 	public static String REQUEST_WEBSITE = "http://192.168.2.101:8090/Interface/AppAdapter.aspx";
 	// 4个参数
 	protected final String FORMAT_URL = "%s?category=%s&module=%s&type=%s";
@@ -177,6 +175,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		// mChart.setDrawYLegend(false);
 
 		// enable value highlighting
+		// setValueFormatter
 		mChart.setHighlightEnabled(true);
 
 		// enable touch gestures

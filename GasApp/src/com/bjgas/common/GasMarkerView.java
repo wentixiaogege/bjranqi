@@ -43,7 +43,7 @@ public class GasMarkerView extends MarkerView {
 			tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
 		} else {
 			String info = String.format("%s:%s", baseFragment.getMarkViewDesc(dataSetIndex),
-					Utils.formatNumber(e.getVal(), 2, true));
+					Utils.formatDecimal(e.getVal(), 2));
 			tvContent.setText(info);
 		}
 	}
