@@ -103,7 +103,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:padding="5dp"
-                android:src="@drawable/nengyuanjiegou" />
+                android:src="@drawable/cl_nengyuanjiegou" />
 
             <TextView
                 android:id="@+id/tvNengyuanxiaohao"
@@ -134,7 +134,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:padding="5dp"
-                android:src="@drawable/xitongxiaolv" />
+                android:src="@drawable/cl_xitongxiaolv" />
 
             <TextView
                 android:id="@+id/tvZongxiaolv"
@@ -165,7 +165,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:padding="5dp"
-                android:src="@drawable/jingyingfenxi" />
+                android:src="@drawable/cl_jingyingfenxi" />
 
             <TextView
                 android:id="@+id/tvTouru"

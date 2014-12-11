@@ -73,7 +73,7 @@ public abstract class GuoluFragments extends NengyuanFragments<GuoluBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						GuoluBean bean = new GuoluBean();
-						bean.setRiqi(getProperTime(k));
+						bean.setRiqi(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

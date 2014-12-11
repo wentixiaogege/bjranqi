@@ -23,7 +23,7 @@ public class ZhilengSearchFragment extends ZhilengFragments {
 	 * 搜索的时候，index表示月份。。。
 	 */
 	@Override
-	public String getProperTime(int index) {
+	public String getProperTime(int index, int length) {
 		return getProperMonth(startM, index);
 	}
 }

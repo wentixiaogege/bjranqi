@@ -423,7 +423,7 @@ public class MainActivity extends BaseActivity {
 				if (StringUtils.isNotEmpty(weatherRes))
 					mHandler.sendEmptyMessage(GET_WEATHER_SUCCESSFUL);
 				else {
-					T.showLong(MainActivity.this, "天气获取失败");
+					// T.showLong(MainActivity.this, "天气获取失败");
 				}
 			};
 		}.start();
@@ -445,7 +445,7 @@ public class MainActivity extends BaseActivity {
 				if (StringUtils.isNotEmpty(nengyuanRes))
 					mHandler.sendEmptyMessage(GET_NENGYUAN_SUCCESSFUL);
 				else {
-					T.showLong(MainActivity.this, "能源获取失败");
+					// T.showLong(MainActivity.this, "能源获取失败");
 				}
 			}
 
@@ -463,7 +463,7 @@ public class MainActivity extends BaseActivity {
 				if (StringUtils.isNotEmpty(xiaolvRes1) && StringUtils.isNotEmpty(xiaolvRes2))
 					mHandler.sendEmptyMessage(GET_XIAOLV_SUCCESSFUL);
 				else {
-					T.showLong(MainActivity.this, "效率获取失败");
+					// T.showLong(MainActivity.this, "效率获取失败");
 				}
 			}
 
@@ -478,7 +478,7 @@ public class MainActivity extends BaseActivity {
 				if (StringUtils.isNotEmpty(fenxiRes))
 					mHandler.sendEmptyMessage(GET_FENXI_SUCCESSFUL);
 				else {
-					T.showLong(MainActivity.this, "经营分析获取失败");
+					// T.showLong(MainActivity.this, "经营分析获取失败");
 				}
 			}
 

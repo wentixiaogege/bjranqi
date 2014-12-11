@@ -112,7 +112,7 @@ public abstract class ShouruFragment extends JingyingFragments<AllOutPutBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllOutPutBean bean = new AllOutPutBean();
-						bean.setTime(getProperTime(k));
+						bean.setTime(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

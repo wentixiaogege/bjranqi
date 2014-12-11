@@ -16,6 +16,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
+import android.util.Log;
+import android.widget.Toast;
 
 public class NetUtils {
 	public static final int NETWORN_NONE = 0;
@@ -39,14 +41,17 @@ public class NetUtils {
 				if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 					strResult = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
 				} else {
-					T.showLong(context, "网络请求返回值错误，错误代码为" + httpResponse.getStatusLine().getStatusCode());
+					// T.showLong(context, "网络请求返回值错误，错误代码为" +
+					// httpResponse.getStatusLine().getStatusCode());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				T.showLong(context, "网络不给力啊，请配置网络！");
+				// T.showLong(context, "网络不给力啊，请配置网络！");
 			}
 		} else {
-			T.showLong(context, "网络不给力啊，请配置网络！");
+			// T.showLong(context, "网络不给力啊，请配置网络！");
+			// Toast.makeText(context, "网络不给力啊，请配置网络！", Toast.LENGTH_LONG);
+			Log.e("NetWork Error", "net work error!");
 		}
 		return strResult;
 	}

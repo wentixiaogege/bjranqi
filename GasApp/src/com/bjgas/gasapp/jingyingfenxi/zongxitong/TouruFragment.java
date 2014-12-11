@@ -110,7 +110,7 @@ public abstract class TouruFragment extends JingyingFragments<AllInputBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						AllInputBean bean = new AllInputBean();
-						bean.setTime(getProperTime(k));
+						bean.setTime(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

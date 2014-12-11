@@ -73,7 +73,7 @@ public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						ZhilengBean bean = new ZhilengBean();
-						bean.setRiqi(getProperTime(k));
+						bean.setRiqi(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

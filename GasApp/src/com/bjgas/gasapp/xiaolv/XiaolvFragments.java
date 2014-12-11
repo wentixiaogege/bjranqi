@@ -38,7 +38,7 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						XiaolvBean bean = new XiaolvBean();
-						bean.setTime(getProperTime(k));
+						bean.setTime(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

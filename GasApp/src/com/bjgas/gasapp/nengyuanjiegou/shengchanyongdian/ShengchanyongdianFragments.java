@@ -73,7 +73,7 @@ public abstract class ShengchanyongdianFragments extends NengyuanFragments<Sheng
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						ShengchanyongdianBean bean = new ShengchanyongdianBean();
-						bean.setTime(getProperTime(k));
+						bean.setTime(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 

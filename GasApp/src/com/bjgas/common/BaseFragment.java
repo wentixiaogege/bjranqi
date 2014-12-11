@@ -92,7 +92,6 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 			}
 		}
 
-
 	};
 
 	private void stopRotateIcon() {
@@ -106,7 +105,7 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		NewBaseFragmentActivity activity1 = (NewBaseFragmentActivity) getActivity();
 		activity1.getHeaderChartView().rotateIcon();
 	}
-	
+
 	/**
 	 * 接口用0.。。n传日期，这种情况下，不得不以当前日期为基础，进行转化<br>
 	 * 更加郁闷的是，如果是实时数据，index表示小时，如果是周或者月，index表示天数<br>
@@ -115,15 +114,15 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 	 * @param index
 	 * @return
 	 */
-	public String getProperTime(int index) {
+	public String getProperTime(int index, int length) {
 		// Log.d("DateTime", index + "");
 		int dis = index + 1;
 		return DateUtils.getBeforeDay(dis, "M月d日");
 	}
 
-	public String getProperDay(int index) {
+	public String getProperDay(int index, int length) {
 		// Log.d("DateTime", index + "");
-		int dis = index + 1;
+		int dis = length - index - 1;
 		return dis + "时";
 	}
 

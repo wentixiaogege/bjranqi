@@ -24,7 +24,7 @@ public class NengyuanliyongXiaolvNowFragment extends NengyuanliyongXiaolvFragmen
 	 * 搜索的时候，index表示月份。。。
 	 */
 	@Override
-	public String getProperTime(int index) {
-		return getProperDay(index);
+	public String getProperTime(int index, int length) {
+		return getProperDay(index, length);
 	}
 }

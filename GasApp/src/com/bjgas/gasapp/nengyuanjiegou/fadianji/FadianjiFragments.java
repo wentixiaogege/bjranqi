@@ -101,7 +101,7 @@ public abstract class FadianjiFragments extends NengyuanFragments<FadianjiBean> 
 				if (0 == i)
 					for (int k = 0; k < values.length(); k++) {
 						FadianjiBean bean = new FadianjiBean();
-						bean.setRiqi(getProperTime(k));
+						bean.setRiqi(getProperTime(k, values.length()));
 						jsonResults.add(bean);
 					}
 
