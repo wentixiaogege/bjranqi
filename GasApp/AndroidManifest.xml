@@ -90,6 +90,8 @@
         </activity>
         <activity android:name=".config.ConfigActivity" >
         </activity>
+        <activity android:name=".ImgTest" >
+        </activity>
     </application>
 
 </manifest>

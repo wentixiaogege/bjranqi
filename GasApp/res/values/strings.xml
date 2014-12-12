@@ -27,5 +27,6 @@
     <string name="config_xml_name">config</string>
     <string name="interface_website">interface_website</string>
     <string name="interface_port">interface_port</string>
+    <string name="title_activity_img_test">ImgTest</string>
 
 </resources>
