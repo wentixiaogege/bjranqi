@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.bjgas.gasapp.config.ConfigActivity;
 import com.bjgas.util.InfoUtils;
 import com.bjgas.util.NetUtils;
 import com.bjgas.util.T;
+import com.github.mikephil.charting.utils.Utils;
 
 public class DituActivity extends BaseActivity {
 
@@ -30,7 +32,8 @@ public class DituActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ditu);
 		rtlDitu = (RelativeLayout) findViewById(R.id.rtlDitu);
-
+		float f = Utils.convertDpToPixel(3);
+		Log.d("float", String.valueOf(f));
 		// 读取文件，配置网络
 		NetUtils.configWebsite(this);
 

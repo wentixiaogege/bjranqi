@@ -240,7 +240,7 @@ public class MainActivity extends BaseActivity {
 		// tvDay;
 		tvDay.setText(com.bjgas.util.DateUtils.getNowString("MM / d"));
 		// tvUpdateTim
-		tvUpdateTime.setText("更新:" + com.bjgas.util.DateUtils.getNowString("MM月dd日 HH时"));
+		tvUpdateTime.setText("更新:" + com.bjgas.util.DateUtils.getNowString("HH时mm分"));
 		// tvWeek;
 		tvWeek.setText(com.bjgas.util.DateUtils.getWeek());
 		// tvAdress;
@@ -339,9 +339,10 @@ public class MainActivity extends BaseActivity {
 				// }
 			}
 
-			tvTouru.setText(String.format("投入:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(), beanIn.getElec(),
+			tvTouru.setText(String.format("%.0f, %.0f, %.0f", beanIn.getWater(), beanIn.getElec(),
 					beanIn.getAir()));
-			tvChanchu.setText(String.format("产出:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(), beanOut.getCold(),
+			tvChanchu
+					.setText(String.format("%.0f, %.0f, %.0f", beanOut.getElec(), beanOut.getCold(),
 					beanOut.getHot()));
 
 		} catch (JSONException e) {
@@ -400,9 +401,10 @@ public class MainActivity extends BaseActivity {
 				}
 			}
 
-			tvNengyuanxiaohao.setText(String.format("耗:水 %.2f, 电 %.2f, 气 %.2f", beanIn.getWater(), beanIn.getElec(),
+			tvNengyuanxiaohao
+.setText(String.format("%.0f, %.0f, %.0f", beanIn.getWater(), beanIn.getElec(),
 					beanIn.getAir()));
-			tvNengyuanchansheng.setText(String.format("产:电 %.2f, 冷 %.2f, 热 %.2f", beanOut.getElec(), beanOut.getCold(),
+			tvNengyuanchansheng.setText(String.format("%.0f, %.0f, %.0f", beanOut.getElec(), beanOut.getCold(),
 					beanOut.getHot()));
 
 		} catch (JSONException e) {

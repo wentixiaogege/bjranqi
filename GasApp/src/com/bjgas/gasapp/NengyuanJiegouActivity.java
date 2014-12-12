@@ -58,11 +58,12 @@ public class NengyuanJiegouActivity extends NewBaseFragmentActivity {
 		rtlParent = (RelativeLayout) findViewById(R.id.rtlParent);
 
 		// 取得图片对象
-		Bitmap bmZongjiegou = BitmapFactory.decodeResource(this.getResources(), R.drawable.zongjiegou);
-		Bitmap bmFadianji = BitmapFactory.decodeResource(this.getResources(), R.drawable.fadianji);
-		Bitmap bmZhileng = BitmapFactory.decodeResource(this.getResources(), R.drawable.zhileng);
-		Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(), R.drawable.guolu);
-		Bitmap bmShengchanyongdian = BitmapFactory.decodeResource(this.getResources(), R.drawable.shengchanyongdian);
+		Bitmap bmZongjiegou = BitmapFactory.decodeResource(this.getResources(), R.drawable.nav_zongjiegou);
+		Bitmap bmFadianji = BitmapFactory.decodeResource(this.getResources(), R.drawable.nav_fadianji);
+		Bitmap bmZhileng = BitmapFactory.decodeResource(this.getResources(), R.drawable.nav_zhileng);
+		Bitmap bmGuolu = BitmapFactory.decodeResource(this.getResources(), R.drawable.nav_guolu);
+		Bitmap bmShengchanyongdian = BitmapFactory
+				.decodeResource(this.getResources(), R.drawable.nav_shengchanyongdian);
 
 		items.add(new GridItem(bmZongjiegou, InfoUtils.TIT_ZONGJIEGOU));
 		items.add(new GridItem(bmFadianji, InfoUtils.TIT_FADIANJIXITONG));

@@ -16,9 +16,9 @@
 
         <ListView
             android:id="@+id/lstNevigate"
-            android:layout_width="130dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" >
+            android:layout_marginLeft="5dp" >
         </ListView>
 
         <com.bjgas.common.VerticalViewPager

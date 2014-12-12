@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="40dp"
         android:orientation="vertical"
         android:padding="2dp" >
 
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="清河医院"
                     android:textColor="@color/Blue"
-                    android:textSize="10dp" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/tvWeek"
@@ -44,14 +44,14 @@
                     android:layout_height="wrap_content"
                     android:text="星期一"
                     android:textColor="@color/Blue"
-                    android:textSize="8dp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="天气实况"
                     android:textColor="@color/Blue"
-                    android:textSize="7dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/tvUpdateTime"
@@ -59,13 +59,13 @@
                     android:layout_height="wrap_content"
                     android:text="更新时间 :12月6日"
                     android:textColor="@color/Gray"
-                    android:textSize="7dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="8dp"
                 android:orientation="vertical"
                 android:padding="2dp" >
 
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="12 / 2"
                     android:textColor="@color/Blue"
-                    android:textSize="7dp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/tvWeather"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="N/A"
                     android:textColor="@color/Gray"
-                    android:textSize="7dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -110,18 +110,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="40dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tvNengyuanchansheng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="40dip"
+                android:layout_marginTop="60dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
         </FrameLayout>
 
         <FrameLayout
@@ -130,7 +130,7 @@
 
             <ImageView
                 android:id="@+id/imgXiaolv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:padding="5dp"
@@ -141,18 +141,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="40dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tvNengyuanliyonglv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="40dip"
+                android:layout_marginTop="60dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
         </FrameLayout>
 
         <FrameLayout
@@ -172,18 +172,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="40dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tvChanchu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="40dip"
+                android:layout_marginTop="60dip"
                 android:textColor="@color/White"
-                android:textSize="8dp" />
+                android:textSize="18dp" />
         </FrameLayout>
     </LinearLayout>
 
