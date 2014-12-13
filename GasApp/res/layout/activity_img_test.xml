@@ -5,8 +5,9 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="360dp"
+        android:layout_height="270dp"
+        android:background="#ff00ff00"
         android:src="@drawable/tb_qingheyiyuan" />
 
 </RelativeLayout>

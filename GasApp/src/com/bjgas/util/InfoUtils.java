@@ -1,6 +1,9 @@
 package com.bjgas.util;
 
 public class InfoUtils {
+	public static final String TAG_THREAD = "Thread_Tag";
+	public static final String TAG_LIFECYCLE = "Life_Cycle";
+
 	// public static final String DISPLAY_ZONGXIAOLV = "总效率";
 	//
 	// public static final String DISPLAY_HAOQi = "耗气";
@@ -23,12 +26,18 @@ public class InfoUtils {
 	public static final String YURE_XIAOLV = "余热系统利用率";
 
 	public static final String INPUT_ELEC = "总耗电";
+	public static final String INPUT_ELEC_SIMPLE = "耗电";
 	public static final String INPUT_AIR = "总耗天然气";
+	public static final String INPUT_AIR_SIMPLE = "耗气";
 	public static final String INPUT_WATER = "总耗水";
+	public static final String INPUT_WATER_SIMPLE = "耗水";
 
 	public static final String OUTPUT_ELEC = "供电总量";
+	public static final String OUTPUT_ELEC_SIMPLE = "供电";
 	public static final String OUTPUT_COLD = "总供冷量";
+	public static final String OUTPUT_COLD_SIMPLE = "供冷";
 	public static final String OUTPUT_HOT = "总供热量";
+	public static final String OUTPUT_HOT_SIMPLE = "供热";
 
 	public static final String FADIANJI_FADIAN = "供电量";
 	public static final String FADIANJI_YURE = "总供热量";
@@ -43,11 +52,17 @@ public class InfoUtils {
 	public static final String SHENGCHANYONGDIAN_YONGDIAN = "生产用电";
 
 	public static final String JINGYING_SHOURU_ELEC = "电总收入";
+	public static final String JINGYING_SHOURU_ELEC_SIMPLE = "发电";
 	public static final String JINGYING_SHOURU_HOT = "热量收入";
+	public static final String JINGYING_SHOURU_HOT_SIMPLE = "产热";
 	public static final String JINGYING_SHOURU_COLD = "冷量收入";
+	public static final String JINGYING_SHOURU_COLD_SIMPLE = "产冷";
 	public static final String JINGYING_TOURU_ELEC = "电总投入";
+	public static final String JINGYING_TOURU_ELEC_SIMPLE = "耗电";
 	public static final String JINGYING_TOURU_WATER = "水总投入";
+	public static final String JINGYING_TOURU_WATER_SIMPLE = "耗水";
 	public static final String JINGYING_TOURU_GAS = "天然气总投入";
+	public static final String JINGYING_TOURU_GAS_SIMPLE = "耗气";
 
 	// 以下是各种html请求的key
 	public static final String ZONGJIEGOU_KEY = "zongjiegou";
@@ -122,6 +137,8 @@ public class InfoUtils {
 	public static final String TIT_GUOLUXITONG = "锅炉系统";
 	public static final String TIT_SHENGCHANYONGDIAN = "生产用电";
 	public static final String TIT_ZONGXITONGXIAOLV = "总系统效率";
+	public static final String TIT_ZONGXITONGXIAOLV_SIMPLE = "总效率";
+
 	public static final String TIT_FADIANJIXITONGXIAOLV = "发电机系统效率";
 	public static final String TIT_DIANZHILENGXITONGXIAOLV = "电制冷系统效率";
 	public static final String TIT_GUOLUXITONGXIAOLV = "锅炉系统效率";
@@ -129,6 +146,8 @@ public class InfoUtils {
 	public static final String TIT_LENGQUETAXIAOLV = "冷却塔效率";
 	public static final String TIT_SHUIBENGXIAOLV = "水泵效率";
 	public static final String TIT_YICINENGYUANLIYONGXIAOLV = "一次能源利用率";
+	public static final String TIT_YICINENGYUANLIYONGXIAOLV_SIMPLE = "利用率";
+
 	public static final String TIT_YUREXITONGLIYONGLV = "余热系统利用率";
 	public static final String TIT_ZONGXITONGJINGYING = "总系统经营分析";
 	public static final String TIT_TOURUFENXI = "投入分析";

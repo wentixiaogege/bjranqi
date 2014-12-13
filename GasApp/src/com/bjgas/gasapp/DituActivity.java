@@ -139,7 +139,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.QINGHEYIYUAN);
 			startActivity(intent);
 		}
@@ -149,7 +149,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.GUORUNXINTONG);
 			startActivity(intent);
 		}
@@ -159,7 +159,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGSHIYOU);
 			startActivity(intent);
 		}
@@ -169,7 +169,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.JINYAN);
 			startActivity(intent);
 		}
@@ -179,7 +179,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGGUANCUNRUANJIANYUAN);
 			startActivity(intent);
 		}
@@ -189,7 +189,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.TONGZHOUZHONGYIYUAN);
 			startActivity(intent);
 		}
@@ -199,7 +199,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.HAIDIANYIYUAN);
 			startActivity(intent);
 		}
@@ -209,7 +209,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.JIAOHUACHANG);
 			startActivity(intent);
 		}
@@ -219,7 +219,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.BEIQI);
 			startActivity(intent);
 		}
@@ -229,7 +229,7 @@ public class DituActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(DituActivity.this, MainActivity.class);
+			Intent intent = new Intent(DituActivity.this, MainActivityNew.class);
 			intent.putExtra(InfoUtils.ADDRESS, InfoUtils.ZHONGGUANCUNYIHAO);
 			startActivity(intent);
 		}

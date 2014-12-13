@@ -88,6 +88,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityNew" >
+        </activity>
         <activity android:name=".config.ConfigActivity" >
         </activity>
         <activity android:name=".ImgTest" >
