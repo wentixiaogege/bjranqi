@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rtlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_qingheyiyuan" >
+
+    <LinearLayout
+        android:id="@+id/llyImage"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            style="@style/weatherStyle"
+            android:background="@drawable/weather_bg" >
+
+            <LinearLayout
+                style="@style/weatherLeftStyle"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tvAdress"
+                    style="@style/tianqiTvStyle"
+                    android:text="清河医院"
+                    android:textColor="@color/WeatherBlue"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvWeek"
+                    style="@style/tianqiTvStyle"
+                    android:text="星期一"
+                    android:textColor="@color/WeatherBlue" />
+
+                <TextView
+                    android:id="@+id/tvUpdateTime"
+                    style="@style/tianqiTvStyle"
+                    android:text="更新:14时"
+                    android:textColor="@color/Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/weatherRightStyle"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/ivWeather"
+                    style="@style/weatherImgStyle"
+                    android:src="@drawable/wth_sunny" />
+
+                <TextView
+                    android:id="@+id/tvDay"
+                    style="@style/tianqiTvStyle"
+                    android:gravity="center_horizontal"
+                    android:text="12 / 2"
+                    android:textColor="@color/WeatherBlue"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/imgJiegou"
+            style="@style/clStyle"
+            android:background="@drawable/cl_nengyuanjiegou" >
+
+            <TextView
+                android:id="@+id/tvNengyuanDisplay"
+                style="@style/tvDisplayStyle"
+                android:text="消耗水：100吨" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/imgXiaolv"
+            style="@style/clStyle"
+            android:background="@drawable/cl_xitongxiaolv" >
+
+            <TextView
+                android:id="@+id/tvXiaolvDisplay"
+                style="@style/tvDisplayStyle" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/imgFenxi"
+            style="@style/clStyle"
+            android:background="@drawable/cl_jingyingfenxi" >
+
+            <TextView
+                android:id="@+id/tvFenxiDisplay"
+                style="@style/tvDisplayStyle" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
