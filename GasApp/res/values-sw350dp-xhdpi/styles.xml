@@ -55,4 +55,27 @@
         <item name="android:layout_width">fill_parent</item>
     </style>
 
+    <style name="listViewStyle">
+        <item name="android:layout_width">146dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:background">@color/Red</item>
+    </style>
+
+    <style name="navilayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingStart">15dp</item>
+    </style>
+
+    <style name="naviimg">
+        <item name="android:layout_width">113dp</item>
+        <item name="android:layout_height">79dp</item>
+        <item name="android:layout_marginBottom">23dp</item>
+        <item name="android:layout_marginTop">23dp</item>
+    </style>
+
 </resources>

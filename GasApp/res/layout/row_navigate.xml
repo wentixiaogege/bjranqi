@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingLeft="20dp" >
+    style="@style/navilayout" >
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="201px"
-        android:layout_height="140px"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp" >
+        style="@style/naviimg" >
     </ImageView>
 
 </LinearLayout>
