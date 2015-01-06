@@ -16,8 +16,8 @@ public class DianzhilengXiaolvWeekFragment extends DianzhilengXiaolvFragments {
 	 */
 	@Override
 	public String getRequestUrl() {
-		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
- SearchMethod.Week);
+		String mRequestUrl = String
+				.format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(), SearchMethod.Week);
 		return mRequestUrl;
 	}
 }

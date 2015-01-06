@@ -167,7 +167,12 @@ public final class DateUtils {
 	public static String getBeforeDay(int n, String format) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 0 - n);
+		cal.add(Calendar.DATE, -7);
+		// cal.add(Calendar.DATE, 0 - n);
+		// if (n + 1 > 7)
+		// n = 1;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		cal.add(Calendar.DATE, n);
 		return dateFormat.format(cal.getTime());
 	}
 

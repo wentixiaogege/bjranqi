@@ -25,18 +25,18 @@ public class InfoUtils {
 	public static final String YICINENGYUAN_XIAOLV = "一次能源利用率";
 	public static final String YURE_XIAOLV = "余热系统利用率";
 
-	public static final String INPUT_ELEC = "总耗电";
+	public static final String INPUT_ELEC = "总耗电（℃）";
 	public static final String INPUT_ELEC_SIMPLE = "耗电";
-	public static final String INPUT_AIR = "总耗天然气";
+	public static final String INPUT_AIR = "总耗天然气（m³）";
 	public static final String INPUT_AIR_SIMPLE = "耗气";
-	public static final String INPUT_WATER = "总耗水";
+	public static final String INPUT_WATER = "总耗水（t）";
 	public static final String INPUT_WATER_SIMPLE = "耗水";
 
-	public static final String OUTPUT_ELEC = "供电总量";
+	public static final String OUTPUT_ELEC = "供电总量（℃）";
 	public static final String OUTPUT_ELEC_SIMPLE = "供电";
-	public static final String OUTPUT_COLD = "总供冷量";
+	public static final String OUTPUT_COLD = "总供冷量（RT）";
 	public static final String OUTPUT_COLD_SIMPLE = "供冷";
-	public static final String OUTPUT_HOT = "总供热量";
+	public static final String OUTPUT_HOT = "总供热量（J）";
 	public static final String OUTPUT_HOT_SIMPLE = "供热";
 
 	public static final String FADIANJI_FADIAN = "供电量";
@@ -49,7 +49,7 @@ public class InfoUtils {
 	public static final String GUOLU_HAOQI = "耗天然气";
 	public static final String GUOLU_ZHIRE = "供热";
 
-	public static final String SHENGCHANYONGDIAN_YONGDIAN = "生产用电";
+	public static final String SHENGCHANYONGDIAN_YONGDIAN = "生产用电（℃）";
 
 	public static final String JINGYING_SHOURU_ELEC = "电总收入";
 	public static final String JINGYING_SHOURU_ELEC_SIMPLE = "发电";
