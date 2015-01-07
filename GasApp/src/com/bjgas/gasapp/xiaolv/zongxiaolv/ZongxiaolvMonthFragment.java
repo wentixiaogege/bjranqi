@@ -20,4 +20,9 @@ public class ZongxiaolvMonthFragment extends ZongxiaolvFragments {
 				SearchMethod.Month);
 		return mRequestUrl;
 	}
+
+	@Override
+	public String getProperTime(int index, int length) {
+		return super.getProperLastMonth(index, length);
+	}
 }

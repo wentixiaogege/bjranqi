@@ -12,7 +12,7 @@ public class LengdongtaXiaolvMonthFragment extends LengdongtaXiaolvFragments {
 	}
 
 	/**
-	 * ÇëÇóÒ³ÃæµÄurl FadianjiFragments
+	 * ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½url FadianjiFragments
 	 */
 	@Override
 	public String getRequestUrl() {
@@ -20,5 +20,10 @@ public class LengdongtaXiaolvMonthFragment extends LengdongtaXiaolvFragments {
 .format(FORMAT_URL, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
 				SearchMethod.Month);
 		return mRequestUrl;
+	}
+
+	@Override
+	public String getProperTime(int index, int length) {
+		return super.getProperLastMonth(index, length);
 	}
 }

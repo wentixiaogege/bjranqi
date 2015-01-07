@@ -120,6 +120,22 @@ public abstract class BaseFragment<T> extends Fragment implements LabelInterface
 		return DateUtils.getBeforeDay(dis, "M月d日");
 	}
 
+	public String getProperLastMonth(int index, int length) {
+		// Log.d("DateTime", index + "");
+		// int dis = index + 1;
+		// return DateUtils.getBeforeDay(dis, "M月d日");
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M月d日");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		// cal.add(Calendar.DATE, 0 - n);
+		// if (n + 1 > 7)
+		// n = 1;
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.add(Calendar.DATE, index);
+		return dateFormat.format(cal.getTime());
+	}
+
 	public String getProperDay(int index, int length) {
 		// Log.d("DateTime", index + "");
 		int dis = length - index - 1;

@@ -18,4 +18,9 @@ public class ShengchanyongdianMonthFragment extends ShengchanyongdianFragments {
 	public String getRequestUrl() {
 		return getMonthRequestUrl();
 	}
+
+	@Override
+	public String getProperTime(int index, int length) {
+		return super.getProperLastMonth(index, length);
+	}
 }
