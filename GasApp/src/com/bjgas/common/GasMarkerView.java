@@ -1,5 +1,7 @@
 package com.bjgas.common;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.content.Context;
 import android.widget.TextView;
 
@@ -42,8 +44,14 @@ public class GasMarkerView extends MarkerView {
 
 			tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
 		} else {
-			String info = String.format("%s:%s", baseFragment.getMarkViewDesc(dataSetIndex),
+			String info = StringUtils.EMPTY;
+			String desc = baseFragment.getMarkViewDesc(dataSetIndex);
+			if(!StringUtils.isEmpty(desc))
+			info = String.format("%s:%s", desc,
 					Utils.formatDecimal(e.getVal(), 2));
+			else {
+				info = Utils.formatDecimal(e.getVal(), 2);
+			}
 			tvContent.setText(info);
 		}
 	}

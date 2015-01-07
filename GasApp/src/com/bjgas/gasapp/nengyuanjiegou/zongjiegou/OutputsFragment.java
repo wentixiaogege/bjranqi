@@ -159,12 +159,13 @@ public abstract class OutputsFragment extends NengyuanFragments<AllOutPutBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? InfoUtils.OUTPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.OUTPUT_COLD
-				: InfoUtils.OUTPUT_HOT);
-		return label;
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// String label = dataSetIndex == 0 ? InfoUtils.OUTPUT_ELEC : (dataSetIndex
+	// == 1 ? InfoUtils.OUTPUT_COLD
+	// : InfoUtils.OUTPUT_HOT);
+	// return label;
+	// }
 
 	// /**
 	// * 请求页面的url

@@ -142,14 +142,14 @@ public abstract class ShengchanyongdianFragments extends NengyuanFragments<Sheng
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return "电";
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return "电";
+	// default:
+	// return null;
+	// }
+	// }
 
 }

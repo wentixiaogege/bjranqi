@@ -141,12 +141,13 @@ public abstract class ShouruFragment extends JingyingFragments<AllOutPutBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? JINGYING_SHOURU_ELEC : (dataSetIndex == 1 ? JINGYING_SHOURU_COLD
-				: JINGYING_SHOURU_HOT);
-		return label;
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// String label = dataSetIndex == 0 ? JINGYING_SHOURU_ELEC : (dataSetIndex
+	// == 1 ? JINGYING_SHOURU_COLD
+	// : JINGYING_SHOURU_HOT);
+	// return label;
+	// }
 
 	@Override
 	protected String getModule() {

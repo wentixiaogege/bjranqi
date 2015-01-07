@@ -79,16 +79,16 @@ public abstract class ZhiranjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.ZHIRANJI_XIAOLV;
-		case 1:
-			return InfoUtils.ZHIRANJI_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.ZHIRANJI_XIAOLV;
+	// case 1:
+	// return InfoUtils.ZHIRANJI_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

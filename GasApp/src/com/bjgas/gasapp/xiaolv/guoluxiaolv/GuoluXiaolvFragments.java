@@ -80,16 +80,16 @@ public abstract class GuoluXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.GUOLU_XIAOLV;
-		case 1:
-			return InfoUtils.GUOLU_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.GUOLU_XIAOLV;
+	// case 1:
+	// return InfoUtils.GUOLU_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

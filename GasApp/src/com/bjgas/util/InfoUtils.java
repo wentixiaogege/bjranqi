@@ -39,15 +39,15 @@ public class InfoUtils {
 	public static final String OUTPUT_HOT = "总供热量（J）";
 	public static final String OUTPUT_HOT_SIMPLE = "供热";
 
-	public static final String FADIANJI_FADIAN = "供电量";
-	public static final String FADIANJI_YURE = "总供热量";
-	public static final String FADIANJI_HAOQI = "耗天然气";
+	public static final String FADIANJI_FADIAN = "供电量（℃）";
+	public static final String FADIANJI_YURE = "总供热量（J）";
+	public static final String FADIANJI_HAOQI = "耗天然气（m³）";
 
-	public static final String ZHILENG_HAODIAN = "耗电量";
-	public static final String ZHILENG_ZHILENG = "供冷";
+	public static final String ZHILENG_HAODIAN = "耗电量（℃）";
+	public static final String ZHILENG_ZHILENG = "供冷（RT）";
 
-	public static final String GUOLU_HAOQI = "耗天然气";
-	public static final String GUOLU_ZHIRE = "供热";
+	public static final String GUOLU_HAOQI = "耗天然气（m³）";
+	public static final String GUOLU_ZHIRE = "供热（J）";
 
 	public static final String SHENGCHANYONGDIAN_YONGDIAN = "生产用电（℃）";
 

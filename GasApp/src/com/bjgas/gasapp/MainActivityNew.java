@@ -248,7 +248,7 @@ public class MainActivityNew extends BaseActivity {
 			rtlJiegou.setOnClickListener(listener);
 			rtlXiaolv.setOnClickListener(listener);
 			weatherWeb = String.format(WEATHER_TEMPLATE_URL, "101090914");
-			getDataFromweb();
+			// getDataFromweb();
 			break;
 
 		default:
@@ -544,18 +544,20 @@ public class MainActivityNew extends BaseActivity {
 	 * 检查线程状态，开启线程
 	 */
 	private void startThread() {
+		// 由于实时数据的接口有误，暂时停止这个功能。等到实时数据接口好了之后再说。
 		if (mThNengyuan != null && mThFenxi != null && mThXiaolv != null) {
-			Log.d(InfoUtils.TAG_THREAD, mThNengyuan.getState().toString());
-			Log.d(InfoUtils.TAG_THREAD, mThFenxi.getState().toString());
-			Log.d(InfoUtils.TAG_THREAD, mThXiaolv.getState().toString());
-			// Thread.State
-			if (mThXiaolv.getState() == Thread.State.TERMINATED && mThFenxi.getState() == Thread.State.TERMINATED
-					&& mThNengyuan.getState() == Thread.State.TERMINATED) {
-				mStop = false;
-				startThFenxi();
-				startThNengyuan();
-				startThXiaolv();
-			}
+			// Log.d(InfoUtils.TAG_THREAD, mThNengyuan.getState().toString());
+			// Log.d(InfoUtils.TAG_THREAD, mThFenxi.getState().toString());
+			// Log.d(InfoUtils.TAG_THREAD, mThXiaolv.getState().toString());
+			// // Thread.State
+			// if (mThXiaolv.getState() == Thread.State.TERMINATED &&
+			// mThFenxi.getState() == Thread.State.TERMINATED
+			// && mThNengyuan.getState() == Thread.State.TERMINATED) {
+			// mStop = false;
+			// startThFenxi();
+			// startThNengyuan();
+			// startThXiaolv();
+			// }
 
 		} else {
 			Log.d(InfoUtils.TAG_THREAD, "thread is null");

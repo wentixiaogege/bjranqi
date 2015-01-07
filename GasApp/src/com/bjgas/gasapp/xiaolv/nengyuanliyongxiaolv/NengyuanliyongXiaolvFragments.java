@@ -80,16 +80,16 @@ public abstract class NengyuanliyongXiaolvFragments extends XiaolvFragments<Xiao
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.YICINENGYUAN_XIAOLV;
-		case 1:
-			return InfoUtils.YICINENGYUAN_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.YICINENGYUAN_XIAOLV;
+	// case 1:
+	// return InfoUtils.YICINENGYUAN_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

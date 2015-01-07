@@ -147,16 +147,16 @@ public abstract class ZhilengFragments extends NengyuanFragments<ZhilengBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.ZHILENG_HAODIAN;
-		case 1:
-			return InfoUtils.ZHILENG_ZHILENG;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.ZHILENG_HAODIAN;
+	// case 1:
+	// return InfoUtils.ZHILENG_ZHILENG;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

@@ -210,12 +210,13 @@ public abstract class InputsFragment extends NengyuanFragments<AllInputBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? InfoUtils.INPUT_ELEC : (dataSetIndex == 1 ? InfoUtils.INPUT_AIR
-				: InfoUtils.INPUT_WATER);
-		return label;
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// String label = dataSetIndex == 0 ? InfoUtils.INPUT_ELEC : (dataSetIndex
+	// == 1 ? InfoUtils.INPUT_AIR
+	// : InfoUtils.INPUT_WATER);
+	// return label;
+	// }
 
 	// /**
 	// * 请求页面的url

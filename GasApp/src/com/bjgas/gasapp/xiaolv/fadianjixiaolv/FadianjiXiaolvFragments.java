@@ -72,16 +72,16 @@ public abstract class FadianjiXiaolvFragments extends XiaolvFragments<XiaolvBean
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.FADIANJI_XIAOLV;
-		case 1:
-			return InfoUtils.FADIANJI_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.FADIANJI_XIAOLV;
+	// case 1:
+	// return InfoUtils.FADIANJI_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

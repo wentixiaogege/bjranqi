@@ -1,5 +1,6 @@
 package com.bjgas.gasapp.xiaolv;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,5 +72,11 @@ public abstract class XiaolvFragments<T extends XiaolvBean> extends BaseFragment
 		String mRequestUrl = String.format(FORMAT_URL_WITHDATE, REQUEST_WEBSITE, XIAOLV_CATEGORY, getModule(),
 				startMonth, endMonth);
 		return mRequestUrl;
+	}
+
+	@Override
+	public String getMarkViewDesc(int dataSetIndex) {
+		// TODO Auto-generated method stub
+		return StringUtils.EMPTY;
 	}
 }

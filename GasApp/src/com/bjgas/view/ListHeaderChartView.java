@@ -107,11 +107,11 @@ public class ListHeaderChartView extends LinearLayout {
 		imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
 		tvChartName = (TextView) findViewById(R.id.tvChartName);
 		operatingAnim = AnimationUtils.loadAnimation(getContext(), R.anim.refresh);
-		// 首先显示第0条
-		mDisplayedItem = 0;
+
 		// 首先显示当前状态
-		setSearchMethod(SearchMethod.Now);
+		setmDisplayedItem(0);
 		initHead();
+		setSearchMethod(SearchMethod.Week);
 		if (items != null)
 			updateListView();
 
@@ -259,7 +259,7 @@ public class ListHeaderChartView extends LinearLayout {
 						mpoPopupWindowListItemClick.changeFragments(ListHeaderChartView.this);
 					}
 				}
-				changeTopicLabel(position);
+				// changeTopicLabel(position);
 				dismissPopviewWindow();
 			}
 
@@ -371,6 +371,16 @@ public class ListHeaderChartView extends LinearLayout {
 	}
 
 	private void setSearchMethod(SearchMethod searchMethod) {
+		if (searchMethod == SearchMethod.Week)
+			changeTopicLabel(1);
+		else if (searchMethod == SearchMethod.Month) {
+			changeTopicLabel(2);
+		} else if (searchMethod == SearchMethod.Search) {
+			changeTopicLabel(3);
+		} else {
+			changeTopicLabel(0);
+
+		}
 		this.searchMethod = searchMethod;
 	}
 

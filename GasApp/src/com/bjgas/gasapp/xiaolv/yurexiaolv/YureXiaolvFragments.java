@@ -80,16 +80,16 @@ public abstract class YureXiaolvFragments extends XiaolvFragments<XiaolvBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.YURE_XIAOLV;
-		case 1:
-			return InfoUtils.YURE_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.YURE_XIAOLV;
+	// case 1:
+	// return InfoUtils.YURE_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

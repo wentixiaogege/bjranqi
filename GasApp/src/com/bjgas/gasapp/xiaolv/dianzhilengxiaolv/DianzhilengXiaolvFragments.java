@@ -81,16 +81,16 @@ public abstract class DianzhilengXiaolvFragments extends XiaolvFragments<XiaolvB
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.DIANZHILENG_XIAOLV;
-		case 1:
-			return InfoUtils.DIANZHILENG_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.DIANZHILENG_XIAOLV;
+	// case 1:
+	// return InfoUtils.DIANZHILENG_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

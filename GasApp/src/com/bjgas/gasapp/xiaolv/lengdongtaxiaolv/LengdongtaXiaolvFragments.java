@@ -80,16 +80,16 @@ public abstract class LengdongtaXiaolvFragments extends XiaolvFragments<XiaolvBe
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.SHUIBENG_XIAOLV;
-		case 1:
-			return InfoUtils.SHUIBENG_XIAOLV;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.SHUIBENG_XIAOLV;
+	// case 1:
+	// return InfoUtils.SHUIBENG_XIAOLV;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

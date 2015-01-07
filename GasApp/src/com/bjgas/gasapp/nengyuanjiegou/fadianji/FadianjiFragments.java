@@ -177,18 +177,18 @@ public abstract class FadianjiFragments extends NengyuanFragments<FadianjiBean> 
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.FADIANJI_FADIAN;
-		case 1:
-			return InfoUtils.FADIANJI_HAOQI;
-		case 2:
-			return InfoUtils.FADIANJI_YURE;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.FADIANJI_FADIAN;
+	// case 1:
+	// return InfoUtils.FADIANJI_HAOQI;
+	// case 2:
+	// return InfoUtils.FADIANJI_YURE;
+	// default:
+	// return null;
+	// }
+	// }
 
 }

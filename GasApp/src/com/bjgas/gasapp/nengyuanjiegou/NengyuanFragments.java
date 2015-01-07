@@ -1,5 +1,7 @@
 package com.bjgas.gasapp.nengyuanjiegou;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,13 @@ public abstract class NengyuanFragments<T> extends BaseFragment<T> {
 		String mRequestUrl = String.format(FORMAT_URL_WITHDATE, REQUEST_WEBSITE, NENTYUAN_CATEGORY, getModule(),
 				startMonth, endMonth);
 		return mRequestUrl;
+	}
+
+	@Override
+	public String getMarkViewDesc(int dataSetIndex) {
+		// TODO Auto-generated method stub
+		return StringUtils.EMPTY;
+		// return null;
 	}
 
 	// /**

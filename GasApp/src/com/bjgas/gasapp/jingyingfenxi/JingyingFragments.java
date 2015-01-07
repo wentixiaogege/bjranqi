@@ -1,5 +1,7 @@
 package com.bjgas.gasapp.jingyingfenxi;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,13 @@ public abstract class JingyingFragments<T> extends BaseFragment<T> {
 		String mRequestUrl = String.format(FORMAT_URL, REQUEST_WEBSITE, JINGYING_CATEGORY, getModule(),
 				SearchMethod.Week);
 		return mRequestUrl;
+	}
+
+	@Override
+	public String getMarkViewDesc(int dataSetIndex) {
+		// TODO Auto-generated method stub
+		// return null;
+		return StringUtils.EMPTY;
 	}
 
 	protected String getMonthRequestUrl() {

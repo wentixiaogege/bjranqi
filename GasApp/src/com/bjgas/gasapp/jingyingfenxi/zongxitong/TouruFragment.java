@@ -139,12 +139,13 @@ public abstract class TouruFragment extends JingyingFragments<AllInputBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		String label = dataSetIndex == 0 ? JINGYING_TOURU_ELEC : (dataSetIndex == 1 ? JINGYING_TOURU_GAS
-				: JINGYING_TOURU_WATER);
-		return label;
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// String label = dataSetIndex == 0 ? JINGYING_TOURU_ELEC : (dataSetIndex ==
+	// 1 ? JINGYING_TOURU_GAS
+	// : JINGYING_TOURU_WATER);
+	// return label;
+	// }
 
 
 	@Override

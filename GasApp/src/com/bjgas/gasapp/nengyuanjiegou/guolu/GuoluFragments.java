@@ -147,16 +147,16 @@ public abstract class GuoluFragments extends NengyuanFragments<GuoluBean> {
 
 	}
 
-	@Override
-	public String getMarkViewDesc(int dataSetIndex) {
-		switch (dataSetIndex) {
-		case 0:
-			return InfoUtils.GUOLU_HAOQI;
-		case 1:
-			return InfoUtils.GUOLU_ZHIRE;
-		default:
-			return null;
-		}
-	}
+	// @Override
+	// public String getMarkViewDesc(int dataSetIndex) {
+	// switch (dataSetIndex) {
+	// case 0:
+	// return InfoUtils.GUOLU_HAOQI;
+	// case 1:
+	// return InfoUtils.GUOLU_ZHIRE;
+	// default:
+	// return null;
+	// }
+	// }
 
 }
